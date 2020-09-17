@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1083905248324",
+    "firebase_url": "https://partaker-1fa76.firebaseio.com",
+    "project_id": "partaker-1fa76",
+    "storage_bucket": "partaker-1fa76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083905248324:android:6804c6030879ed2a558011",
+        "android_client_info": {
+          "package_name": "com.it.partaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083905248324-0d409ubatrf0vf1krvs9mcfmj9vi6423.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.it.partaker",
+            "certificate_hash": "03cfee5105afd4bcab78c9f93c6415c7750ff88f"
+          }
+        },
+        {
+          "client_id": "1083905248324-o15hb3klgh7jg6gu6ai5eium5elmrpe8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwgkETCLk_f0qJU7OJlaG4YfblC9hgd58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083905248324-o15hb3klgh7jg6gu6ai5eium5elmrpe8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

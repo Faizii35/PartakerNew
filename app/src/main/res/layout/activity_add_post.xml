@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.AddPostActivity">
+
+    <TextView
+        android:id="@+id/tvAddPostDonationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Donation Name:"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp">
+
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilAddPostDonationName"
+        style="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAddPostDonationName"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAddPostDonationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvAddPostDonationDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilAddPostDonationName"
+        android:layout_centerHorizontal="true"
+        android:text="Donation Description:"
+        android:textSize="18sp">
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilAddPostDonationDesc"
+        style="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAddPostDonationDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAddPostDonationDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:scrollHorizontally="false"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvAddPostDonationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilAddPostDonationDesc"
+        android:layout_centerHorizontal="true"
+        android:text="Add Image: (*Optional)"
+        android:layout_margin="5dp"
+        android:textSize="18sp"/>
+    <ImageView
+        android:id="@+id/ivAddPostImage"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvAddPostDonationImage"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/default_profile_pic" />
+
+    <Button
+        android:id="@+id/btnAddPostPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_below="@+id/ivAddPostImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Post"
+        android:textAllCaps="true"
+        android:padding="5dp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3CBDCF"
+    tools:context=".activities.LoginActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3CBDCF">
+
+        <EditText
+            android:id="@+id/etLoginEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="188dp"
+            android:layout_marginEnd="101dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etLoginPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="101dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
+
+        <TextView
+            android:id="@+id/tvLoginQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/don_t_have_an_account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLoginForgotPassword" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="89dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="162dp"
+            android:background="#ACA9A0"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:textColor="#F6F6F6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLoginPassword" />
+
+        <TextView
+            android:id="@+id/tvLoginSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="72dp"
+            android:text="@string/sign_up"
+            android:textColor="#38569F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvLoginQuestion"
+            app:layout_constraintTop_toBottomOf="@+id/tvLoginForgotPassword" />
+
+        <TextView
+            android:id="@+id/tvLoginForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="177dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="177dp"
+            android:text="@string/forgot_password"
+            android:textColor="#38569F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

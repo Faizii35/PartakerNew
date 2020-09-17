@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Splash_Sreen_Text_Size">50sp</dimen>
+    <dimen name="login_employee_text">20sp</dimen>
+    <dimen name="login_parent_text">20sp</dimen>
+    <dimen name="parent_image_padding">20dp</dimen>
+    <dimen name="employee_image_padding">20dp</dimen>
+    <dimen name="employee_username_margin">10dp</dimen>
+    <dimen name="employee_password_margin">10dp</dimen>
+    <dimen name="username_edit_text">20sp</dimen>
+    <dimen name="password_edit_text">20sp</dimen>
+    <dimen name="btn_signup_margin_top">20dp</dimen>
+    <dimen name="btn_signup_margin_end">10dp</dimen>
+    <dimen name="signin_parent_image_height">200dp</dimen>
+    <dimen name="forget_button_margin">20dp</dimen>
+    <dimen name="margin_start_of_employee_login_button">30dp</dimen>
+    <dimen name="margin_top_of_employee_login_button">10dp</dimen>
+    <dimen name="signup_text_view_margin_start">20dp</dimen>
+    <dimen name="hintTextAppearance">10sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="splash_image_width">250dp</dimen>
+    <dimen name="splash_image_height">250dp</dimen>
+    <dimen name="splash_image_margin">50dp</dimen>
+    <dimen name="splash_text_view_margin">12dp</dimen>
+    <dimen name="splash_text_view_text_size">28sp</dimen>
+    <dimen name="sign_up_parent_button_margin">2dp</dimen>
+    <dimen name="sign_up_progress_bar_margin">5dp</dimen>
+    <dimen name="signup_address_edittext_margin_start">10dp</dimen>
+</resources>

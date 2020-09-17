@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ProfileFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FC507AC6">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#BA7CBDB0">
+
+            <Button
+                android:id="@+id/btnProfileDelete"
+                android:layout_width="139dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="164dp"
+                android:background="@color/colorAccent"
+                android:padding="5dp"
+                android:text="@string/delete_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.205"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileChangePassword" />
+
+            <Button
+                android:id="@+id/btnProfileEditProfile"
+                android:layout_width="106dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="164dp"
+                android:background="@color/colorAccent"
+                android:padding="5dp"
+                android:text="Edit Profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileChangePassword" />
+
+            <ImageView
+                android:id="@+id/ivProfilePic"
+                android:layout_width="107dp"
+                android:layout_height="108dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginEnd="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/default_profile_pic" />
+
+            <TextView
+                android:id="@+id/tvProfileFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfilePic" />
+
+            <TextView
+                android:id="@+id/tvProfilePhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="79dp"
+                android:layout_marginTop="13dp"
+                android:text="@string/phone_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileFullName" />
+
+            <TextView
+                android:id="@+id/tvProfileCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="11dp"
+                android:text="@string/city"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfilePhoneNumber" />
+
+            <TextView
+                android:id="@+id/tvProfileBloodGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="81dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/blood_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileCity" />
+
+            <TextView
+                android:id="@+id/tvProfileGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="81dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/gender"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileBloodGroup" />
+
+            <TextView
+                android:id="@+id/tvProfileFullNameFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="87dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="79dp"
+                android:text="@string/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProfileFullName"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfilePic" />
+
+            <TextView
+                android:id="@+id/tvProfilePhoneNumberFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="88dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="79dp"
+                android:text="@string/phone_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProfilePhoneNumber"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileFullNameFB" />
+
+            <TextView
+                android:id="@+id/tvProfileCityFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="87dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="79dp"
+                android:text="@string/city"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProfileCity"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfilePhoneNumberFB" />
+
+            <TextView
+                android:id="@+id/tvProfileBloodGroupFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="86dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="79dp"
+                android:text="@string/blood_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProfileBloodGroup"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileCityFB" />
+
+            <TextView
+                android:id="@+id/tvProfileGenderFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="86dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="79dp"
+                android:text="@string/gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProfileGender"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileBloodGroupFB" />
+
+            <TextView
+                android:id="@+id/tvProfileChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="155dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="148dp"
+                android:background="#00554EC1"
+                android:text="@string/change_password"
+                android:textColor="#243FCF"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.553"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileGender" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

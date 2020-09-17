@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#89AED8"
+    tools:context=".activities.RegisterActivity">
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/full_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/phone_number"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
+
+    <EditText
+        android:id="@+id/etCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/city"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCity" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="73dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="9dp"
+        android:text="@string/gender"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/rgGender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="164dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="110dp"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
+
+    <RadioGroup
+        android:id="@+id/rgGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword">
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/male"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvRegiterAs"
+        android:layout_width="91dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/register_as"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/rgRegisterAs"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+    <RadioGroup
+        android:id="@+id/rgRegisterAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgGender">
+
+        <RadioButton
+            android:id="@+id/rbDonor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/donor"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/rbReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2sp"
+            android:text="@string/receiver"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvRegisterQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="179dp"
+        android:text="@string/alredy_have_an_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+    <TextView
+        android:id="@+id/tvRegisterSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/sign_in"
+        android:textColor="#1B6285"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toEndOf="@+id/tvRegisterQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

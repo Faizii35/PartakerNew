@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRVHFDonorItem"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/default_profile_pic">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRVHFDonorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/ivRVHFDonorItem"
+        android:background="@color/colorAccent"
+        android:textSize="20sp">
+
+    </androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRVHFDonorDesc"
+        android:background="@color/colorAccent"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/ivRVHFDonorItem"
+        android:layout_below="@+id/tvRVHFDonorName"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:singleLine="true">
+
+    </androidx.appcompat.widget.AppCompatTextView>
+
+
+</RelativeLayout>

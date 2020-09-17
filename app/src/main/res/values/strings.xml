@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Partaker</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="register_as">Register As</string>
+    <string name="donor">Donor</string>
+    <string name="receiver">Receiver</string>
+    <string name="alredy_have_an_account">Alredy Have An Account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t Have An Account?</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="city">City</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="gender">Gender</string>
+
+    <string name="nav_header_title">User Name</string>
+    <string name="nav_header_subtitle">user@gmail.com</string>
+
+    <string name="share_app">Share App</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="current_password">Current Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password">Change Password</string>
+
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="about_app">About App</string>
+    <string name="review_app">Review App</string>
+    <string name="my_donations">My Donations</string>
+    <string name="logout">Logout</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="please_enter_your_registered_email">Please Enter Your Registered Email</string>
+    <string name="delete_account">Delete Account</string>
+</resources>
