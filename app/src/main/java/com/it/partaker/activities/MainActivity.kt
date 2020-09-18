@@ -20,6 +20,7 @@ import com.it.partaker.R
 import com.it.partaker.R.id.nav_host_fragment
 import com.it.partaker.classes.User
 import com.it.partaker.fragments.HomeFragment
+import com.it.partaker.fragments.MyDonations
 import com.it.partaker.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -37,11 +38,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment,HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(nav_host_fragment,HomeFragment()).commit()
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
         storageRef = FirebaseStorage.getInstance().reference.child("User Images")
+        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
 
         //Data Retrieval From Firebase in Profile Fragment
         userReference!!.addValueEventListener(object : ValueEventListener {
@@ -68,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         //Drawer Related Code of Main Activity Lies Below
         showEmployeeNavigationDrawer()
 
@@ -76,11 +76,6 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_home -> {
 
-//                    if (user?.token != null && user?.role == 1) {
-//                        toolbar.title = "Worker"
-//                        loadFragment(HomeFragment())
-//                        closeDrawer()
-//                    } else if (user?.token != null && user?.role == 0) {
                     toolbar.title = "Donor"
                     supportFragmentManager.beginTransaction().replace(nav_host_fragment,HomeFragment()).commit()
                     closeDrawer()
@@ -97,8 +92,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_myDonations -> {
 //                    loadFragment(CompletedCampaignsFragment())
                     toolbar.title = "My Donations"
+                    supportFragmentManager.beginTransaction().replace(nav_host_fragment,MyDonations()).commit()
                     closeDrawer()
-                    Toast.makeText(this, "My Donations", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.nav_aboutApp -> {

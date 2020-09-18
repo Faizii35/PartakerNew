@@ -50,9 +50,6 @@ class LoginActivity : AppCompatActivity() {
                             if (mAuth.currentUser!!.isEmailVerified) {
                                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
-                                etLoginEmail.setText("")
-                                etLoginPassword.setText("")
-
                                 progressDialog.dismiss()
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.flags = FLAG_ACTIVITY_CLEAR_TOP
