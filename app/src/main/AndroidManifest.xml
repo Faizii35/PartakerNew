@@ -13,6 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activities.MainReceiver"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity android:name=".activities.AddPostActivity" />
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".activities.ChangePasswordActivity" />
@@ -24,9 +29,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.RegisterActivity" />
+
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
     </application>
 
 </manifest>

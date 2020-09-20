@@ -13,11 +13,10 @@ import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
 
 class DonorAdapter(val context: Context):RecyclerView.Adapter<DonorAdapter.DonorViewHolder>()
 {
-    class DonorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-    }
+    class DonorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     var donorList = mutableListOf<Donation>()
+
     fun setDonations(donation: List<Donation>){
         donorList = donation as MutableList<Donation>
         notifyDataSetChanged()
@@ -36,12 +35,12 @@ class DonorAdapter(val context: Context):RecyclerView.Adapter<DonorAdapter.Donor
         val textView = holder.itemView.tvRVMDFDonorName
         textView.text = donations.getName()
 
-
         val textView2 = holder.itemView.tvRVMDFDonorDesc
         textView2.text = donations.getDesc()
 
         Glide.with(context)
                 .load(donations.getImage())
+                .placeholder(R.drawable.default_profile_pic)
                 .into(holder.itemView.ivRVMDFDonorItem)
     }
 

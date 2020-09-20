@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeReceiverFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHFDonor"
+        android:id="@+id/rvHRFDonor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/rv_hf_donor_item"/>
+        tools:listitem="@layout/rv_hrf_receiver_item"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fa_btn_HF_add_donation"
+        android:id="@+id/fa_btn_HRF_add_receiver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

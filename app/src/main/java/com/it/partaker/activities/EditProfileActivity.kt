@@ -58,7 +58,7 @@ class EditProfileActivity : AppCompatActivity() {
         categories.add(7,"O+")
         categories.add(8,"O-")
 
-            val dataAdapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
+        val dataAdapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnEditProfileBloodGroup.adapter = dataAdapter
 

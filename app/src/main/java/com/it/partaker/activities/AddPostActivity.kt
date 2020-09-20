@@ -9,21 +9,25 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.it.partaker.R
 import com.it.partaker.classes.Donation
+import com.it.partaker.classes.User
 import kotlinx.android.synthetic.main.activity_add_post.*
+import kotlinx.android.synthetic.main.nav_header_main_receiver.*
 
 class AddPostActivity : AppCompatActivity() {
 
+
     private var donationReference : DatabaseReference? = null
+    private var requestReference : DatabaseReference? = null
     private var userReference : DatabaseReference? = null
     private var storageRef: StorageReference? = null
     private var firebaseUser : FirebaseUser? = null
@@ -36,6 +40,7 @@ class AddPostActivity : AppCompatActivity() {
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
         donationReference = FirebaseDatabase.getInstance().reference.child("donations")
+        requestReference = FirebaseDatabase.getInstance().reference.child("requests")
         storageRef = FirebaseStorage.getInstance().reference.child("Post Images")
 
         super.onCreate(savedInstanceState)
@@ -47,13 +52,13 @@ class AddPostActivity : AppCompatActivity() {
 
         btnAddPostPost.setOnClickListener {
 
-            val donationName: String = etAddPostDonationName.text.toString()
-            val donationDesc: String  = etAddPostDonationDesc.text.toString()
-            val donationImage = url
+            val postName: String = etAddPostDonationName.text.toString()
+            val postDesc: String  = etAddPostDonationDesc.text.toString()
+            val postImage = url
 
             when{
-                TextUtils.isEmpty(donationName) -> Toast.makeText(this,"Donation Name is Required", Toast.LENGTH_SHORT).show()
-                TextUtils.isEmpty(donationDesc) -> Toast.makeText(this,"Donation Description is Required", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(postName) -> Toast.makeText(this,"Donation Name is Required", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(postDesc) -> Toast.makeText(this,"Donation Description is Required", Toast.LENGTH_SHORT).show()
                 else -> {
                     val progressDialog = ProgressDialog(this)
                     progressDialog.setTitle("Posting")
@@ -61,36 +66,74 @@ class AddPostActivity : AppCompatActivity() {
                     progressDialog.setCanceledOnTouchOutside(false)
                     progressDialog.show()
 
-                    val donationId = donationReference!!.push().key.toString()
-                    val donorId = firebaseUser!!.uid
+                    val postId = donationReference!!.push().key.toString()
+                    val publisherId = firebaseUser!!.uid
 
-                    val donationStatus: String = "Approval Required"
-                    val donationAssigned : String = "Pending"
+                    val postStatus: String = "Approval Required"
+                    val postAssigned : String = "Pending"
 
-                    Donation(donationId, donationName,donationDesc,donationImage,donorId,donationStatus,donationAssigned)
-                    val donationHashMap = HashMap<String, Any>()
-                    donationHashMap["donationId"] = donationId
-                    donationHashMap["name"] = donationName
-                    donationHashMap["desc"] = donationDesc
-                    donationHashMap["image"] = donationImage
-                    donationHashMap["donorId"] = donorId
-                    donationHashMap["status"] = donationStatus
-                    donationHashMap["assigned"] = donationAssigned
+                    Donation(postId, postName,postDesc,postImage,publisherId,postStatus,postAssigned)
+                    val postHashMap = HashMap<String, Any>()
+                    postHashMap["postId"] = postId
+                    postHashMap["name"] = postName
+                    postHashMap["desc"] = postDesc
+                    postHashMap["image"] = postImage
+                    postHashMap["publisherId"] = publisherId
+                    postHashMap["status"] = postStatus
+                    postHashMap["assigned"] = postAssigned
 
+                    userReference!!.addValueEventListener(object: ValueEventListener {
+                        override fun onDataChange(p0: DataSnapshot) {
+                            if (p0.exists()){
+                                val user = p0.getValue<User>(User::class.java)
 
-                    donationReference!!.child(donationId).updateChildren(donationHashMap).addOnCompleteListener { it ->
-                        if (it.isSuccessful) {
+                                if(user?.getRegisterAs() == "Donor"){
 
-                         Toast.makeText(this, "Donation Post Added", Toast.LENGTH_LONG).show()
-                            //Progress Dialog Dismiss
-                            progressDialog.dismiss()
+                                    donationReference!!.child(postId).updateChildren(postHashMap).addOnCompleteListener { it ->
+                                        if (it.isSuccessful) {
+                                            Toast.makeText(applicationContext, "Post Added", Toast.LENGTH_LONG).show()
 
-                        } //End If Update Children
-                        else {
-                            Toast.makeText(this,"Donation Post Upload Unsuccessful: " + it.exception!!.toString(),Toast.LENGTH_SHORT).show()
-                            progressDialog.dismiss()
-                        } // End Else Set Value Function
-                    } // End Set Value Function
+                                            val intent = Intent(this@AddPostActivity, MainActivity::class.java)
+                                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                            startActivity(intent)
+                                            //Progress Dialog Dismiss
+                                            progressDialog.dismiss()
+
+                                        } //End If Update Children
+                                        else {
+                                            Toast.makeText(applicationContext,"Donation Post Upload Unsuccessful: " + it.exception!!.toString(),Toast.LENGTH_SHORT).show()
+                                            progressDialog.dismiss()
+                                        } // End Else Set Value Function
+                                    } // End Set Value Function
+                                }
+
+                                else {
+
+                                    requestReference!!.child(postId).updateChildren(postHashMap).addOnCompleteListener { it ->
+                                        if (it.isSuccessful) {
+                                            Toast.makeText(applicationContext, "Post Added", Toast.LENGTH_LONG).show()
+
+                                            val intent = Intent(this@AddPostActivity, MainReceiver::class.java)
+                                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                            startActivity(intent)
+                                            //Progress Dialog Dismiss
+                                            progressDialog.dismiss()
+
+                                        } //End If Update Children
+                                        else {
+                                            Toast.makeText(applicationContext,"Request Post Upload Unsuccessful: " + it.exception!!.toString(),Toast.LENGTH_SHORT).show()
+                                            progressDialog.dismiss()
+                                        } // End Else Set Value Function
+                                    } // End Update Receiver Function
+
+                                } // End Else User is Receiver
+                            } // End If Within Data Change
+                        } // End On Data Change
+                        override fun onCancelled(p0: DatabaseError) {
+                            Toast.makeText(this@AddPostActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
+                        }
+                    }) // End Value Event Listener
+
                 } // End Else Body of When Block
             } // End When Block
         } // End Function Button Register
@@ -125,7 +168,7 @@ class AddPostActivity : AppCompatActivity() {
             uploadTask.addOnCompleteListener {
                 if (it.isSuccessful) {
                     url = it.result.toString()
-                    val addOnCompleteListener = fileRef.downloadUrl.addOnCompleteListener { it1: Task<Uri> ->
+                    fileRef.downloadUrl.addOnCompleteListener { it1: Task<Uri> ->
                         if (it1.isSuccessful) {
                             url = it1.result.toString()
                         }

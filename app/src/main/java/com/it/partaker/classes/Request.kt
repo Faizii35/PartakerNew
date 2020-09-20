@@ -1,6 +1,6 @@
 package com.it.partaker.classes
 
-data class Donation(
+data class Request(
     private var p_id: String = "",
     private var name : String = "",
     private var desc : String = "",
@@ -10,8 +10,8 @@ data class Donation(
     private var assigned: String = ""
 ) {
 
-    fun Donation(){}
-    fun Donation( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String){
+    fun Request(){}
+    fun Request( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String){
         this.p_id = p_id
         this.name = name
         this.desc = desc

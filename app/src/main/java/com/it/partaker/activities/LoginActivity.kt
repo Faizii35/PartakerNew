@@ -2,18 +2,22 @@ package com.it.partaker.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.Intent.*
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import com.google.firebase.storage.StorageReference
 import com.it.partaker.R
+import com.it.partaker.classes.User
 import com.it.partaker.fragments.ForgotPasswordFragment
-import com.it.partaker.fragments.HomeFragment
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_forgot_password.*
+
+private var userReference : DatabaseReference? = null
+private var firebaseUser : FirebaseUser? = null
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +53,37 @@ class LoginActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             if (mAuth.currentUser!!.isEmailVerified) {
                                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-
                                 progressDialog.dismiss()
-                                val intent = Intent(this, MainActivity::class.java)
-                                intent.flags = FLAG_ACTIVITY_CLEAR_TOP
-                                startActivity(intent)
+
+
+                                firebaseUser = FirebaseAuth.getInstance().currentUser
+                                userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
+
+                                userReference!!.addValueEventListener(object: ValueEventListener {
+                                    override fun onDataChange(p0: DataSnapshot) {
+                                        if (p0.exists()){
+                                            val user = p0.getValue<User>(User::class.java)
+
+                                            if(user?.getRegisterAs() == "Donor"){
+                                                progressDialog.dismiss()
+                                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                                startActivity(intent)
+                                            }
+                                            else {
+                                                progressDialog.dismiss()
+                                                val intent = Intent(this@LoginActivity, MainReceiver::class.java)
+                                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                                startActivity(intent)
+                                            }
+                                        }
+                                    }
+                                    override fun onCancelled(p0: DatabaseError) {
+                                        Toast.makeText(this@LoginActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
+                                    }
+                                })
+
+
                             }
                             else {
                                 progressDialog.dismiss()
