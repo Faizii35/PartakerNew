@@ -1,5 +1,6 @@
 package com.it.partaker.activities
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -25,6 +26,7 @@ import com.it.partaker.fragments.MyDonationsFragment
 import com.it.partaker.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     var textView_name: TextView?= null
     var textView_email: TextView?= null
+    var imageView_navPP: ImageView?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                     val user = p0.getValue<User>(User::class.java)
                     textView_name = findViewById(R.id.tvMainActivityNavHeaderName)
                     textView_email = findViewById(R.id.tvMainActivityNavHeaderEmail)
+                    imageView_navPP = findViewById(R.id.ivMainActivityNavHeaderProfile)
 
                     val name = user!!.getFullName()
                     textView_name?.text = name
@@ -60,11 +64,20 @@ class MainActivity : AppCompatActivity() {
 
                     val imageView = user.getProfilePic()
 
-                    Glide.with(applicationContext)
-                        .load(imageView)
-                        .placeholder(R.drawable.default_profile_pic)
-                        .transform(CircleCrop())
-                        .into(ivMainActivityNavHeaderProfile)
+//                    Glide.with(this@MainActivity)
+//                            .load(imageView)
+//                            .placeholder(R.drawable.default_profile_pic)
+//                            .transform(CircleCrop())
+//                            .into(ivMainActivityNavHeaderProfile)
+
+                    applicationContext?.let {
+                        Glide.with(it)
+                            .load(imageView)
+                            .placeholder(R.drawable.default_profile_pic)
+                            .transform(CircleCrop())
+                            .into(ivMainActivityNavHeaderProfile)
+                    }
+
                 }
             }
             override fun onCancelled(p0: DatabaseError) {

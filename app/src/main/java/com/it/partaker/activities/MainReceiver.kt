@@ -63,11 +63,12 @@ class MainReceiver : AppCompatActivity() {
 
                     val imageView = user.getProfilePic()
 
-                        Glide.with(applicationContext)
+                        Glide.with(this@MainReceiver)
                             .load(imageView)
                             .placeholder(R.drawable.default_profile_pic)
                             .transform(CircleCrop())
                             .into(ivMainReceiverNavHeaderProfile)
+
                 }
             }
             override fun onCancelled(p0: DatabaseError) {
