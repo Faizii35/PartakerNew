@@ -22,9 +22,7 @@ import com.it.partaker.R
 import com.it.partaker.R.id.ivMainActivityNavHeaderProfile
 import com.it.partaker.R.id.nav_host_fragment
 import com.it.partaker.classes.User
-import com.it.partaker.fragments.HomeDonorFragment
-import com.it.partaker.fragments.MyDonationsFragment
-import com.it.partaker.fragments.ProfileFragment
+import com.it.partaker.fragments.*
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -37,15 +35,14 @@ class MainActivity : AppCompatActivity() {
     private var storageRef: StorageReference? = null
     private var firebaseUser : FirebaseUser? = null
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sharedPrefs = PartakerPrefs(this@MainActivity)
 
-        showEmployeeNavigationDrawer()
-
-        val sharedPrefs = PartakerPrefs(this)
+        val reg = sharedPrefs.getRegisterAsUser().toString()
+        Toast.makeText(this, reg, Toast.LENGTH_SHORT).show()
+        showEmployeeNavigationDrawer(reg)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         storageRef = FirebaseStorage.getInstance().reference.child("User Images")
@@ -61,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                 Glide.with(this@MainActivity)
                     .load(user.getProfilePic())
                     .placeholder(R.drawable.default_profile_pic)
+                    .transform(CircleCrop())
                     .into(headerView.ivMainActivityNavHeaderProfile)
             }
 
@@ -70,29 +68,38 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        val reg = sharedPrefs.getRegisterAsUser().toString()
-        Toast.makeText(this, reg, Toast.LENGTH_SHORT).show()
-
         supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
 
         //Drawer Related Code of Main Activity Lies Below
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> {
+                R.id.nav_home_donor -> {
                     toolbar.title = "Donor"
                     supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
                     closeDrawer()
                     true
                 }
-                R.id.nav_profile -> {
-                    toolbar.title = "Profile"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, ProfileFragment()).commit()
+                R.id.nav_home_receiver -> {
+                    toolbar.title = "Receiver"
+                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
                     closeDrawer()
                     true
                 }
                 R.id.nav_myDonations -> {
                     toolbar.title = "My Donations"
                     supportFragmentManager.beginTransaction().replace(nav_host_fragment, MyDonationsFragment()).commit()
+                    closeDrawer()
+                    true
+                }
+                R.id.nav_myRequests -> {
+                    toolbar.title = "My Requests"
+                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, MyRequestsFragment()).commit()
+                    closeDrawer()
+                    true
+                }
+                R.id.nav_profile -> {
+                    toolbar.title = "Profile"
+                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, ProfileFragment()).commit()
                     closeDrawer()
                     true
                 }
@@ -165,7 +172,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //Drawer Related Code of Main Activity Lies Below
-    private fun showEmployeeNavigationDrawer() {
+    private fun showEmployeeNavigationDrawer(reg : String) {
         setSupportActionBar(toolbar)
         val drawerToggle: androidx.appcompat.app.ActionBarDrawerToggle =
             object : androidx.appcompat.app.ActionBarDrawerToggle(
@@ -181,11 +188,19 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
+        if(reg =="Donor"){
+            nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
+            nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
+        }
+        else {
+            nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
+            nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
+        }
+
     }
 
     private fun closeDrawer() {
         drawer_layout.closeDrawer(GravityCompat.START)
     }
-
 
 }

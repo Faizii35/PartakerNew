@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                                         if (p0.exists()){
                                             val user = p0.getValue<User>(User::class.java)
                                             sharedPrefs.saveRegisterAsUser(user!!.getRegisterAs())
+                                            Toast.makeText(this@LoginActivity,"User is " + user.getRegisterAs(), Toast.LENGTH_LONG).show()
                                         }
                                     }
                                     override fun onCancelled(p0: DatabaseError) {

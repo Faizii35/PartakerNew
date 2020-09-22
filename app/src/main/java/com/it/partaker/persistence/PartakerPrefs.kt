@@ -2,7 +2,6 @@ package com.it.partaker.persistence
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.it.partaker.classes.User
 
 class PartakerPrefs(context: Context) {
     private val sharedPref: SharedPreferences
@@ -16,12 +15,19 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getRegisterAsUser(): String? {
-        val userString = sharedPref.getString(SAVED_USERS, null)
+        val userString = sharedPref.getString(SAVED_USERS, "")
         return userString
     }
 
+    fun clearEmployeePref(userKey: String?) {
+        val employee = sharedPref.getString(userKey, "")
+        val editor = sharedPref.edit()
+        editor.clear()
+        editor.apply()
+    }
+
     companion object {
-        const val PREFS_NAME = "poliofy_prefs"
+        const val PREFS_NAME = "partaker_prefs"
         const val SAVED_USERS = "saved_users"
     }
 }
