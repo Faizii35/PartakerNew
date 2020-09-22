@@ -80,19 +80,17 @@ class EditProfileActivity : AppCompatActivity() {
 
             val user = HashMap<String,Any>()
             user["fullName"] = etEditProfileName.text.toString()
-            user["PhoneNumber"] = etEditProfilePhoneNum.text.toString()
+            user["phoneNumber"] = etEditProfilePhoneNum.text.toString()
             user["city"] = etEditProfileCity.text.toString()
             user["bloodGroup"] = bloodGroup
 
             userReference!!.updateChildren(user).addOnCompleteListener {
                 if(it.isSuccessful){
-                    Toast.makeText(this@EditProfileActivity,"Successfully Updated",Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this@EditProfileActivity, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                 }
-                else
-                {
+                else {
                     Toast.makeText(this@EditProfileActivity,"Error: ${it.exception.toString()}",Toast.LENGTH_LONG).show()
                 }
             }

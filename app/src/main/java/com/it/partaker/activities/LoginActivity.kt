@@ -7,20 +7,25 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.FirebaseStorage
 import com.it.partaker.R
 import com.it.partaker.classes.User
 import com.it.partaker.fragments.ForgotPasswordFragment
+import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 private var userReference : DatabaseReference? = null
 private var firebaseUser : FirebaseUser? = null
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val sharedPrefs = PartakerPrefs(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -52,30 +57,15 @@ class LoginActivity : AppCompatActivity() {
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
                             if (mAuth.currentUser!!.isEmailVerified) {
-                                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                                progressDialog.dismiss()
 
 
                                 firebaseUser = FirebaseAuth.getInstance().currentUser
                                 userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
-
                                 userReference!!.addValueEventListener(object: ValueEventListener {
                                     override fun onDataChange(p0: DataSnapshot) {
                                         if (p0.exists()){
                                             val user = p0.getValue<User>(User::class.java)
-
-                                            if(user?.getRegisterAs() == "Donor"){
-                                                progressDialog.dismiss()
-                                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                                startActivity(intent)
-                                            }
-                                            else {
-                                                progressDialog.dismiss()
-                                                val intent = Intent(this@LoginActivity, MainReceiver::class.java)
-                                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                                startActivity(intent)
-                                            }
+                                            sharedPrefs.saveRegisterAsUser(user!!.getRegisterAs())
                                         }
                                     }
                                     override fun onCancelled(p0: DatabaseError) {
@@ -83,8 +73,12 @@ class LoginActivity : AppCompatActivity() {
                                     }
                                 })
 
+                                Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                startActivity(intent)
 
-                            }
+                            } // End If Email Is Verified
                             else {
                                 progressDialog.dismiss()
                                 Toast.makeText(this,"Please Verify Your Email First!", Toast.LENGTH_SHORT).show()

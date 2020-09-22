@@ -21,7 +21,6 @@ import com.it.partaker.R
 import com.it.partaker.classes.Donation
 import com.it.partaker.classes.User
 import kotlinx.android.synthetic.main.activity_add_post.*
-import kotlinx.android.synthetic.main.nav_header_main_receiver.*
 
 class AddPostActivity : AppCompatActivity() {
 
@@ -113,7 +112,7 @@ class AddPostActivity : AppCompatActivity() {
                                         if (it.isSuccessful) {
                                             Toast.makeText(applicationContext, "Post Added", Toast.LENGTH_LONG).show()
 
-                                            val intent = Intent(this@AddPostActivity, MainReceiver::class.java)
+                                            val intent = Intent(this@AddPostActivity, MainActivity::class.java)
                                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                             startActivity(intent)
                                             //Progress Dialog Dismiss

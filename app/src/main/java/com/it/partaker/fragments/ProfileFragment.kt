@@ -214,23 +214,6 @@ class ProfileFragment : Fragment() {
                             progressBar.dismiss()
                         } // End Else Upload Task Complete Listener
                     } // End Download Url On Complete Listener
-
-                    userReference!!.addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(p0: DataSnapshot) {
-                            if (p0.exists()) {
-                                val user = p0.getValue<User>(User::class.java)
-                                Glide.with(this@ProfileFragment)
-                                    .load(user!!.getProfilePic())
-                                    .placeholder(R.drawable.default_profile_pic)
-                                    .transform(CircleCrop())
-                                    .into(ivProfilePic)
-                            }
-                        } // End On Data Change Function
-
-                        override fun onCancelled(p0: DatabaseError) {
-                            TODO("Not yet implemented")
-                        } // End On Data Cancel Function
-                    }) // End Add Value Event Listener
                 } // End If Upload Task is Successful
             } // End Upload Task Complete Listener
         } // End If Image Uri is Not Equals To Null
