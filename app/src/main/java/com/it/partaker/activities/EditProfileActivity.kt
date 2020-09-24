@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.it.partaker.R
 import com.it.partaker.classes.User
+import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -27,6 +28,9 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+
+        val sharedPrefs = PartakerPrefs(this@EditProfileActivity)
+
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
@@ -78,11 +82,22 @@ class EditProfileActivity : AppCompatActivity() {
         }
         btnEditProfileConfirm.setOnClickListener {
 
+
+            val name = etEditProfileName.text.toString()
+            val phone =  etEditProfilePhoneNum.text.toString()
+            val city = etEditProfileCity.text.toString()
+            val blood = bloodGroup
+
             val user = HashMap<String,Any>()
-            user["fullName"] = etEditProfileName.text.toString()
-            user["phoneNumber"] = etEditProfilePhoneNum.text.toString()
-            user["city"] = etEditProfileCity.text.toString()
-            user["bloodGroup"] = bloodGroup
+            user["fullName"] = name
+            user["phoneNumber"] = phone
+            user["city"] = city
+            user["bloodGroup"] = blood
+
+            sharedPrefs.saveNameUser(name)
+            sharedPrefs.savePhoneUser(phone)
+            sharedPrefs.saveCityUser(city)
+            sharedPrefs.saveBloodUser(blood)
 
             userReference!!.updateChildren(user).addOnCompleteListener {
                 if(it.isSuccessful){

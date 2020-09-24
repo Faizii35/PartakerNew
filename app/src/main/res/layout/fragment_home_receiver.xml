@@ -7,7 +7,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHRFDonor"
+        android:id="@+id/rvHRFReceiver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/rv_hrf_receiver_item"/>

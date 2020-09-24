@@ -38,28 +38,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val sharedPrefs = PartakerPrefs(this@MainActivity)
 
-        val reg = sharedPrefs.getRegisterAsUser().toString()
-        Toast.makeText(this, reg, Toast.LENGTH_SHORT).show()
-        showEmployeeNavigationDrawer(reg)
+        showEmployeeNavigationDrawer()
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         storageRef = FirebaseStorage.getInstance().reference.child("User Images")
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
 
-        val headerView: View = nav_view.getHeaderView(0)
+        val headerView: View? = nav_view.getHeaderView(0)
 
         userReference!!.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user : User? = snapshot.getValue<User>(User::class.java)
-                headerView.tvMainActivityNavHeaderName.text = user!!.getFullName()
-                headerView.tvMainActivityNavHeaderEmail.text = user.getEmail()
-                Glide.with(this@MainActivity)
-                    .load(user.getProfilePic())
-                    .placeholder(R.drawable.default_profile_pic)
-                    .transform(CircleCrop())
-                    .into(headerView.ivMainActivityNavHeaderProfile)
+
+                val name = sharedPrefs.getNameUser()
+                val email = sharedPrefs.getEmailUser()
+                val profile = sharedPrefs.getProfileUser()
+
+                headerView?.tvMainActivityNavHeaderName?.text = name
+                headerView?.tvMainActivityNavHeaderEmail?.text = email
+                headerView?.ivMainActivityNavHeaderProfile?.let {
+                    Glide.with(applicationContext)
+                        .load(profile)
+                        .placeholder(R.drawable.default_profile_pic)
+                        .transform(CircleCrop())
+                        .into(it)
+                }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -68,7 +74,6 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
 
         //Drawer Related Code of Main Activity Lies Below
         nav_view.setNavigationItemSelectedListener {
@@ -172,7 +177,9 @@ class MainActivity : AppCompatActivity() {
 
 
     //Drawer Related Code of Main Activity Lies Below
-    private fun showEmployeeNavigationDrawer(reg : String) {
+    private fun showEmployeeNavigationDrawer() {
+        val sharedPrefs = PartakerPrefs(this@MainActivity)
+
         setSupportActionBar(toolbar)
         val drawerToggle: androidx.appcompat.app.ActionBarDrawerToggle =
             object : androidx.appcompat.app.ActionBarDrawerToggle(
@@ -188,13 +195,25 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        if(reg =="Donor"){
+        if(sharedPrefs.getRegisterAsUser() =="Donor"){
+            toolbar.title = "Donor"
+            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
+
             nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
             nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
         }
-        else {
+        else if (sharedPrefs.getRegisterAsUser()=="Receiver"){
+            toolbar.title = "Receiver"
+            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
+
             nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
             nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
+        }
+        else
+        {
+            toolbar.title = "Receiver"
+            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
+            Toast.makeText(this, "Transgender", Toast.LENGTH_SHORT).show()
         }
 
     }

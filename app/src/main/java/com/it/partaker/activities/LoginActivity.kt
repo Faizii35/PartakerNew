@@ -65,11 +65,22 @@ class LoginActivity : AppCompatActivity() {
                                     override fun onDataChange(p0: DataSnapshot) {
                                         if (p0.exists()){
                                             val user = p0.getValue<User>(User::class.java)
-                                            sharedPrefs.saveRegisterAsUser(user!!.getRegisterAs())
+                                            sharedPrefs.clearUserPref()
+                                            sharedPrefs.saveNameUser(user!!.getFullName())
+                                            sharedPrefs.savePhoneUser(user.getPhoneNumber())
+                                            sharedPrefs.saveCityUser(user.getCity())
+                                            sharedPrefs.saveEmailUser(user.getEmail())
+                                            sharedPrefs.saveProfileUser(user.getProfilePic())
+                                            sharedPrefs.saveGenderUser(user.getGender())
+                                            sharedPrefs.saveBloodUser(user.getBloodGroup())
+                                            sharedPrefs.saveRegisterAsUser(user.getRegisterAs())
+
                                             Toast.makeText(this@LoginActivity,"User is " + user.getRegisterAs(), Toast.LENGTH_LONG).show()
+                                            progressDialog.dismiss()
                                         }
                                     }
                                     override fun onCancelled(p0: DatabaseError) {
+                                        progressDialog.dismiss()
                                         Toast.makeText(this@LoginActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
                                     }
                                 })
