@@ -14,9 +14,9 @@ import com.it.partaker.R
 import com.it.partaker.classes.Donation
 import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
 
-class DonorAdapter(val context: Context, val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<DonorAdapter.DonorViewHolder>()
+class ApproveDonationAdapter(val context: Context, val myDonationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<ApproveDonationAdapter.ApproveDonationViewHolder>()
 {
-    class DonorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class ApproveDonationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     var donorList = mutableListOf<Donation>()
 
@@ -25,12 +25,12 @@ class DonorAdapter(val context: Context, val donationItemClickListener: MyDonati
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApproveDonationViewHolder {
         val view  = LayoutInflater.from(parent.context).inflate(R.layout.rv_mdf_donor_item, parent, false)
-        return DonorViewHolder(view)
+        return ApproveDonationViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DonorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ApproveDonationViewHolder, position: Int) {
         val donations = donorList[position]
         val name = donations.getName()
         Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
@@ -49,7 +49,7 @@ class DonorAdapter(val context: Context, val donationItemClickListener: MyDonati
 
         holder.itemView.setOnClickListener(){
 
-            donationItemClickListener.OnMyDonationsItemClickListener(it, donations)
+            myDonationItemClickListener.OnMyDonationsItemClickListener(it, donations)
 
         }
     }

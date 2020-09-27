@@ -7,11 +7,12 @@ data class Donation(
     private var image : String = "",
     private var publisherId: String = "",
     private var status: String = "",
-    private var assigned: String = ""
+    private var assigned: String = "",
+    private var requester_id : String = ""
 ) {
 
     fun Donation(){}
-    fun Donation( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String){
+    fun Donation( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String, requesterId: String){
         this.p_id = p_id
         this.name = name
         this.desc = desc
@@ -19,6 +20,7 @@ data class Donation(
         this.publisherId = publisherId
         this.status = status
         this.assigned = assigned
+        this.requester_id = requester_id
     }
 
     fun getPostId() : String { return p_id }
@@ -27,5 +29,7 @@ data class Donation(
     fun getImage(): String{ return image }
     fun getPublisherId(): String {return publisherId}
     fun getStatus(): String{ return status}
-    fun getAssigned() : String{return assigned}
+    fun getAssigned() : String{ return assigned }
+    fun getRequesterId() : String{return requester_id }
+
 }

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="2dp"
     android:background="@color/cardview_light_background"
-    tools:context=".fragments.ApproveRequestFragment">
+    tools:context=".fragments.ApproveDonorRequestFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_Apv_Req_NGO"
+        android:id="@+id/rv_Apv_Don_Req_NGO"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/rv_hrf_receiver_item"/>
+        tools:listitem="@layout/rv_hdf_donor_item"/>
 
 </RelativeLayout>

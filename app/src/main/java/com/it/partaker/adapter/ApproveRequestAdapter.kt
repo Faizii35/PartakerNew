@@ -8,14 +8,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
+import com.it.partaker.classes.Donation
 import com.it.partaker.classes.Request
+import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
+import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.tvRVMDFDonorName
 import kotlinx.android.synthetic.main.rv_mrf_receiver_item.view.*
 
-class ReceiverAdapter(val context: Context, val requestItemClickListener: MyRequestsClickListener):RecyclerView.Adapter<ReceiverAdapter.ReceiverViewHolder>()
+class ApproveRequestAdapter(val context: Context):RecyclerView.Adapter<ApproveRequestAdapter.ApproveRequestViewHolder>()
 {
-    class ReceiverViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class ApproveRequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     var receiverList = mutableListOf<Request>()
 
@@ -24,12 +26,12 @@ class ReceiverAdapter(val context: Context, val requestItemClickListener: MyRequ
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceiverViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApproveRequestViewHolder {
         val view  = LayoutInflater.from(parent.context).inflate(R.layout.rv_mrf_receiver_item, parent, false)
-        return ReceiverViewHolder(view)
+        return ApproveRequestViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ReceiverViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ApproveRequestViewHolder, position: Int) {
         val requests = receiverList[position]
         val name = requests.getName()
         Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
@@ -45,12 +47,6 @@ class ReceiverAdapter(val context: Context, val requestItemClickListener: MyRequ
             .transform(CircleCrop())
             .placeholder(R.drawable.default_profile_pic)
             .into(holder.itemView.ivRVMRFReceiverItem)
-
-        holder.itemView.setOnClickListener(){
-
-            requestItemClickListener.OnMyRequestsItemClickListener(it, requests)
-
-        }
     }
 
     override fun getItemCount(): Int {

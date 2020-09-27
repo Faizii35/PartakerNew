@@ -70,8 +70,9 @@ class AddPostActivity : AppCompatActivity() {
 
                     val postStatus: String = "Approval Required"
                     val postAssigned : String = "Pending"
+                    val requesterId : String = "Not Requested"
 
-                    Donation(postId, postName,postDesc,postImage,publisherId,postStatus,postAssigned)
+                    Donation(postId, postName,postDesc,postImage,publisherId,postStatus,postAssigned,requesterId)
                     val postHashMap = HashMap<String, Any>()
                     postHashMap["postId"] = postId
                     postHashMap["name"] = postName
@@ -80,6 +81,7 @@ class AddPostActivity : AppCompatActivity() {
                     postHashMap["publisherId"] = publisherId
                     postHashMap["status"] = postStatus
                     postHashMap["assigned"] = postAssigned
+                    postHashMap["requesterId"] = requesterId
 
                     userReference!!.addValueEventListener(object: ValueEventListener {
                         override fun onDataChange(p0: DataSnapshot) {

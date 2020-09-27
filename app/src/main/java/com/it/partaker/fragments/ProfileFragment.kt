@@ -41,8 +41,6 @@ class ProfileFragment : Fragment() {
     private var userReference : DatabaseReference? = null
     private var storageRef: StorageReference? = null
     private var firebaseUser : FirebaseUser? = null
-    private var imageUri : Uri? = null
-    private val RequestCode = 438
 
     var textView_name: TextView ?= null
     var textView_phone: TextView ?= null
@@ -116,9 +114,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        view.ivProfilePic.setOnClickListener {
-            pickImage()
-        }
         view.btnProfileEditProfile.setOnClickListener {
             val intent = Intent(context, EditProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -158,110 +153,5 @@ class ProfileFragment : Fragment() {
                     .into(it1)
             }
         }
-
-      /*  userReference!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()) {
-                    val user = p0.getValue<User>(User::class.java)
-
-                    textView_name = view?.findViewById(R.id.tvProfileFullNameFB)
-                    textView_phone = view?.findViewById(R.id.tvProfilePhoneNumberFB)
-                    textView_city = view?.findViewById(R.id.tvProfileCityFB)
-                    textView_blood = view?.findViewById(R.id.tvProfileBloodGroupFB)
-                    textView_gender = view?.findViewById(R.id.tvProfileGenderFB)
-
-                    val name = sharedPrefs?.getNameUser()
-                    textView_name?.text = name
-                    val phone = sharedPrefs?.getPhoneUser()
-                    textView_phone?.text = phone
-                    val city = sharedPrefs?.getCityUser()
-                    textView_city?.text = city
-                    val blood = sharedPrefs?.getBloodUser()
-                    textView_blood?.text = blood
-                    val gender = sharedPrefs?.getGenderUser()
-                    textView_gender?.text = gender
-                    val profilePic = sharedPrefs?.getProfileUser()
-                    activity?.applicationContext?.let {
-                        view?.ivProfilePic?.let { it1 ->
-                            Glide.with(it)
-                                .load(profilePic)
-                                .placeholder(R.drawable.default_profile_pic)
-                                .transform(CircleCrop())
-                                .into(it1)
-                        }
-                    }
-                } else {
-                    Toast.makeText(context, "Null Found ", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(context, "Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
-            }
-        }) */
-
     }
-
-    private fun pickImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, RequestCode)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == RequestCode && resultCode == Activity.RESULT_OK && data?.data != null) {
-            imageUri = data.data
-            uploadImageDatabase()
-        }
-    }
-
-    private fun uploadImageDatabase() {
-        val progressBar = ProgressDialog(context)
-        progressBar.setTitle("Upload Image")
-        progressBar.setCanceledOnTouchOutside(false)
-        progressBar.setMessage("Image is Uploading. Please Wait A While")
-        progressBar.show()
-
-        if(imageUri!= null) {
-            val fileRef = storageRef!!.child(System.currentTimeMillis().toString() + ".jpg")
-            val uploadTask: StorageTask<*>
-            uploadTask = fileRef.putFile(imageUri!!)
-
-            uploadTask.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    var url: String
-                    fileRef.downloadUrl.addOnCompleteListener { it1: Task<Uri> ->
-                        if (it1.isSuccessful) {
-                            url = it1.result.toString()
-
-                            val sharedPrefs = context?.let { it2 -> PartakerPrefs(it2) }
-                            sharedPrefs?.saveProfileUser(url)
-
-                            context?.let { it2 ->
-                                view?.ivProfilePic?.let { it3 ->
-                                    Glide.with(it2)
-                                        .load(imageUri)
-                                        .placeholder(R.drawable.default_profile_pic)
-                                        .transform(CircleCrop())
-                                        .into(it3)
-                                }
-
-                                val mapProfilePic = HashMap<String, Any>()
-                                mapProfilePic["profilePic"] = url
-                                userReference!!.updateChildren(mapProfilePic)
-                                progressBar.dismiss()
-                            }
-                        }
-                        else{
-                            Toast.makeText(context, "Error: " + it.exception.toString(), Toast.LENGTH_LONG).show()
-                            progressBar.dismiss()
-                        } // End Else Upload Task Complete Listener
-                    } // End Download Url On Complete Listener
-                } // End If Upload Task is Successful
-            } // End Upload Task Complete Listener
-        } // End If Image Uri is Not Equals To Null
-    } // End Upload Image Database Function
-
 }

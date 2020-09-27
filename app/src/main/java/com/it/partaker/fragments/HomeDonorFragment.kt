@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.activities.AddPostActivity
 import com.it.partaker.adapter.DonorAdapter
+import com.it.partaker.adapter.HomeDonorAdapter
 import com.it.partaker.adapter.ReceiverAdapter
 import com.it.partaker.classes.Donation
 import com.it.partaker.classes.Request
@@ -24,9 +26,9 @@ import kotlinx.android.synthetic.main.fragment_home_donor.view.*
 import kotlinx.android.synthetic.main.fragment_my_donations.*
 import kotlinx.android.synthetic.main.fragment_my_requests.*
 
-class HomeDonorFragment : Fragment() {
+class HomeDonorFragment : Fragment(), MyRequestsClickListener {
 
-    private lateinit var adapter : ReceiverAdapter
+    private lateinit var adapter : HomeDonorAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,19 +44,18 @@ class HomeDonorFragment : Fragment() {
 
         val manager = LinearLayoutManager(activity)
         rvHDFDonor.layoutManager = manager
-        adapter = ReceiverAdapter(requireContext())
+        adapter = HomeDonorAdapter(requireContext(), this)
         rvHDFDonor.adapter = adapter
 
         reqRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
 
                     val requestList = mutableListOf<Request>()
 
-                    for(data in snapshot.children)
-                    {
+                    for (data in snapshot.children) {
                         val request = data.getValue(Request::class.java)
-                        if(request!!.getStatus() == "Approval Required" && request.getAssigned() == "Pending"){
+                        if (request!!.getStatus() == "Approved" && request.getAssigned() == "Pending") {
                             request.let {
                                 requestList.add(it)
                             }
@@ -64,18 +65,21 @@ class HomeDonorFragment : Fragment() {
                     adapter.setRequests(requestList)
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
-
-
-
 
         view.fa_btn_HDF_add_donation.setOnClickListener {
             val intent = Intent(context, AddPostActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
+    }
+
+    override fun OnMyRequestsItemClickListener(view: View, request: Request) {
+        Toast.makeText(context, request.getName(), Toast.LENGTH_SHORT).show()
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.nav_host_fragment, HomeDonorDetailFragment(request))?.commit()
     }
 }

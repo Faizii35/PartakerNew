@@ -10,21 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvEditProfileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tilEditProfileName"
+        <ImageView
+            android:id="@+id/ivEditProfilePic"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
             android:layout_centerHorizontal="true"
-            android:text="Edit Profile"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="35dp"
+            android:contentDescription="Edit Profile Image"
+            app:srcCompat="@drawable/default_profile_pic" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEditProfileName"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_above="@+id/tilEditProfilePhoneNum"
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
@@ -44,7 +43,7 @@
             android:id="@+id/tilEditProfilePhoneNum"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_above="@+id/tilEditProfileCity"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
@@ -63,7 +62,7 @@
             android:id="@+id/tilEditProfileCity"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

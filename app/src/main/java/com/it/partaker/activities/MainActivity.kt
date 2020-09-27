@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         val headerView: View? = nav_view.getHeaderView(0)
 
-        userReference!!.addValueEventListener(object: ValueEventListener{
+        userReference!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 val name = sharedPrefs.getNameUser()
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "Error: $error", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -109,6 +109,14 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_aboutApp -> {
+
+//                    toolbar.title = "About App"
+//                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, AboutAppFragment()).commit()
+
+                    val intent = Intent(this@MainActivity, HomeNGOActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+
                     closeDrawer()
                     true
                 }
@@ -175,10 +183,45 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val sharedPrefs = PartakerPrefs(applicationContext)
+
+        val userType = sharedPrefs.getRegisterAsUser()
+
+        when {
+            userType =="Donor" -> {
+                toolbar.title = "Donor"
+                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
+
+                nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
+                nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
+
+                nav_view.menu.findItem(R.id.nav_home_donor).isVisible = true
+                nav_view.menu.findItem(R.id.nav_myDonations).isVisible = true
+            }
+            sharedPrefs.getRegisterAsUser()=="Receiver" -> {
+                toolbar.title = "Receiver"
+                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
+
+                nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = true
+                nav_view.menu.findItem(R.id.nav_myRequests).isVisible = true
+
+                nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
+                nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
+            }
+            else -> {
+                toolbar.title = "Receiver"
+                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
+                Toast.makeText(this, "Transgender", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
 
     //Drawer Related Code of Main Activity Lies Below
     private fun showEmployeeNavigationDrawer() {
-        val sharedPrefs = PartakerPrefs(this@MainActivity)
 
         setSupportActionBar(toolbar)
         val drawerToggle: androidx.appcompat.app.ActionBarDrawerToggle =
@@ -195,31 +238,9 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        if(sharedPrefs.getRegisterAsUser() =="Donor"){
-            toolbar.title = "Donor"
-            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
-
-            nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
-            nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
-        }
-        else if (sharedPrefs.getRegisterAsUser()=="Receiver"){
-            toolbar.title = "Receiver"
-            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
-
-            nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
-            nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
-        }
-        else
-        {
-            toolbar.title = "Receiver"
-            supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
-            Toast.makeText(this, "Transgender", Toast.LENGTH_SHORT).show()
-        }
-
     }
 
     private fun closeDrawer() {
         drawer_layout.closeDrawer(GravityCompat.START)
     }
-
 }

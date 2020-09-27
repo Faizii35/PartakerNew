@@ -7,17 +7,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.storage.FirebaseStorage
 import com.it.partaker.R
 import com.it.partaker.classes.User
 import com.it.partaker.fragments.ForgotPasswordFragment
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 private var userReference : DatabaseReference? = null
 private var firebaseUser : FirebaseUser? = null
@@ -33,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
         tvLoginSignUp.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java )
+            val intent = Intent(this, RegisterActivity::class.java)
             intent.flags = FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
@@ -43,8 +40,16 @@ class LoginActivity : AppCompatActivity() {
             val password = etLoginPassword.text.toString().trim()
 
             when {
-                TextUtils.isEmpty(email) -> Toast.makeText(this,"Email is Required", Toast.LENGTH_SHORT).show()
-                TextUtils.isEmpty(password) -> Toast.makeText(this,"Password is Required", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(email) -> Toast.makeText(
+                    this,
+                    "Email is Required",
+                    Toast.LENGTH_SHORT
+                ).show()
+                TextUtils.isEmpty(password) -> Toast.makeText(
+                    this,
+                    "Password is Required",
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 else -> {
 
@@ -58,12 +63,13 @@ class LoginActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             if (mAuth.currentUser!!.isEmailVerified) {
 
-
                                 firebaseUser = FirebaseAuth.getInstance().currentUser
-                                userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
-                                userReference!!.addValueEventListener(object: ValueEventListener {
+                                userReference = FirebaseDatabase.getInstance().reference.child("users").child(
+                                    firebaseUser?.uid.toString()
+                                )
+                                userReference!!.addValueEventListener(object : ValueEventListener {
                                     override fun onDataChange(p0: DataSnapshot) {
-                                        if (p0.exists()){
+                                        if (p0.exists()) {
                                             val user = p0.getValue<User>(User::class.java)
                                             sharedPrefs.clearUserPref()
                                             sharedPrefs.saveNameUser(user!!.getFullName())
@@ -75,25 +81,48 @@ class LoginActivity : AppCompatActivity() {
                                             sharedPrefs.saveBloodUser(user.getBloodGroup())
                                             sharedPrefs.saveRegisterAsUser(user.getRegisterAs())
 
-                                            Toast.makeText(this@LoginActivity,"User is " + user.getRegisterAs(), Toast.LENGTH_LONG).show()
+                                            val name = sharedPrefs.getNameUser()
+                                            val phone = sharedPrefs.getPhoneUser()
+                                            val profile = sharedPrefs.getProfileUser()
+                                            val city = sharedPrefs.getCityUser()
+                                            val email = sharedPrefs.getEmailUser()
+                                            val gender = sharedPrefs.getGenderUser()
+                                            val blood = sharedPrefs.getBloodUser()
+                                            val reg = sharedPrefs.getRegisterAsUser()
+
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "User is " + user.getRegisterAs(),
+                                                Toast.LENGTH_LONG
+                                            ).show()
                                             progressDialog.dismiss()
                                         }
                                     }
+
                                     override fun onCancelled(p0: DatabaseError) {
                                         progressDialog.dismiss()
-                                        Toast.makeText(this@LoginActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(
+                                            this@LoginActivity,
+                                            "Value Event Listener Failed: ",
+                                            Toast.LENGTH_LONG
+                                        ).show()
                                     }
                                 })
 
-                                Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                 startActivity(intent)
 
                             } // End If Email Is Verified
                             else {
                                 progressDialog.dismiss()
-                                Toast.makeText(this,"Please Verify Your Email First!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Please Verify Your Email First!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } // End Else Is Verified Email
                         } // End If SignIn
                         else {
@@ -106,7 +135,10 @@ class LoginActivity : AppCompatActivity() {
         } // End Button Login Function
 
         tvLoginForgotPassword.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.loginLayout, ForgotPasswordFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.loginLayout,
+                ForgotPasswordFragment()
+            ).commit()
         }
 
     } // End OnCreate Function

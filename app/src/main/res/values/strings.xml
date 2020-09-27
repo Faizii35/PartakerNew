@@ -30,7 +30,8 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="about_app_fragment">This Application is Developed By Group# 16. :P\nIf You Have Anything To Say You Can Contact Us Through \n faizii.3406@gmail.com </string>
     <string name="new_password">New Password</string>
     <string name="confirm">Confirm</string>
     <string name="current_password">Current Password</string>
@@ -47,4 +48,8 @@
     <string name="please_enter_your_registered_email">Please Enter Your Registered Email</string>
     <string name="delete_account">Delete Account</string>
     <string name="my_requests">My Requests</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="donation_name">Donation Name:</string>
+    <string name="donation_name_fb">Donation Name FB</string>
 </resources>
