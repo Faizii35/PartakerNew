@@ -8,14 +8,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
-import com.it.partaker.classes.Donation
 import com.it.partaker.classes.Request
-import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
-import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.tvRVMDFDonorName
 import kotlinx.android.synthetic.main.rv_mrf_receiver_item.view.*
 
-class ApproveRequestAdapter(val context: Context):RecyclerView.Adapter<ApproveRequestAdapter.ApproveRequestViewHolder>()
+class ApproveRequestAdapter(val context: Context,  val myRequestItemClickListener: MyRequestsClickListener):RecyclerView.Adapter<ApproveRequestAdapter.ApproveRequestViewHolder>()
 {
     class ApproveRequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -47,6 +45,10 @@ class ApproveRequestAdapter(val context: Context):RecyclerView.Adapter<ApproveRe
             .transform(CircleCrop())
             .placeholder(R.drawable.default_profile_pic)
             .into(holder.itemView.ivRVMRFReceiverItem)
+
+        holder.itemView.setOnClickListener(){
+            myRequestItemClickListener.OnMyRequestsItemClickListener(it, requests)
+        }
     }
 
     override fun getItemCount(): Int {

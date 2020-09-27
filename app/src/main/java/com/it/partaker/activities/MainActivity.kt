@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,14 +17,15 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.it.partaker.R
-import com.it.partaker.R.id.ivMainActivityNavHeaderProfile
 import com.it.partaker.R.id.nav_host_fragment
-import com.it.partaker.classes.User
-import com.it.partaker.fragments.*
+import com.it.partaker.fragments.ProfileFragment
+import com.it.partaker.fragments.donor.HomeDonorFragment
+import com.it.partaker.fragments.donor.MyDonationsFragment
+import com.it.partaker.fragments.receiver.HomeReceiverFragment
+import com.it.partaker.fragments.receiver.MyRequestsFragment
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity() {

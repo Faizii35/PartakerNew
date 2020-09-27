@@ -23,6 +23,10 @@ data class Donation(
         this.requester_id = requester_id
     }
 
+    fun setPostId(po_id: String){
+        this.p_id = po_id
+    }
+
     fun getPostId() : String { return p_id }
     fun getName(): String{ return name }
     fun getDesc(): String{ return desc }

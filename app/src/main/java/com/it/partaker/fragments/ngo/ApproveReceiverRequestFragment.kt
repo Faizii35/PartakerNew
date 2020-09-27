@@ -1,4 +1,4 @@
-package com.it.partaker.fragments
+package com.it.partaker.fragments.ngo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,22 +10,24 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
-import com.it.partaker.adapter.ReceiverAdapter
+import com.it.partaker.adapter.ApproveRequestAdapter
+import com.it.partaker.classes.Donation
 import com.it.partaker.classes.Request
-import kotlinx.android.synthetic.main.fragment_approve_donor_request.*
+import kotlinx.android.synthetic.main.fragment_approve_receiver_request.*
 
 
-class ApproveDonorRequestFragment : Fragment() {
+class ApproveReceiverRequestFragment : Fragment(), MyRequestsClickListener {
 
-   // private lateinit var adapter : ReceiverAdapter
+    private lateinit var adapter : ApproveRequestAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_approve_donor_request, container, false)
+        return inflater.inflate(R.layout.fragment_approve_receiver_request, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,33 +35,40 @@ class ApproveDonorRequestFragment : Fragment() {
 
         val reqRef = FirebaseDatabase.getInstance().reference.child("requests")
 
-//        val manager = LinearLayoutManager(activity)
-//        rv_Apv_Don_Req_NGO.layoutManager = manager
-//        adapter = ReceiverAdapter(requireContext(), this)
-//        rv_Apv_Don_Req_NGO.adapter = adapter
+        val manager = LinearLayoutManager(activity)
+        rv_Apv_Rec_Req_NGO.layoutManager = manager
+        adapter = ApproveRequestAdapter(requireContext(),this)
+        rv_Apv_Rec_Req_NGO.adapter = adapter
 
         reqRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
 
-                    val requestList = mutableListOf<Request>()
+                    val donationList = mutableListOf<Donation>()
 
                     for(data in snapshot.children)
                     {
-                        val request = data.getValue(Request::class.java)
-                        if(request!!.getStatus() == "Approved" && request.getAssigned() == "Requested"){
-                            request.let {
-                                requestList.add(it)
+                        val donation = data.getValue(Donation::class.java)
+                        if(donation!!.getStatus() == "Approved" && donation.getAssigned() == "Requested"){
+                            donation.let {
+                                donationList.add(it)
                             }
                         }
                     }
-                    requestList.reverse()
-                 //   adapter.setRequests(requestList)
+                    donationList.reverse()
+                 //   adapter.setDonations(donationList)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+
+
     }
+
+    override fun OnMyRequestsItemClickListener(view: View, request: Request) {
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.baseFragmentNGO, ApproveRequestDetailFragment(request))?.commit()
+    }
+
 }

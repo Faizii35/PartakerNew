@@ -1,9 +1,12 @@
 package com.it.partaker.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.it.partaker.R
-import com.it.partaker.fragments.*
+import com.it.partaker.fragments.ngo.ApproveDonationFragment
+import com.it.partaker.fragments.ngo.ApproveDonorRequestFragment
+import com.it.partaker.fragments.ngo.ApproveReceiverRequestFragment
+import com.it.partaker.fragments.ngo.ApproveRequestFragment
 import kotlinx.android.synthetic.main.activity_home_n_g_o.*
 
 class HomeNGOActivity : AppCompatActivity() {

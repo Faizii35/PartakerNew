@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:elevation="2dp"
     android:background="@color/cardview_light_background"
-    tools:context=".fragments.ApproveRequestFragment">
+    tools:context=".fragments.ngo.ApproveRequestFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_Apv_Req_NGO"
