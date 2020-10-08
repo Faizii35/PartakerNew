@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -33,7 +31,7 @@ class DonorAdapter(val context: Context, val donationItemClickListener: MyDonati
     override fun onBindViewHolder(holder: DonorViewHolder, position: Int) {
         val donations = donorList[position]
         val name = donations.getName()
-        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
 
         val textView = holder.itemView.tvRVMDFDonorName
         textView.text = donations.getName()

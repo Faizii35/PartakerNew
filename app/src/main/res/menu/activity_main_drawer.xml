@@ -8,13 +8,28 @@
             android:id="@+id/nav_home_donor"
             android:title="@string/home"
             />
+
         <item
             android:id="@+id/nav_home_receiver"
             android:title="@string/home"
             />
+
+        <item
+            android:id="@+id/nav_home_ngo"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/nav_ngo_all_don"
+            android:title="@string/all_donations"
+            />
+        <item
+            android:id="@+id/nav_ngo_all_req"
+            android:title="@string/all_requests" />
+
         <item
             android:id="@+id/nav_profile"
             android:title="@string/profile" />
+
         <item
             android:id="@+id/nav_myRequests"
             android:title="@string/my_requests" />
@@ -22,6 +37,12 @@
         <item
             android:id="@+id/nav_myDonations"
             android:title="@string/my_donations" />
+        <item
+            android:id="@+id/nav_don_wishList"
+            android:title="@string/wish_list" />
+        <item
+            android:id="@+id/nav_req_wishList"
+            android:title="@string/wish_list" />
         <item
             android:id="@+id/nav_shareApp"
             android:title="@string/share_app" />

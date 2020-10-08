@@ -1,5 +1,7 @@
 package com.it.partaker.classes
 
+import java.io.Serializable
+
 data class Donation(
     private var p_id: String = "",
     private var name : String = "",
@@ -9,7 +11,7 @@ data class Donation(
     private var status: String = "",
     private var assigned: String = "",
     private var requester_id : String = ""
-) {
+):Serializable {
 
     fun Donation(){}
     fun Donation( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String, requesterId: String){
@@ -20,7 +22,7 @@ data class Donation(
         this.publisherId = publisherId
         this.status = status
         this.assigned = assigned
-        this.requester_id = requester_id
+        this.requester_id = requesterId
     }
 
     fun setPostId(po_id: String){

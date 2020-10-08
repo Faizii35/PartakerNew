@@ -1,11 +1,10 @@
 package com.it.partaker.fragments.ngo
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,26 +16,20 @@ import com.it.partaker.adapter.ApproveDonationAdapter
 import com.it.partaker.classes.Donation
 import kotlinx.android.synthetic.main.fragment_approve_donation.*
 
-class ApproveDonationFragment : Fragment(), MyDonationsClickListener {
+class ApproveDonationFragment : AppCompatActivity(), MyDonationsClickListener {
 
     private lateinit var adapter : ApproveDonationAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_approve_donation, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_approve_donation)
 
         val donRef = FirebaseDatabase.getInstance().reference.child("donations")
 
-        val manager = LinearLayoutManager(activity)
+        val manager = LinearLayoutManager(this)
+
         rv_Apv_Don_NGO.layoutManager = manager
-        adapter = ApproveDonationAdapter(requireContext(), this)
+        adapter = ApproveDonationAdapter(this, this)
         rv_Apv_Don_NGO.adapter = adapter
 
         donRef.addValueEventListener(object : ValueEventListener {
@@ -60,13 +53,15 @@ class ApproveDonationFragment : Fragment(), MyDonationsClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity?.applicationContext, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ApproveDonationFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 
     }
 
     override fun OnMyDonationsItemClickListener(view: View, donation: Donation) {
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.baseFragmentNGO, ApproveDonationDetailFragment(donation))?.commit()
+        val intent = Intent(this, ApproveDonationDetailFragment::class.java)
+        intent.putExtra("Approve Donation", donation)
+        startActivity(intent)
     }
 }

@@ -70,7 +70,7 @@
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="8"
+            android:maxLines="8"
             android:textColor="@color/defaultContentColor"
             android:text="Request Description FB">
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/defaultContentColor"
-            android:text="Receiver Name: ">
+            android:text="Requester Name: ">
 
         </androidx.appcompat.widget.AppCompatTextView>
         <androidx.appcompat.widget.AppCompatTextView
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/defaultContentColor"
-            android:text="Receiver Name FB">
+            android:text="Requester Name FB">
 
         </androidx.appcompat.widget.AppCompatTextView>
 
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/defaultContentColor"
             android:textStyle="bold"
-            android:text="Receiver Contact: ">
+            android:text="Requester Contact: ">
 
         </androidx.appcompat.widget.AppCompatTextView>
         <androidx.appcompat.widget.AppCompatTextView
@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/defaultContentColor"
-            android:text="Receiver Contact FB">
+            android:text="Requester Contact FB">
 
         </androidx.appcompat.widget.AppCompatTextView>
 

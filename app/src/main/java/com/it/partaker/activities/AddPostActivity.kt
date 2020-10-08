@@ -9,7 +9,6 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,7 +17,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.it.partaker.R
-import com.it.partaker.classes.Donation
 import com.it.partaker.classes.User
 import kotlinx.android.synthetic.main.activity_add_post.*
 
@@ -56,8 +54,8 @@ class AddPostActivity : AppCompatActivity() {
             val postImage = url
 
             when{
-                TextUtils.isEmpty(postName) -> Toast.makeText(this,"Donation Name is Required", Toast.LENGTH_SHORT).show()
-                TextUtils.isEmpty(postDesc) -> Toast.makeText(this,"Donation Description is Required", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(postName) -> Toast.makeText(this,"Post Title is Required", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(postDesc) -> Toast.makeText(this,"Post Description is Required", Toast.LENGTH_SHORT).show()
                 else -> {
                     val progressDialog = ProgressDialog(this)
                     progressDialog.setTitle("Posting")
@@ -72,7 +70,6 @@ class AddPostActivity : AppCompatActivity() {
                     val postAssigned : String = "Pending"
                     val requesterId : String = "Not Requested"
 
-                    Donation(postId, postName,postDesc,postImage,publisherId,postStatus,postAssigned,requesterId)
                     val postHashMap = HashMap<String, Any>()
                     postHashMap["postId"] = postId
                     postHashMap["name"] = postName
@@ -114,7 +111,7 @@ class AddPostActivity : AppCompatActivity() {
                                         if (it.isSuccessful) {
                                             Toast.makeText(applicationContext, "Post Added", Toast.LENGTH_LONG).show()
 
-                                            val intent = Intent(this@AddPostActivity, MainActivity::class.java)
+                                            val intent = Intent(this@AddPostActivity, MainReceiverActivity::class.java)
                                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                             startActivity(intent)
                                             //Progress Dialog Dismiss

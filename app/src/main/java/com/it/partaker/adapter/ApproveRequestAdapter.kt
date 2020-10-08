@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -32,7 +31,7 @@ class ApproveRequestAdapter(val context: Context,  val myRequestItemClickListene
     override fun onBindViewHolder(holder: ApproveRequestViewHolder, position: Int) {
         val requests = receiverList[position]
         val name = requests.getName()
-        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
 
         val textView = holder.itemView.tvRVMRFReceiverName
         textView.text = requests.getName()

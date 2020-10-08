@@ -1,11 +1,10 @@
 package com.it.partaker.fragments.ngo
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,26 +16,19 @@ import com.it.partaker.adapter.ApproveRequestAdapter
 import com.it.partaker.classes.Request
 import kotlinx.android.synthetic.main.fragment_approve_request.*
 
-class ApproveRequestFragment : Fragment(),MyRequestsClickListener {
+class ApproveRequestFragment : AppCompatActivity(), MyRequestsClickListener {
 
     private lateinit var adapter : ApproveRequestAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_approve_request, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_approve_request)
 
         val reqRef = FirebaseDatabase.getInstance().reference.child("requests")
 
-        val manager = LinearLayoutManager(activity)
+        val manager = LinearLayoutManager(this)
         rv_Apv_Req_NGO.layoutManager = manager
-        adapter = ApproveRequestAdapter(requireContext(),this)
+        adapter = ApproveRequestAdapter(this,this)
         rv_Apv_Req_NGO.adapter = adapter
 
         reqRef.addValueEventListener(object : ValueEventListener {
@@ -60,14 +52,16 @@ class ApproveRequestFragment : Fragment(),MyRequestsClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ApproveRequestFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 
     }
 
     override fun OnMyRequestsItemClickListener(view: View, request: Request) {
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.baseFragmentNGO, ApproveRequestDetailFragment(request))?.commit()
+        val intent = Intent(this, ApproveRequestDetailFragment::class.java)
+        intent.putExtra("Approve Request", request)
+        startActivity(intent)
 
     }
 }

@@ -52,4 +52,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donation_name">Donation Name:</string>
     <string name="donation_name_fb">Donation Name FB</string>
+    <string name="approve_donor_s_request">Approve Donor\'s Request</string>
+    <string name="approve_receiver_s_request">Approve Receiver\'s Request</string>
+    <string name="approve_request">Approve Request</string>
+    <string name="approve_donation">Approve Donation</string>
+    <string name="all_donations">All Donations</string>
+    <string name="all_requests">All Requests</string>
+    <string name="wish_list">Wish List</string>
 </resources>

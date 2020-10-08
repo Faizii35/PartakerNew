@@ -1,19 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHDFDonor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_hdf_donor_item"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHRFReceiver"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_hrf_receiver_item"/>
+
+        <LinearLayout
+            android:id="@+id/ll_H_NGO_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <LinearLayout
+                android:id="@+id/ll_H_NGO_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnApproveDonation"
+                    android:background="@drawable/button_style_corner"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/approve_donation" />
+
+                <Button
+                    android:id="@+id/btnApproveRequest"
+                    android:background="@drawable/button_style_corner"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/approve_request"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_H_NGO_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnApproveRequestForDonation"
+                    android:background="@drawable/button_style_corner"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/approve_donor_s_request" />
+
+                <Button
+                    android:id="@+id/btnApproveRequestToDonation"
+                    android:background="@drawable/button_style_corner"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/approve_receiver_s_request"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fa_btn_HDF_add_donation"
+            android:layout_width="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            android:focusable="true" />
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

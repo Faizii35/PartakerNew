@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.HomeNGOActivity" />
-        <activity android:name=".activities.AddPostActivity" />
-        <activity android:name=".activities.EditProfileActivity" />
-        <activity android:name=".activities.ChangePasswordActivity" />
+        <activity android:name=".activities.DonorWishListActivity"></activity>
+        <activity android:name=".activities.AllDonationsDetail" />
+        <activity android:name=".activities.AllRequestsNGO" />
+        <activity android:name=".activities.AllDonationsNGO" />
+        <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +25,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".fragments.ProfileFragment" />
+        <activity android:name=".fragments.AboutAppFragment" />
+        <activity android:name=".activities.AddPostActivity" />
+        <activity android:name=".activities.ChangePasswordActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.donor.MyDonationsFragment" />
+        <activity android:name=".fragments.donor.MyDonationsDetailFragment" />
+        <activity android:name=".fragments.donor.HomeDonorDetailFragment" />
+        <activity
+            android:name=".activities.MainReceiverActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.receiver.HomeReceiverDetailFragment" />
+        <activity android:name=".fragments.receiver.MyRequestsFragment" />
+        <activity android:name=".fragments.receiver.MyRequestsDetailFragment" />
+        <activity
+            android:name=".activities.HomeNGOActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveDonationFragment" />
+        <activity android:name=".fragments.ngo.ApproveDonationDetailFragment" />
+        <activity android:name=".fragments.ngo.ApproveRequestFragment" />
+        <activity android:name=".fragments.ngo.ApproveRequestDetailFragment" />
+        <activity android:name=".fragments.ngo.ApproveDonorRequestFragment" />
+        <activity android:name=".fragments.ngo.ApproveDonorRequestDetailFragment" />
+        <activity android:name=".fragments.ngo.ApproveReceiverRequestFragment" />
+        <activity android:name=".fragments.ngo.ApproveReceiveRequestDetailFragment" />
     </application>
 
 </manifest>

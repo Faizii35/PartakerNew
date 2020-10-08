@@ -1,5 +1,6 @@
 package com.it.partaker.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -49,7 +50,9 @@ class ChangePasswordActivity : AppCompatActivity() {
                             userReference?.updateChildren(user)?.addOnCompleteListener {
                                 if(it.isSuccessful){
                                     Toast.makeText(this,"Password Successfully Updated", Toast.LENGTH_SHORT).show()
-                                        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, ProfileFragment()).commit()
+                                    val intent = Intent(this@ChangePasswordActivity, ProfileFragment::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    startActivity(intent)
                                 }
                                 else {
                                     Toast.makeText(this,"Error: " + it.exception.toString(), Toast.LENGTH_SHORT).show()

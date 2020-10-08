@@ -7,66 +7,69 @@
     tools:context=".activities.HomeNGOActivity"
     android:id="@+id/baseFragmentNGO">
 
-    <LinearLayout
-        android:id="@+id/ll_H_NGO_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_H_NGO_0"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_centerInParent="true">-->
 
-        <LinearLayout
-            android:id="@+id/ll_H_NGO_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_H_NGO_1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <Button
-                android:id="@+id/btnApproveDonation"
-                android:background="@color/colorAccent"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:textSize="12sp"
-                android:layout_margin="5dp"
-                android:text="Approve Donation" />
+<!--            <Button-->
+<!--                android:id="@+id/btnApproveDonation"-->
+<!--                android:background="@drawable/button_style_corner"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:text="Approve Donation" />-->
 
-            <Button
-                android:id="@+id/btnApproveRequest"
-                android:background="@color/colorAccent"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:textSize="12sp"
-                android:layout_margin="5dp"
-                android:text="Approve Request"
-                />
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/btnApproveRequest"-->
+<!--                android:background="@drawable/button_style_corner"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:text="Approve Request"-->
+<!--                />-->
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:id="@+id/ll_H_NGO_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/ll_H_NGO_1">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_H_NGO_2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_below="@id/ll_H_NGO_1">-->
 
-            <Button
-                android:id="@+id/btnApproveRequestForDonation"
-                android:background="@color/colorAccent"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:textSize="12sp"
-                android:layout_margin="5dp"
-                android:text="Approve Completion Donation" />
+<!--            <Button-->
+<!--                android:id="@+id/btnApproveRequestForDonation"-->
+<!--                android:background="@drawable/button_style_corner"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:text="Approve Donor's Request" />-->
 
-            <Button
-                android:id="@+id/btnApproveRequestToDonation"
-                android:background="@color/colorAccent"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:textSize="12sp"
-                android:layout_margin="5dp"
-                android:text="Approve Completion Request"/>
-        </LinearLayout>
-        />
+<!--            <Button-->
+<!--                android:id="@+id/btnApproveRequestToDonation"-->
+<!--                android:background="@drawable/button_style_corner"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:text="Approve Receiver's Request"/>-->
+<!--        </LinearLayout>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </RelativeLayout>

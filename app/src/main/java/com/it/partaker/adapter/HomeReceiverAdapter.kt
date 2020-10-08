@@ -4,16 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
-import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.classes.Donation
 import kotlinx.android.synthetic.main.rv_hrf_receiver_item.view.*
-import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
 
 class HomeReceiverAdapter(val context: Context, val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<HomeReceiverAdapter.HomeReceiverViewHolder>()
 {
@@ -34,7 +31,7 @@ class HomeReceiverAdapter(val context: Context, val donationItemClickListener: M
     override fun onBindViewHolder(holder: HomeReceiverViewHolder, position: Int) {
         val donations = donorList[position]
         val name = donations.getName()
-        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
 
         val textView = holder.itemView.tvRVHRFReceiverName
         textView.text = donations.getName()

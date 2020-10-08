@@ -1,35 +1,27 @@
 package com.it.partaker.fragments.ngo
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.it.partaker.R
 import com.it.partaker.classes.Donation
 import com.it.partaker.classes.User
 import kotlinx.android.synthetic.main.rv_apv_don_on_click.*
-import kotlinx.android.synthetic.main.rv_apv_don_on_click.view.*
 
 
-class ApproveDonationDetailFragment(val donation: Donation) : Fragment() {
+class ApproveDonationDetailFragment() : AppCompatActivity() {
 
     private var donationReference : DatabaseReference? = null
     private var userReference : DatabaseReference? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.rv_apv_don_on_click, container, false)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.rv_apv_don_on_click)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val donation = intent.getSerializableExtra("Approve Donation") as Donation
 
         donationReference = FirebaseDatabase.getInstance().reference.child("donations")
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(donation.getPublisherId())
@@ -38,22 +30,22 @@ class ApproveDonationDetailFragment(val donation: Donation) : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val donor = snapshot.getValue(User::class.java)
-                    view.tv_apv_don_on_click_donor_nameFB.text = donor!!.getFullName()
-                    view.tv_apv_don_on_click_donor_contactFB.text = donor.getPhoneNumber()
+                    tv_apv_don_on_click_donor_nameFB.text = donor!!.getFullName()
+                    tv_apv_don_on_click_donor_contactFB.text = donor.getPhoneNumber()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ApproveDonationDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 
-        view.tv_apv_don_on_click_nameFB.text = donation.getName()
-        view.tv_apv_don_on_click_descFB.text = donation.getDesc()
-        Glide.with(requireContext())
+        tv_apv_don_on_click_nameFB.text = donation.getName()
+        tv_apv_don_on_click_descFB.text = donation.getDesc()
+        Glide.with(this)
             .load(donation.getImage())
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
-            .into(view.iv_apv_don_on_click_image)
+            .into(iv_apv_don_on_click_image)
 
 
         btn_apv_don_on_click_approve.setOnClickListener {
@@ -61,16 +53,27 @@ class ApproveDonationDetailFragment(val donation: Donation) : Fragment() {
             donApv["status"] = "Approved"
 
             val donationId = donation.getPostId()
-            Toast.makeText(context, donationId, Toast.LENGTH_SHORT).show()
             donationReference!!.child(donationId).updateChildren(donApv)
+
+            Toast.makeText(this@ApproveDonationDetailFragment, "Approved", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ApproveDonationFragment::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
 
         btn_apv_don_on_click_decline.setOnClickListener {
             val donApv = HashMap<String, Any>()
             donApv["status"] = "Declined"
-
             donationReference!!.child(donation.getPostId()).updateChildren(donApv)
+
+            Toast.makeText(this@ApproveDonationDetailFragment, "Declined", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ApproveDonationFragment::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
+
     }
 
 }

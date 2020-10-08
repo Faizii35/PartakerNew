@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Donation Name:"
+        android:text="Post Title:"
         android:layout_marginTop="30dp"
         android:textSize="18sp">
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilAddPostDonationName"
         android:layout_centerHorizontal="true"
-        android:text="Donation Description:"
+        android:text="Post Description:"
         android:textSize="18sp">
     </TextView>
 
@@ -59,6 +59,7 @@
             android:gravity="top|left"
             android:inputType="textMultiLine"
             android:lines="8"
+            android:maxLines="12"
             android:scrollHorizontally="false"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,7 +86,8 @@
         android:id="@+id/btnAddPostPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:layout_below="@+id/ivAddPostImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"

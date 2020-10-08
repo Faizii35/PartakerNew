@@ -9,51 +9,115 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
-import com.it.partaker.R.id.nav_host_fragment
+import com.it.partaker.adapter.HomeDonorAdapter
+import com.it.partaker.classes.Request
+import com.it.partaker.classes.User
+import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ProfileFragment
-import com.it.partaker.fragments.donor.HomeDonorFragment
+import com.it.partaker.fragments.donor.HomeDonorDetailFragment
 import com.it.partaker.fragments.donor.MyDonationsFragment
-import com.it.partaker.fragments.receiver.HomeReceiverFragment
-import com.it.partaker.fragments.receiver.MyRequestsFragment
-import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
     private var userReference : DatabaseReference? = null
-    private var storageRef: StorageReference? = null
     private var firebaseUser : FirebaseUser? = null
+    private lateinit var adapter : HomeDonorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPrefs = PartakerPrefs(this@MainActivity)
+        toolbar.title = "Donor"
+
+        rvHDFDonor.visibility = View.VISIBLE
+        ll_H_NGO_0.visibility = View.GONE
+        rvHRFReceiver.visibility = View.GONE
 
         showEmployeeNavigationDrawer()
 
-        firebaseUser = FirebaseAuth.getInstance().currentUser
-        storageRef = FirebaseStorage.getInstance().reference.child("User Images")
-        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
+        nav_view.menu.getItem(0).isChecked = true
 
+        navigationWork()
+
+        mainDonationWork()
+
+    }
+
+    private fun mainDonationWork() {
+        val reqRef = FirebaseDatabase.getInstance().reference.child("requests")
+
+        val manager = LinearLayoutManager(this)
+        rvHDFDonor.layoutManager = manager
+        adapter = HomeDonorAdapter(this, this)
+        rvHDFDonor.adapter = adapter
+
+        reqRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+                    val requestList = mutableListOf<Request>()
+
+                    for (data in snapshot.children) {
+                        val request = data.getValue(Request::class.java)
+                        if (request!!.getStatus() == "Approved" && request.getAssigned() == "Pending") {
+                            request.let {
+                                requestList.add(it)
+                            }
+                        }
+                    }
+                    requestList.reverse()
+                    adapter.setRequests(requestList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+//                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        fa_btn_HDF_add_donation.setOnClickListener {
+            val intent = Intent(this, AddPostActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+    }
+
+    override fun OnMyRequestsItemClickListener(view: View, request: Request) {
+        Toast.makeText(this, request.getName(), Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, HomeDonorDetailFragment()::class.java)
+        intent.putExtra("Home Donor", request)
+        startActivity(intent)
+    }
+
+    private fun navigationWork() {
+
+        //val sharedPrefs = PartakerPrefs(this@MainActivity)
         val headerView: View? = nav_view.getHeaderView(0)
 
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
+
         userReference!!.addValueEventListener(object : ValueEventListener {
+
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                val name = sharedPrefs.getNameUser()
-                val email = sharedPrefs.getEmailUser()
-                val profile = sharedPrefs.getProfileUser()
+                val user = snapshot.getValue(User::class.java)
+
+                val name = user!!.getFullName()
+                val email = user.getEmail()
+                val profile = user.getProfilePic()
 
                 headerView?.tvMainActivityNavHeaderName?.text = name
                 headerView?.tvMainActivityNavHeaderEmail?.text = email
@@ -64,55 +128,56 @@ class MainActivity : AppCompatActivity() {
                         .transform(CircleCrop())
                         .into(it)
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Error: $error", Toast.LENGTH_SHORT).show()
             }
-
         })
-
 
         //Drawer Related Code of Main Activity Lies Below
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home_donor -> {
                     toolbar.title = "Donor"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
                     closeDrawer()
                     true
                 }
-                R.id.nav_home_receiver -> {
-                    toolbar.title = "Receiver"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
-                    closeDrawer()
-                    true
-                }
+//                R.id.nav_home_receiver -> {
+//                    toolbar.title = "Receiver"
+//                    val intent = Intent(this@MainActivity,MainReceiverActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                    startActivity(intent)
+//                    closeDrawer()
+//                    true
+//                }
                 R.id.nav_myDonations -> {
                     toolbar.title = "My Donations"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, MyDonationsFragment()).commit()
+                    val intent = Intent(this@MainActivity,MyDonationsFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
                     closeDrawer()
                     true
                 }
-                R.id.nav_myRequests -> {
-                    toolbar.title = "My Requests"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, MyRequestsFragment()).commit()
-                    closeDrawer()
-                    true
-                }
+//                R.id.nav_myRequests -> {
+//                    toolbar.title = "My Requests"
+//                    val intent = Intent(this@MainActivity,MyRequestsFragment::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                    startActivity(intent)
+//                    closeDrawer()
+//                    true
+//                }
                 R.id.nav_profile -> {
                     toolbar.title = "Profile"
-                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, ProfileFragment()).commit()
+                    val intent = Intent(this@MainActivity,ProfileFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
                     closeDrawer()
                     true
                 }
                 R.id.nav_aboutApp -> {
-
-//                    toolbar.title = "About App"
-//                    supportFragmentManager.beginTransaction().replace(nav_host_fragment, AboutAppFragment()).commit()
-
-                    val intent = Intent(this@MainActivity, HomeNGOActivity::class.java)
+                    toolbar.title = "About App"
+                    val intent = Intent(this, AboutAppFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
 
@@ -180,44 +245,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val sharedPrefs = PartakerPrefs(applicationContext)
-
-        val userType = sharedPrefs.getRegisterAsUser()
-
-        when {
-            userType =="Donor" -> {
-                toolbar.title = "Donor"
-                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeDonorFragment()).commit()
-
-                nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
-                nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
-
-                nav_view.menu.findItem(R.id.nav_home_donor).isVisible = true
-                nav_view.menu.findItem(R.id.nav_myDonations).isVisible = true
-            }
-            sharedPrefs.getRegisterAsUser()=="Receiver" -> {
-                toolbar.title = "Receiver"
-                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
-
-                nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = true
-                nav_view.menu.findItem(R.id.nav_myRequests).isVisible = true
-
-                nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
-                nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
-            }
-            else -> {
-                toolbar.title = "Receiver"
-                supportFragmentManager.beginTransaction().replace(nav_host_fragment, HomeReceiverFragment()).commit()
-                Toast.makeText(this, "Transgender", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
-
 
     //Drawer Related Code of Main Activity Lies Below
     private fun showEmployeeNavigationDrawer() {
@@ -237,9 +266,24 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
+        nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false
+        nav_view.menu.findItem(R.id.nav_ngo_all_req).isVisible = false
+        nav_view.menu.findItem(R.id.nav_home_ngo).isVisible = false
+
+        nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
+        nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
+
+        nav_view.menu.findItem(R.id.nav_home_donor).isVisible = true
+        nav_view.menu.findItem(R.id.nav_myDonations).isVisible = true
     }
 
     private fun closeDrawer() {
         drawer_layout.closeDrawer(GravityCompat.START)
     }
+
+    override fun onResume() {
+        super.onResume()
+        toolbar.title = "Donor"
+    }
+
 }

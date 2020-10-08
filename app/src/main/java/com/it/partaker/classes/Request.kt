@@ -1,5 +1,7 @@
 package com.it.partaker.classes
 
+import java.io.Serializable
+
 data class Request(
     private var p_id: String = "",
     private var name : String = "",
@@ -9,7 +11,7 @@ data class Request(
     private var status: String = "",
     private var assigned: String = "",
     private var requester_id : String = ""
-) {
+):Serializable {
 
     fun Request(){}
     fun Request( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String,requesterId: String){
@@ -20,12 +22,13 @@ data class Request(
         this.publisherId = publisherId
         this.status = status
         this.assigned = assigned
-        this.requester_id = requester_id
+        this.requester_id = requesterId
     }
 
     fun setPostId(po_id: String){
         this.p_id = po_id
     }
+
     fun getPostId() : String { return p_id }
     fun getName(): String{ return name }
     fun getDesc(): String{ return desc }
@@ -33,6 +36,5 @@ data class Request(
     fun getPublisherId(): String {return publisherId}
     fun getStatus(): String{ return status}
     fun getAssigned() : String{ return assigned }
-    fun getRequesterId() : String{return requester_id }
-
+    fun getRequesterId() : String{ return requester_id }
 }

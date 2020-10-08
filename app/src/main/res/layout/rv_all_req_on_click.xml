@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:elevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_all_req_on_click_image"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/default_profile_pic"
+        android:layout_centerHorizontal="true">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <LinearLayout
+        android:id="@+id/ll_all_req_on_click_1"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/iv_all_req_on_click_image"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_name"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/defaultContentColor"
+            android:text="Request Title: ">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_nameFB"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textColor="@color/defaultContentColor"
+            android:text="Request Title FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_all_req_on_click_2"
+        android:layout_below="@+id/ll_all_req_on_click_1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_desc"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/defaultContentColor"
+            android:text="Request Description: ">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_descFB"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:maxLines="8"
+            android:text="Request Description FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_all_req_on_click_3"
+        android:layout_below="@+id/ll_all_req_on_click_2"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_requester_name"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:textStyle="bold"
+            android:text="Requester Name: ">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_requester_nameFB"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:text="Requester Name FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_all_req_on_click_4"
+        android:layout_below="@+id/ll_all_req_on_click_3"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_requester_contact"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Requester Contact: ">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_requester_contactFB"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:text="Requester Contact FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:id="@+id/ll_all_req_on_click_5"
+    android:layout_below="@+id/ll_all_req_on_click_4"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_all_req_on_click_request_status"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:textColor="@color/defaultContentColor"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Request Status:">
+
+    </androidx.appcompat.widget.AppCompatTextView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_all_req_on_click_request_statusFB"
+        android:layout_marginStart="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/defaultContentColor"
+        android:text="Request Status FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_all_req_on_click_6"
+        android:layout_below="@+id/ll_all_req_on_click_5"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_request_assigned"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Request Assigned: ">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_all_req_on_click_request_assignedFB"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/defaultContentColor"
+            android:text="Request Assigned FB">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+</RelativeLayout>
