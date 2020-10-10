@@ -1,19 +1,20 @@
 package com.it.partaker.fragments
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.it.partaker.R
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 
 class ForgotPasswordFragment : AppCompatActivity() {
 
     private var mAuth = FirebaseAuth.getInstance()
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_forgot_password)
 
         btnResetPassword.setOnClickListener {
 

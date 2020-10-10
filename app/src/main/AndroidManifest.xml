@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DonorWishListActivity"></activity>
+        <activity android:name=".activities.DonorWishActivity" />
         <activity android:name=".activities.AllDonationsDetail" />
         <activity android:name=".activities.AllRequestsNGO" />
+        <activity android:name=".activities.AllRequestsDetail" />
         <activity android:name=".activities.AllDonationsNGO" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity">
@@ -27,6 +28,7 @@
         </activity>
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".fragments.ProfileFragment" />
+        <activity android:name=".fragments.ForgotPasswordFragment" />
         <activity android:name=".fragments.AboutAppFragment" />
         <activity android:name=".activities.AddPostActivity" />
         <activity android:name=".activities.ChangePasswordActivity" />

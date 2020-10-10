@@ -8,7 +8,7 @@ import com.google.firebase.database.*
 import com.it.partaker.R
 import com.it.partaker.classes.Request
 import com.it.partaker.classes.User
-import kotlinx.android.synthetic.main.rv_all_don_on_click.*
+import kotlinx.android.synthetic.main.rv_all_req_on_click.*
 
 class AllRequestsDetail : AppCompatActivity() {
 
@@ -28,8 +28,8 @@ class AllRequestsDetail : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val donor = snapshot.getValue(User::class.java)
-                    tv_all_don_on_click_donor_nameFB.text = donor!!.getFullName()
-                    tv_all_don_on_click_donor_contactFB.text = donor.getPhoneNumber()
+                    tv_all_req_on_click_requester_nameFB.text = donor!!.getFullName()
+                    tv_all_req_on_click_requester_contactFB.text = donor.getPhoneNumber()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -37,17 +37,17 @@ class AllRequestsDetail : AppCompatActivity() {
             }
         })
 
-        tv_all_don_on_click_nameFB.text = donation.getName()
-        tv_all_don_on_click_descFB.text = donation.getDesc()
+        tv_all_req_on_click_nameFB.text = donation.getName()
+        tv_all_req_on_click_descFB.text = donation.getDesc()
 
-        tv_all_don_on_click_donation_statusFB.text = donation.getStatus()
-        tv_all_don_on_click_donation_assignedFB.text = donation.getAssigned()
+        tv_all_req_on_click_request_statusFB.text = donation.getStatus()
+        tv_all_req_on_click_request_assignedFB.text = donation.getAssigned()
 
         Glide.with(this)
             .load(donation.getImage())
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
-            .into(iv_all_don_on_click_image)
+            .into(iv_all_req_on_click_image)
     }
 
 }

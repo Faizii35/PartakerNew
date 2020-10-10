@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_hdf_on_click_image"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
         android:layout_marginTop="30dp"
         app:srcCompat="@drawable/default_profile_pic"
         android:layout_centerHorizontal="true">
@@ -71,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="8"
+            android:scrollbars="vertical"
             android:textColor="@color/defaultContentColor"
             android:text="Request Description FB">
 
@@ -92,8 +93,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:background="@color/colorAccent"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_style_corner"
             android:text="Donate">
 
         </androidx.appcompat.widget.AppCompatButton>

@@ -51,11 +51,12 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
         navigationWork()
 
-        mainDonationWork()
+//        mainDonationWork()
 
     }
 
     private fun mainDonationWork() {
+
         val reqRef = FirebaseDatabase.getInstance().reference.child("requests")
 
         val manager = LinearLayoutManager(this)
@@ -143,14 +144,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     closeDrawer()
                     true
                 }
-//                R.id.nav_home_receiver -> {
-//                    toolbar.title = "Receiver"
-//                    val intent = Intent(this@MainActivity,MainReceiverActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
                 R.id.nav_myDonations -> {
                     toolbar.title = "My Donations"
                     val intent = Intent(this@MainActivity,MyDonationsFragment::class.java)
@@ -159,17 +152,17 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     closeDrawer()
                     true
                 }
-//                R.id.nav_myRequests -> {
-//                    toolbar.title = "My Requests"
-//                    val intent = Intent(this@MainActivity,MyRequestsFragment::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
                 R.id.nav_profile -> {
                     toolbar.title = "Profile"
                     val intent = Intent(this@MainActivity,ProfileFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    closeDrawer()
+                    true
+                }
+                R.id.nav_don_wishList -> {
+                    toolbar.title = "Wish List"
+                    val intent = Intent(this@MainActivity,DonorWishActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     closeDrawer()
@@ -266,9 +259,9 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
+        nav_view.menu.findItem(R.id.nav_home_ngo).isVisible = false
         nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false
         nav_view.menu.findItem(R.id.nav_ngo_all_req).isVisible = false
-        nav_view.menu.findItem(R.id.nav_home_ngo).isVisible = false
 
         nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
         nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
@@ -283,6 +276,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
     override fun onResume() {
         super.onResume()
+        mainDonationWork()
         toolbar.title = "Donor"
     }
 

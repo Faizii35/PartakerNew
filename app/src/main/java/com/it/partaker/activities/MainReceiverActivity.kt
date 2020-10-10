@@ -27,7 +27,6 @@ import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.fragment_home_receiver.rvHRFReceiver
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
@@ -129,6 +128,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
         nav_view.menu.findItem(R.id.nav_myRequests).isVisible = true
 
         nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
+        nav_view.menu.findItem(R.id.nav_don_wishList).isVisible = false
         nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
 
         nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false
@@ -173,14 +173,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
         //Drawer Related Code of Main Activity Lies Below
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-//                R.id.nav_home_donor -> {
-//                    toolbar.title = "Donor"
-//                    val intent = Intent(this@MainReceiverActivity,MainReceiverActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
+
                 R.id.nav_home_receiver -> {
                     toolbar.title = "Receiver"
                     val intent = Intent(this@MainReceiverActivity,MainReceiverActivity::class.java)
@@ -189,14 +182,6 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                     closeDrawer()
                     true
                 }
-//                R.id.nav_myDonations -> {
-//                    toolbar.title = "My Donations"
-//                    val intent = Intent(this@MainReceiverActivity,MyDonationsFragment::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
                 R.id.nav_myRequests -> {
                     toolbar.title = "My Requests"
                     val intent = Intent(this@MainReceiverActivity,MyRequestsFragment::class.java)
@@ -208,14 +193,6 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                 R.id.nav_profile -> {
                     toolbar.title = "Profile"
                     val intent = Intent(this@MainReceiverActivity,ProfileFragment::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    startActivity(intent)
-                    closeDrawer()
-                    true
-                }
-                R.id.nav_req_wishList -> {
-                    toolbar.title = "Wish List"
-                    val intent = Intent(this@MainReceiverActivity,DonorWishListActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     closeDrawer()

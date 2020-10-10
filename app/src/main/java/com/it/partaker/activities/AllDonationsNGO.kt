@@ -14,7 +14,6 @@ import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.DonorAdapter
 import com.it.partaker.classes.Donation
-import com.it.partaker.fragments.donor.MyDonationsDetailFragment
 import kotlinx.android.synthetic.main.activity_all_donations_n_g_o.*
 
 class AllDonationsNGO : AppCompatActivity(), MyDonationsClickListener {
@@ -60,7 +59,7 @@ class AllDonationsNGO : AppCompatActivity(), MyDonationsClickListener {
 
     override fun OnMyDonationsItemClickListener(view: View, donation: Donation) {
 
-        val intent = Intent(this, MyDonationsDetailFragment()::class.java)
+        val intent = Intent(this, AllDonationsDetail()::class.java)
         intent.putExtra("All Donations", donation)
         startActivity(intent)
     }

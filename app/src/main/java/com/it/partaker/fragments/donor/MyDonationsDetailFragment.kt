@@ -2,6 +2,7 @@ package com.it.partaker.fragments.donor
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -21,6 +22,8 @@ class MyDonationsDetailFragment() : AppCompatActivity() {
 
         tv_mdf_on_click_nameFB.text = donation.getName()
         tv_mdf_on_click_descFB.text = donation.getDesc()
+        tv_mdf_on_click_descFB.movementMethod = ScrollingMovementMethod()
+
         tv_mdf_on_click_statusFB.text = donation.getStatus()
         tv_mdf_on_click_assignedFB.text = donation.getAssigned()
 

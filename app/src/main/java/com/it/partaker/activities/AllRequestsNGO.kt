@@ -14,7 +14,6 @@ import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.ReceiverAdapter
 import com.it.partaker.classes.Request
-import com.it.partaker.fragments.receiver.MyRequestsDetailFragment
 import kotlinx.android.synthetic.main.activity_all_requests_n_g_o.*
 
 class AllRequestsNGO : AppCompatActivity(), MyRequestsClickListener {
@@ -59,7 +58,7 @@ class AllRequestsNGO : AppCompatActivity(), MyRequestsClickListener {
     }
 
     override fun OnMyRequestsItemClickListener(view: View, request: Request) {
-        val intent = Intent(this, MyRequestsDetailFragment()::class.java)
+        val intent = Intent(this, AllRequestsDetail()::class.java)
         intent.putExtra("All Requests", request)
         startActivity(intent)
     }

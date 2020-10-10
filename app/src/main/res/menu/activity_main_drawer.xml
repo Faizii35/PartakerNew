@@ -37,12 +37,11 @@
         <item
             android:id="@+id/nav_myDonations"
             android:title="@string/my_donations" />
+
         <item
             android:id="@+id/nav_don_wishList"
             android:title="@string/wish_list" />
-        <item
-            android:id="@+id/nav_req_wishList"
-            android:title="@string/wish_list" />
+
         <item
             android:id="@+id/nav_shareApp"
             android:title="@string/share_app" />

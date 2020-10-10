@@ -20,13 +20,12 @@ private var userReference : DatabaseReference? = null
 private var firebaseUser : FirebaseUser? = null
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val sharedPrefs = PartakerPrefs(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val sharedPrefs = PartakerPrefs(this)
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
         tvLoginSignUp.setOnClickListener {
