@@ -18,11 +18,11 @@ import com.google.firebase.database.*
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.HomeReceiverAdapter
-import com.it.partaker.classes.Donation
 import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ProfileFragment
 import com.it.partaker.fragments.receiver.HomeReceiverDetailFragment
 import com.it.partaker.fragments.receiver.MyRequestsFragment
+import com.it.partaker.models.Donation
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -243,10 +243,11 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                         setTitle("Are you sure?")
                         setPositiveButton("Yes") { _, _ ->
                             FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this@MainReceiverActivity, "Logout", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@MainReceiverActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
-                            Toast.makeText(this@MainReceiverActivity, "Logout", Toast.LENGTH_SHORT).show()
+                            finish()
                         }
                         setNegativeButton("Cancel") { _, _ ->
                             Toast.makeText(
@@ -254,7 +255,6 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                                 "Process Cancelled",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                         }
                     }.create().show()
                     closeDrawer()

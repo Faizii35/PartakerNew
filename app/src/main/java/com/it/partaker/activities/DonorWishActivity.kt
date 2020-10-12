@@ -12,8 +12,8 @@ import com.google.firebase.database.*
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.HomeDonorAdapter
-import com.it.partaker.classes.Request
 import com.it.partaker.fragments.donor.HomeDonorDetailFragment
+import com.it.partaker.models.Request
 import kotlinx.android.synthetic.main.activity_donor_wish.*
 
  class DonorWishActivity : AppCompatActivity(), MyRequestsClickListener {
@@ -41,15 +41,19 @@ import kotlinx.android.synthetic.main.activity_donor_wish.*
          reqReference = FirebaseDatabase.getInstance().reference.child("requests")
          wishReference = FirebaseDatabase.getInstance().reference.child("wishList")
 
-         wishReference!!.child(firebaseUser!!.uid).addValueEventListener(object: ValueEventListener{
+         wishReference!!.child(firebaseUser!!.uid).addValueEventListener(object :
+             ValueEventListener {
              override fun onDataChange(snapshot: DataSnapshot) {
-                 if (snapshot.exists()){
-                     for (wishes in snapshot.children){
+                 if (snapshot.exists()) {
+                     for (wishes in snapshot.children) {
                          wishList.add(wishes.key.toString())
                      }
                  }
              }
-             override fun onCancelled(error: DatabaseError) { TODO("Not yet implemented") }
+
+             override fun onCancelled(error: DatabaseError) {
+                 Toast.makeText(this@DonorWishActivity, error.toString(), Toast.LENGTH_SHORT).show()
+             }
          })
 
          reqReference!!.addValueEventListener(object : ValueEventListener {
@@ -67,7 +71,9 @@ import kotlinx.android.synthetic.main.activity_donor_wish.*
                      adapter.setRequests(receiverList)
                  }
              }
-             override fun onCancelled(error: DatabaseError) { TODO("Not yet implemented") }
+             override fun onCancelled(error: DatabaseError) {
+                 Toast.makeText(this@DonorWishActivity, error.toString(), Toast.LENGTH_SHORT).show()
+             }
          })
      }
 

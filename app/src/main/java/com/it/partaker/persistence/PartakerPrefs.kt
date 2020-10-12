@@ -15,8 +15,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getNameUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_NAME, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_NAME, "")
     }
 
     fun savePhoneUser(userResult: String?) {
@@ -24,8 +23,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getPhoneUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_PHONE, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_PHONE, "")
     }
 
     fun saveCityUser(userResult: String?) {
@@ -33,8 +31,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getCityUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_CITY, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_CITY, "")
     }
 
     fun saveEmailUser(userResult: String?) {
@@ -42,8 +39,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getEmailUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_EMAIL, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_EMAIL, "")
     }
 
     fun saveProfileUser(userResult: String?) {
@@ -51,8 +47,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getProfileUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_PROFILE, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_PROFILE, "")
     }
 
     fun saveBloodUser(userResult: String?) {
@@ -60,8 +55,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getBloodUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_BLOOD, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_BLOOD, "")
     }
 
 
@@ -70,8 +64,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getGenderUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_GENDER, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_GENDER, "")
     }
 
     fun saveRegisterAsUser(userResult: String?) {
@@ -79,8 +72,7 @@ class PartakerPrefs(context: Context) {
     }
 
     fun getRegisterAsUser(): String? {
-        val userString = sharedPref.getString(SAVED_USER_REGISTER_AS, "")
-        return userString
+        return sharedPref.getString(SAVED_USER_REGISTER_AS, "")
     }
 
     fun clearUserPref() {
@@ -99,6 +91,5 @@ class PartakerPrefs(context: Context) {
         const val SAVED_USER_BLOOD = "saved_user_blood"
         const val SAVED_USER_GENDER = "saved_user_gender"
         const val SAVED_USER_REGISTER_AS = "saved_user_register_as"
-
     }
 }

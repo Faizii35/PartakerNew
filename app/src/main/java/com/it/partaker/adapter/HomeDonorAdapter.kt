@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -12,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
-import com.it.partaker.classes.Request
+import com.it.partaker.models.Request
 import kotlinx.android.synthetic.main.rv_hdf_donor_item.view.*
 
 private var firebaseUser : FirebaseUser? = null
@@ -22,11 +23,11 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
 {
     class HomeDonorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-    var receiverList = mutableListOf<Request>()
+    private var receiverList = mutableListOf<Request>()
     private var liked : Boolean = false
 
     fun setRequests(request: MutableList<Request>){
-        receiverList = request as MutableList<Request>
+        receiverList = request
         notifyDataSetChanged()
     }
 
@@ -38,6 +39,7 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
     override fun onBindViewHolder(holder: HomeDonorViewHolder, position: Int)
     {
         val requests = receiverList[position]
+        holder.itemView.ivHDFWish.setImageResource(R.drawable.ic_baseline_favorite_border_24)
 
         wishReference = FirebaseDatabase.getInstance().reference.child("wishList")
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -99,7 +101,7 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
             }
 
         })

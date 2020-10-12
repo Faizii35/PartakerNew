@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.it.partaker.R
-import com.it.partaker.classes.User
 import com.it.partaker.fragments.ForgotPasswordFragment
+import com.it.partaker.models.User
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -100,41 +100,30 @@ class LoginActivity : AppCompatActivity() {
 
                                                     Toast.makeText(
                                                         this@LoginActivity,
-                                                        "User is Donor",
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-
-                                                    Toast.makeText(
-                                                        this@LoginActivity,
                                                         "Login Successful",
                                                         Toast.LENGTH_SHORT
                                                     ).show()
 
+                                                    progressDialog.dismiss()
                                                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                     startActivity(intent)
                                                     finish()
-                                                    progressDialog.dismiss()
                                                 }
                                                 else
                                                 {
 
                                                     Toast.makeText(
                                                         this@LoginActivity,
-                                                        "User is Receiver",
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-
-                                                    Toast.makeText(
-                                                        this@LoginActivity,
                                                         "Login Successful",
                                                         Toast.LENGTH_SHORT
                                                     ).show()
+
+                                                    progressDialog.dismiss()
                                                     val intent = Intent(this@LoginActivity, MainReceiverActivity::class.java)
                                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                     startActivity(intent)
                                                     finish()
-                                                    progressDialog.dismiss()
 
                                                 }
 

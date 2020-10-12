@@ -68,7 +68,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnApproveRequestForDonation"
+                    android:id="@+id/btnApproveDonorRequest"
                     android:background="@drawable/button_style_corner"
                     android:layout_width="120dp"
                     android:layout_height="70dp"
@@ -78,7 +78,7 @@
                     android:text="@string/approve_donor_s_request" />
 
                 <Button
-                    android:id="@+id/btnApproveRequestToDonation"
+                    android:id="@+id/btnApproveReceiverRequest"
                     android:background="@drawable/button_style_corner"
                     android:layout_width="120dp"
                     android:layout_height="70dp"

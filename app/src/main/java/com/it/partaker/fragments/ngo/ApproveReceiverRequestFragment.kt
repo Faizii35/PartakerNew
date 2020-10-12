@@ -3,6 +3,7 @@ package com.it.partaker.fragments.ngo
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -12,7 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.ApproveDonationAdapter
-import com.it.partaker.classes.Donation
+import com.it.partaker.models.Donation
 import kotlinx.android.synthetic.main.fragment_approve_receiver_request.*
 
 
@@ -33,14 +34,13 @@ class ApproveReceiverRequestFragment : AppCompatActivity(), MyDonationsClickList
 
         donRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
 
                     val donationList = mutableListOf<Donation>()
 
-                    for(data in snapshot.children)
-                    {
+                    for (data in snapshot.children) {
                         val donation = data.getValue(Donation::class.java)
-                        if(donation!!.getStatus() == "Approved" && donation.getAssigned() == "Requested"){
+                        if (donation!!.getStatus() == "Approved" && donation.getAssigned() == "Requested") {
                             donation.let {
                                 donationList.add(it)
                             }
@@ -50,8 +50,9 @@ class ApproveReceiverRequestFragment : AppCompatActivity(), MyDonationsClickList
                     adapter.setDonations(donationList)
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@ApproveReceiverRequestFragment, error.toString(), Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -8,7 +8,7 @@
     <string name="register_as">Register As</string>
     <string name="donor">Donor</string>
     <string name="receiver">Receiver</string>
-    <string name="alredy_have_an_account">Alredy Have An Account?</string>
+    <string name="already_have_an_account">Already Have An Account?</string>
     <string name="sign_in">Sign In</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -59,4 +59,6 @@
     <string name="all_donations">All Donations</string>
     <string name="all_requests">All Requests</string>
     <string name="wish_list">Wish List</string>
+    <string name="edit_donation">Edit Donation</string>
+    <string name="delete_donation">Delete Donation</string>
 </resources>

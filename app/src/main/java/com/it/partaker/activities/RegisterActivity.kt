@@ -6,14 +6,13 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.it.partaker.R
-import com.it.partaker.classes.User
+import com.it.partaker.models.User
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -39,18 +38,16 @@ class RegisterActivity : AppCompatActivity() {
         var registerAs = "Donor"
 
         //Gender Radio Button Value
-        rgGender.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                val radio: RadioButton = findViewById(checkedId)
-                gender = radio.text.toString()
-            })
+        rgGender.setOnCheckedChangeListener { _, checkedId ->
+            val radio: RadioButton = findViewById(checkedId)
+            gender = radio.text.toString()
+        }
 
         //Register As Radio Button Value
-        rgRegisterAs.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                val radio: RadioButton = findViewById(checkedId)
-                registerAs = radio.text.toString()
-            })
+        rgRegisterAs.setOnCheckedChangeListener { _, checkedId ->
+            val radio: RadioButton = findViewById(checkedId)
+            registerAs = radio.text.toString()
+        }
 
         //Register Button Click
         btnRegister.setOnClickListener {
@@ -78,16 +75,16 @@ class RegisterActivity : AppCompatActivity() {
                     progressDialog.setCanceledOnTouchOutside(false)
                     progressDialog.show()
 
-                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-                        if(it.isSuccessful) {
+                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+                        if(task.isSuccessful) {
                             mAuth.currentUser!!.sendEmailVerification().addOnCompleteListener {
                                 if(it.isSuccessful){
                                     val userID = mAuth.currentUser!!.uid
                                     refUsers = FirebaseDatabase.getInstance().reference.child("users").child(userID)
 
                                     val user = User(userID,fullName,phoneNumber,city,email,password,gender,registerAs,bloodGroup,profilePic)
-                                    refUsers.setValue(user).addOnCompleteListener { it ->
-                                        if (it.isSuccessful) {
+                                    refUsers.setValue(user).addOnCompleteListener { it1 ->
+                                        if (it1.isSuccessful) {
                                             //Progress Dialog Dismiss
                                             progressDialog.dismiss()
 
@@ -112,7 +109,7 @@ class RegisterActivity : AppCompatActivity() {
                             } // End Send Verification Email Function
                         } // End If Create User
                         else {
-                            Toast.makeText(this,"Registration Unsuccessful: " + it.exception!!.toString(),Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,"Registration Unsuccessful: " + task.exception!!.toString(),Toast.LENGTH_SHORT).show()
                             progressDialog.dismiss()
                         } // End Else Create User
                     }

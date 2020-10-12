@@ -1,16 +1,20 @@
-package com.it.partaker.classes
+package com.it.partaker.models
 
-class User (
+import java.io.Serializable
+
+data class User (
     private var id : String = "", private var fullName : String = "",
     private var phoneNumber : String = "", private var city : String = "",
     private var email : String = "", private var password : String = "",
     private var gender : String = "", private var registerAs : String = "",
     private var bloodGroup : String = "", private var profilePic : String = ""
-)
-{
+) : Serializable {
+
     //Default No Argument Constructor
     fun User(){}
-    fun User(id: String,fullName: String,phoneNumber: String,city: String,email: String,password: String,gender: String,registerAs: String,bloodGroup: String,profilePic: String){
+    fun User(
+        id: String, fullName: String, phoneNumber: String, city: String, email: String,
+        password: String, gender: String, registerAs: String, bloodGroup: String, profilePic: String){
         this.id = id
         this.fullName = fullName
         this.phoneNumber = phoneNumber

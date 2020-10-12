@@ -1,6 +1,5 @@
 package com.it.partaker.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -22,21 +21,18 @@ import com.it.partaker.activities.LoginActivity
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-private var mActivity: Activity? = null
-
 class ProfileFragment : AppCompatActivity() {
-
 
     private var userReference : DatabaseReference? = null
     private var storageRef: StorageReference? = null
     private var firebaseUser : FirebaseUser? = null
 
-    private var textView_name: TextView ?= null
-    private var textView_phone: TextView ?= null
-    private var textView_city: TextView ?= null
-    private var textView_blood: TextView ?= null
-    private var textView_gender: TextView ?= null
-    private var textView_email: TextView ?= null
+    private var textViewName: TextView ?= null
+    private var textViewPhone: TextView ?= null
+    private var textViewCity: TextView ?= null
+    private var textViewBlood: TextView ?= null
+    private var textViewGender: TextView ?= null
+    private var textViewEmail: TextView ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +51,7 @@ class ProfileFragment : AppCompatActivity() {
 
 
         btnProfileDelete.setOnClickListener {
-            this?.let { it1 ->
+            this.let { it1 ->
                 AlertDialog.Builder(it1).apply {
                     setTitle("Are you sure?")
                     setPositiveButton("Yes") { _, _ ->
@@ -76,8 +72,7 @@ class ProfileFragment : AppCompatActivity() {
                                         ).show()
                                     }
                                 }
-                            }
-                            else{
+                            } else{
                                 Toast.makeText(
                                     baseContext,
                                     "User Deletion Process Doesn't Succeeded",
@@ -107,27 +102,27 @@ class ProfileFragment : AppCompatActivity() {
 
         val sharedPrefs = PartakerPrefs(this)
 
-        textView_name = findViewById(R.id.tvProfileFullNameFB)
-        textView_phone = findViewById(R.id.tvProfilePhoneNumberFB)
-        textView_city = findViewById(R.id.tvProfileCityFB)
-        textView_blood = findViewById(R.id.tvProfileBloodGroupFB)
-        textView_gender = findViewById(R.id.tvProfileGenderFB)
-        textView_email = findViewById(R.id.tvProfileEmailFB)
+        textViewName = findViewById(R.id.tvProfileFullNameFB)
+        textViewPhone = findViewById(R.id.tvProfilePhoneNumberFB)
+        textViewCity = findViewById(R.id.tvProfileCityFB)
+        textViewBlood = findViewById(R.id.tvProfileBloodGroupFB)
+        textViewGender = findViewById(R.id.tvProfileGenderFB)
+        textViewEmail = findViewById(R.id.tvProfileEmailFB)
 
         val name = sharedPrefs.getNameUser()
-        textView_name?.text = name
+        textViewName?.text = name
         val phone = sharedPrefs.getPhoneUser()
-        textView_phone?.text = phone
+        textViewPhone?.text = phone
         val city = sharedPrefs.getCityUser()
-        textView_city?.text = city
+        textViewCity?.text = city
         val blood = sharedPrefs.getBloodUser()
-        textView_blood?.text = blood
+        textViewBlood?.text = blood
         val gender = sharedPrefs.getGenderUser()
-        textView_gender?.text = gender
+        textViewGender?.text = gender
         val email = sharedPrefs.getEmailUser()
-        textView_email?.text = email
+        textViewEmail?.text = email
         val profilePic = sharedPrefs.getProfileUser()
-        this?.applicationContext?.let {
+        this.applicationContext?.let {
             ivProfilePic?.let { it1 ->
                 Glide.with(it)
                     .load(profilePic)

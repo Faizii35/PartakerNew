@@ -14,9 +14,10 @@
         android:animateLayoutChanges="true"
         app:cardElevation="8dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:weightSum="1.0"
             >
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -24,17 +25,16 @@
                 android:layout_width="75dp"
                 android:layout_height="85dp"
                 android:layout_margin="5dp"
-                app:srcCompat="@drawable/default_profile_pic" />
-
-            <RelativeLayout
-                android:id="@+id/rlHDFPostText"
-                android:layout_toEndOf="@+id/ivRVHDFDonorItem"
+                app:srcCompat="@drawable/default_profile_pic"
+                android:layout_weight="0.004"
+                />
+            <LinearLayout
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="wrap_content"
+                android:layout_weight="0.90"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                >
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvRVHDFDonorName"
@@ -57,22 +57,21 @@
                     android:text="Post Description"
                     android:layout_marginTop="5dp"
                     android:textSize="18sp" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <ImageView
+                android:layout_weight="0.1"
                 android:visibility="visible"
                 android:id="@+id/ivHDFWish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/rlHDFPostText"
                 android:src="@drawable/ic_baseline_favorite_border_24">
             </ImageView>
 
 
-        </RelativeLayout>
+    </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -9,17 +9,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
-import com.it.partaker.classes.Request
+import com.it.partaker.models.Request
 import kotlinx.android.synthetic.main.rv_mrf_receiver_item.view.*
 
-class ApproveRequestAdapter(val context: Context,  val myRequestItemClickListener: MyRequestsClickListener):RecyclerView.Adapter<ApproveRequestAdapter.ApproveRequestViewHolder>()
+class ApproveRequestAdapter(val context: Context, private val myRequestItemClickListener: MyRequestsClickListener):RecyclerView.Adapter<ApproveRequestAdapter.ApproveRequestViewHolder>()
 {
     class ApproveRequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-    var receiverList = mutableListOf<Request>()
+    private var receiverList = mutableListOf<Request>()
 
     fun setRequests(request: MutableList<Request>){
-        receiverList = request as MutableList<Request>
+        receiverList = request
         notifyDataSetChanged()
     }
 
@@ -30,8 +30,6 @@ class ApproveRequestAdapter(val context: Context,  val myRequestItemClickListene
 
     override fun onBindViewHolder(holder: ApproveRequestViewHolder, position: Int) {
         val requests = receiverList[position]
-        val name = requests.getName()
-//        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
 
         val textView = holder.itemView.tvRVMRFReceiverName
         textView.text = requests.getName()
@@ -45,7 +43,7 @@ class ApproveRequestAdapter(val context: Context,  val myRequestItemClickListene
             .placeholder(R.drawable.default_profile_pic)
             .into(holder.itemView.ivRVMRFReceiverItem)
 
-        holder.itemView.setOnClickListener(){
+        holder.itemView.setOnClickListener {
             myRequestItemClickListener.OnMyRequestsItemClickListener(it, requests)
         }
     }

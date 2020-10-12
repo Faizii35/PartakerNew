@@ -9,14 +9,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
-import com.it.partaker.classes.Donation
+import com.it.partaker.models.Donation
 import kotlinx.android.synthetic.main.rv_mdf_donor_item.view.*
 
-class DonorAdapter(val context: Context, val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<DonorAdapter.DonorViewHolder>()
+class DonorAdapter(val context: Context, private val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<DonorAdapter.DonorViewHolder>()
 {
     class DonorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-    var donorList = mutableListOf<Donation>()
+    private var donorList = mutableListOf<Donation>()
 
     fun setDonations(donation: List<Donation>){
         donorList = donation as MutableList<Donation>
@@ -30,8 +30,6 @@ class DonorAdapter(val context: Context, val donationItemClickListener: MyDonati
 
     override fun onBindViewHolder(holder: DonorViewHolder, position: Int) {
         val donations = donorList[position]
-        val name = donations.getName()
-//        Toast.makeText(context, name, Toast.LENGTH_SHORT).show()
 
         val textView = holder.itemView.tvRVMDFDonorName
         textView.text = donations.getName()
@@ -45,10 +43,8 @@ class DonorAdapter(val context: Context, val donationItemClickListener: MyDonati
                 .placeholder(R.drawable.default_profile_pic)
                 .into(holder.itemView.ivRVMDFDonorItem)
 
-        holder.itemView.setOnClickListener(){
-
+        holder.itemView.setOnClickListener {
             donationItemClickListener.OnMyDonationsItemClickListener(it, donations)
-
         }
     }
 

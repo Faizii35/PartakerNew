@@ -15,46 +15,50 @@
         android:animateLayoutChanges="true"
         card_view:cardElevation="8dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent">
+            android:background="@color/colorAccent"
+            android:weightSum="1.0">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivRVHRFReceiverItem"
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="70dp"
+                android:layout_height="75dp"
                 android:layout_margin="5dp"
-                app:srcCompat="@drawable/default_profile_pic">
-            </androidx.appcompat.widget.AppCompatImageView>
+                app:srcCompat="@drawable/default_profile_pic"
+                android:layout_weight="0.004"/>
 
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRVHRFReceiverName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+            <LinearLayout
                 android:layout_marginTop="15dp"
-                android:textColor="@color/white"
-                android:layout_toEndOf="@+id/ivRVHRFReceiverItem"
-                android:background="@color/colorAccent"
-                android:textSize="20sp">
-            </androidx.appcompat.widget.AppCompatTextView>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRVHRFReceiverDesc"
-                android:background="@color/colorAccent"
-                android:layout_width="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.90"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_toEndOf="@+id/ivRVHRFReceiverItem"
-                android:layout_below="@+id/tvRVHRFReceiverName"
-                android:layout_marginTop="15dp"
-                android:textSize="18sp"
-                android:singleLine="true">
-            </androidx.appcompat.widget.AppCompatTextView>
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRVHRFReceiverName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/textColorRV"
+                    android:text="Post Title"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
 
-        </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRVHRFReceiverDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textColorRV"
+                    android:text="Post Description"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

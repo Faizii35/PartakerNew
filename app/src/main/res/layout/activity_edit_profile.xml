@@ -7,6 +7,7 @@
     tools:context=".activities.EditProfileActivity">
 
     <RelativeLayout
+        android:background="@drawable/simple_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -24,6 +25,7 @@
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/til_style_corner"
             android:layout_above="@+id/tilEditProfilePhoneNum"
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
@@ -35,7 +37,8 @@
                 android:id="@+id/etEditProfileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/common_google_signin_btn_text_light"
+                android:maxLength="20"
+                android:hint="@string/full_name"
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,9 +47,11 @@
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/til_style_corner"
             android:layout_above="@+id/tilEditProfileCity"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             app:errorEnabled="true">
 
@@ -54,7 +59,8 @@
                 android:id="@+id/etEditProfilePhoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/common_google_signin_btn_text_light"
+                android:hint="@string/phone_number"
+                android:maxLength="11"
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +69,8 @@
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/til_style_corner"
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -72,7 +80,8 @@
                 android:id="@+id/etEditProfileCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/common_google_signin_btn_text_light"
+                android:hint="@string/city"
+                android:maxLength="20"
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,9 +92,9 @@
             android:layout_below="@+id/spnEditProfileBloodGroup"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:backgroundTint="@color/colorAccent"
+            android:background="@drawable/til_style_corner"
             android:text="Confirm"
-            android:textColor="@color/cardview_light_background"
+            android:textColor="@color/textColorRV"
             android:textSize="14sp" />
 
 
@@ -96,6 +105,7 @@
             android:layout_below="@id/tilEditProfileCity"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:textColor="@color/colorAccent"
             android:text="Blood Group: "
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -104,6 +114,7 @@
             android:id="@+id/tvEditProfileBloodGroupFB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:layout_below="@id/tilEditProfileCity"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"

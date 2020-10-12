@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.it.partaker.R
-import com.it.partaker.classes.Request
-import com.it.partaker.classes.User
+import com.it.partaker.models.Request
+import com.it.partaker.models.User
 import kotlinx.android.synthetic.main.rv_all_req_on_click.*
 
 class AllRequestsDetail : AppCompatActivity() {

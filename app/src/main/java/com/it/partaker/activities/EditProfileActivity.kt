@@ -25,8 +25,6 @@ import com.it.partaker.R
 import com.it.partaker.fragments.ProfileFragment
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.collections.set
 
 class EditProfileActivity : AppCompatActivity() {
@@ -117,8 +115,6 @@ class EditProfileActivity : AppCompatActivity() {
                     progressBar.setMessage("Updating Profile. Please Wait A While")
                     progressBar.show()
 
-
-                    val sharedPrefs = PartakerPrefs(this)
                     sharedPrefs.saveNameUser(name)
                     sharedPrefs.savePhoneUser(phone)
                     sharedPrefs.saveCityUser(city)

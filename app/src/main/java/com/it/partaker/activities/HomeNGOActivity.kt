@@ -15,12 +15,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.it.partaker.R
-import com.it.partaker.classes.User
 import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ngo.ApproveDonationFragment
 import com.it.partaker.fragments.ngo.ApproveDonorRequestFragment
 import com.it.partaker.fragments.ngo.ApproveReceiverRequestFragment
 import com.it.partaker.fragments.ngo.ApproveRequestFragment
+import com.it.partaker.models.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -65,13 +65,13 @@ class HomeNGOActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnApproveRequestToDonation.setOnClickListener {
+        btnApproveDonorRequest.setOnClickListener {
             val intent = Intent(this, ApproveDonorRequestFragment::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
 
-        btnApproveRequestForDonation.setOnClickListener {
+        btnApproveReceiverRequest.setOnClickListener {
             val intent = Intent(this, ApproveReceiverRequestFragment::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
@@ -223,10 +223,11 @@ class HomeNGOActivity : AppCompatActivity() {
                         setTitle("Are you sure?")
                         setPositiveButton("Yes") { _, _ ->
                             FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this@HomeNGOActivity, "Logout", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@HomeNGOActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
-                            Toast.makeText(this@HomeNGOActivity, "Logout", Toast.LENGTH_SHORT).show()
+                            finish()
                         }
                         setNegativeButton("Cancel") { _, _ ->
                             Toast.makeText(

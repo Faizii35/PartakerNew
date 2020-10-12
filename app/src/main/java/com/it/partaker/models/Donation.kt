@@ -1,9 +1,9 @@
-package com.it.partaker.classes
+package com.it.partaker.models
 
 import java.io.Serializable
 
-data class Request(
-    private var p_id: String = "",
+data class Donation(
+    private var post_id: String = "",
     private var name : String = "",
     private var desc : String = "",
     private var image : String = "",
@@ -13,9 +13,12 @@ data class Request(
     private var requester_id : String = ""
 ):Serializable {
 
-    fun Request(){}
-    fun Request( p_id: String, name: String, desc : String, image: String, publisherId: String, status: String, assigned: String,requesterId: String){
-        this.p_id = p_id
+    fun Donation(){}
+    fun Donation(
+        postId: String, name: String, desc : String, image: String,
+        publisherId: String, status: String, assigned: String, requesterId: String)
+    {
+        this.post_id = postId
         this.name = name
         this.desc = desc
         this.image = image
@@ -26,15 +29,16 @@ data class Request(
     }
 
     fun setPostId(po_id: String){
-        this.p_id = po_id
+        this.post_id = po_id
     }
 
-    fun getPostId() : String { return p_id }
+    fun getPostId() : String { return post_id }
     fun getName(): String{ return name }
     fun getDesc(): String{ return desc }
     fun getImage(): String{ return image }
     fun getPublisherId(): String {return publisherId}
     fun getStatus(): String{ return status}
     fun getAssigned() : String{ return assigned }
-    fun getRequesterId() : String{ return requester_id }
+    fun getRequesterId() : String{return requester_id }
+
 }

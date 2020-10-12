@@ -2,10 +2,11 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rsz_loginbg"
     android:id="@+id/loginLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
 
@@ -27,8 +28,8 @@
             android:id="@+id/etLoginEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="top|left"
+            android:ems="20"
+            android:maxLength="25"
             android:textSize="14sp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -40,6 +41,7 @@
         style="@style/Theme.MaterialComponents.Light.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
         android:layout_below="@+id/tilLoginEmail"
         android:layout_centerHorizontal="true">
 
@@ -47,12 +49,11 @@
             android:id="@+id/etLoginPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="15"
+            android:ems="20"
             android:gravity="top|left"
-            android:textSize="14sp"
             android:hint="@string/password"
             android:inputType="textPassword"
-            />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

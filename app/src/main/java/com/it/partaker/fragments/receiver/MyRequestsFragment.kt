@@ -14,7 +14,7 @@ import com.google.firebase.database.ValueEventListener
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.ReceiverAdapter
-import com.it.partaker.classes.Request
+import com.it.partaker.models.Request
 import kotlinx.android.synthetic.main.fragment_my_requests.*
 
 class MyRequestsFragment : AppCompatActivity(), MyRequestsClickListener {

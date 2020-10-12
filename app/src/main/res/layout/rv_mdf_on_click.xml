@@ -138,8 +138,20 @@
         android:id="@+id/ll_mdf_on_click_5"
         android:layout_below="@+id/ll_mdf_on_click_4"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_mdf_on_click_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_style_corner"
+            android:text="@string/edit_donation"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_mdf_on_click_delete"
@@ -151,9 +163,7 @@
             android:layout_gravity="center"
             android:textColor="@color/colorAccent"
             android:background="@drawable/button_style_corner"
-            android:text="Delete Donation ">
-
-        </androidx.appcompat.widget.AppCompatButton>
+            android:text="@string/delete_donation" />
 
     </LinearLayout>
 

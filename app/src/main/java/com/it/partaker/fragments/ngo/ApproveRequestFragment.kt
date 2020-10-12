@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.ApproveRequestAdapter
-import com.it.partaker.classes.Request
+import com.it.partaker.models.Request
 import kotlinx.android.synthetic.main.fragment_approve_request.*
 
 class ApproveRequestFragment : AppCompatActivity(), MyRequestsClickListener {
@@ -52,7 +52,7 @@ class ApproveRequestFragment : AppCompatActivity(), MyRequestsClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveRequestFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ApproveRequestFragment, error.toString(), Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#EEEEEE"
-        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="8dp"
         android:layout_margin="5dp"
-        app:cardElevation="2dp">
+        card_view:cardElevation="8dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:weightSum="1.0">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivRVMDFDonorItem"
-                android:layout_width="70dp"
-                android:layout_height="75dp"
+                android:layout_width="75dp"
+                android:layout_height="85dp"
                 android:layout_margin="5dp"
-                app:srcCompat="@drawable/default_profile_pic" />
+                app:srcCompat="@drawable/default_profile_pic"
+                android:layout_weight="0.004"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRVMDFDonorName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+            <LinearLayout
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"
-                android:singleLine="true"
-                android:textColor="@color/textColorRV"
-                android:text="Post Title"
-                android:textStyle="bold"
-                android:layout_toEndOf="@+id/ivRVMDFDonorItem"
-                android:textSize="18sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRVMDFDonorDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvRVMDFDonorName"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/ivRVMDFDonorItem"
-                android:singleLine="true"
-                android:textColor="@color/textColorRV"
-                android:text="Post Description"
-                android:textSize="16sp" />
-        </RelativeLayout>
+                android:layout_weight="0.90"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRVMDFDonorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/textColorRV"
+                    android:text="Post Title"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRVMDFDonorDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textColorRV"
+                    android:text="Post Description"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
-

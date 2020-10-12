@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.DonorAdapter
-import com.it.partaker.classes.Donation
+import com.it.partaker.models.Donation
 import kotlinx.android.synthetic.main.activity_all_donations_n_g_o.*
 
 class AllDonationsNGO : AppCompatActivity(), MyDonationsClickListener {

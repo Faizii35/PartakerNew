@@ -18,12 +18,12 @@ import com.google.firebase.database.*
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.HomeDonorAdapter
-import com.it.partaker.classes.Request
-import com.it.partaker.classes.User
 import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ProfileFragment
 import com.it.partaker.fragments.donor.HomeDonorDetailFragment
 import com.it.partaker.fragments.donor.MyDonationsFragment
+import com.it.partaker.models.Request
+import com.it.partaker.models.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -214,10 +214,11 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                         setTitle("Are you sure?")
                         setPositiveButton("Yes") { _, _ ->
                             FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this@MainActivity, "Logout", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@MainActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
-                            Toast.makeText(this@MainActivity, "Logout", Toast.LENGTH_SHORT).show()
+                            finish()
                         }
                         setNegativeButton("Cancel") { _, _ ->
                             Toast.makeText(

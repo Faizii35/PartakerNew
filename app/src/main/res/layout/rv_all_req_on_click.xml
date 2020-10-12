@@ -71,7 +71,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/defaultContentColor"
-            android:maxLines="8"
+            android:scrollbars="vertical"
+            android:lines="8"
             android:text="Request Description FB">
 
         </androidx.appcompat.widget.AppCompatTextView>
