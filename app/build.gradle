@@ -24,8 +24,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility kotlin_version
-        sourceCompatibility kotlin_version
+        targetCompatibility "1.8"
+        sourceCompatibility "1.8"
     }
 
 }
@@ -43,6 +43,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
 
     //Firebase Dependencies
     implementation 'com.google.firebase:firebase-storage:19.2.0'

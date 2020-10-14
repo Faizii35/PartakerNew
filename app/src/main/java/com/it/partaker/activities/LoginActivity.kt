@@ -77,12 +77,10 @@ class LoginActivity : AppCompatActivity() {
                                         FirebaseDatabase.getInstance().reference.child("users").child(
                                             firebaseUser?.uid.toString()
                                         )
-                                    userReference!!.addValueEventListener(object : ValueEventListener
-                                    {
-                                        override fun onDataChange(p0: DataSnapshot)
-                                        {
-                                            if (p0.exists())
-                                            {
+                                    userReference!!.addValueEventListener(object :
+                                        ValueEventListener {
+                                        override fun onDataChange(p0: DataSnapshot) {
+                                            if (p0.exists()) {
                                                 val user = p0.getValue<User>(User::class.java)
 
                                                 sharedPrefs.clearUserPref()
@@ -96,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                                                 sharedPrefs.saveRegisterAsUser(user.getRegisterAs())
 
 
-                                                if(user.getRegisterAs() == "Donor"){
+                                                if (user.getRegisterAs() == "Donor") {
 
                                                     Toast.makeText(
                                                         this@LoginActivity,
@@ -105,13 +103,14 @@ class LoginActivity : AppCompatActivity() {
                                                     ).show()
 
                                                     progressDialog.dismiss()
-                                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                                    val intent = Intent(
+                                                        this@LoginActivity,
+                                                        MainActivity::class.java
+                                                    )
                                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                     startActivity(intent)
                                                     finish()
-                                                }
-                                                else
-                                                {
+                                                } else {
 
                                                     Toast.makeText(
                                                         this@LoginActivity,
@@ -120,7 +119,10 @@ class LoginActivity : AppCompatActivity() {
                                                     ).show()
 
                                                     progressDialog.dismiss()
-                                                    val intent = Intent(this@LoginActivity, MainReceiverActivity::class.java)
+                                                    val intent = Intent(
+                                                        this@LoginActivity,
+                                                        MainReceiverActivity::class.java
+                                                    )
                                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                     startActivity(intent)
                                                     finish()
@@ -133,11 +135,11 @@ class LoginActivity : AppCompatActivity() {
 
                                         override fun onCancelled(p0: DatabaseError) {
                                             progressDialog.dismiss()
-                                            Toast.makeText(
-                                                this@LoginActivity,
-                                                "Value Event Listener Failed: ",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+//                                            Toast.makeText(
+//                                                this@LoginActivity,
+//                                                "Value Event Listener Failed: ",
+//                                                Toast.LENGTH_SHORT
+//                                            ).show()
                                         }
                                     })
 

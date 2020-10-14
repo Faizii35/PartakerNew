@@ -13,15 +13,20 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.it.partaker.R
+import com.it.partaker.fragments.APIService
 import com.it.partaker.models.User
+import com.it.partaker.notifications.*
 import kotlinx.android.synthetic.main.activity_add_post.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddPostActivity : AppCompatActivity() {
-
 
     private var donationReference : DatabaseReference? = null
     private var requestReference : DatabaseReference? = null
@@ -31,23 +36,31 @@ class AddPostActivity : AppCompatActivity() {
     private var imageUri : Uri? = null
     private val requestCode = 438
     private var url: String = "https://firebasestorage.googleapis.com/v0/b/partaker-1fa76.appspot.com/o/download.png?alt=media&token=f4982ae7-c87e-4c19-8cfd-8f2ad26ba8ff"
+    private var notify = false
+    private var receiverId : String = "2Bn8eiFwifUaHKjOAcycEAVBZfD3"
+    private var username: String = ""
+    private val message: String = "Added A New Post. Approval Required!"
+    private var apiService : APIService? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_post)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
         donationReference = FirebaseDatabase.getInstance().reference.child("donations")
         requestReference = FirebaseDatabase.getInstance().reference.child("requests")
         storageRef = FirebaseStorage.getInstance().reference.child("Post Images")
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_post)
+        apiService = Client.Client.getClient("https://fcm.googleapis.com/")!!.create(APIService::class.java)
 
         ivAddPostImage.setOnClickListener {
             pickImage()
         }
 
         btnAddPostPost.setOnClickListener {
+
+            notify = true
 
             val postName: String = etAddPostDonationName.text.toString()
             val postDesc: String  = etAddPostDonationDesc.text.toString()
@@ -107,7 +120,7 @@ class AddPostActivity : AppCompatActivity() {
 
                                 else {
 
-                                    requestReference!!.child(postId).updateChildren(postHashMap).addOnCompleteListener { it ->
+                                    requestReference!!.child(postId).updateChildren(postHashMap).addOnCompleteListener {
                                         if (it.isSuccessful) {
                                             Toast.makeText(applicationContext, "Post Added", Toast.LENGTH_LONG).show()
 
@@ -132,9 +145,73 @@ class AddPostActivity : AppCompatActivity() {
                         }
                     }) // End Value Event Listener
 
+
+                    //FCM Code For Notification Lies Here
+                    userReference!!.addValueEventListener(object: ValueEventListener{
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val user = p0.getValue(User::class.java)
+                            if(notify){
+                                username = user!!.getFullName()
+                                sendNotification(receiverId,username, message)
+                            }
+                            notify = false
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+
                 } // End Else Body of When Block
             } // End When Block
         } // End Function Button Register
+
+        updateToken(FirebaseInstanceId.getInstance().token)
+    }
+
+    private fun updateToken(token: String?) {
+        val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
+        val token1 = Token(token!!)
+        ref.child(firebaseUser!!.uid).setValue(token1)
+    }
+
+    private fun sendNotification(receiverId: String, fullName: String, message: String) {
+
+        val reference = FirebaseDatabase.getInstance().reference.child("Tokens")
+        val query = reference.orderByKey().equalTo(receiverId)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                for (datasnapshot in p0.children) {
+                    val token: Token? = datasnapshot.getValue(Token::class.java)
+                    val data = Data(
+                        firebaseUser!!.uid,
+                        R.mipmap.ic_launcher,
+                        "$fullName $message",
+                        "New Post",
+                        receiverId
+                    )
+
+                    val sender = Sender(data, token!!.getToken().toString())
+                    apiService!!.sendNotification(sender)
+                        .enqueue(object : Callback<MyResponse> {
+                            override fun onResponse(
+                                call: Call<MyResponse>,
+                                response: Response<MyResponse>
+                            ) {
+                                if (response.code() == 200) {
+                                    if (response.body()!!.success !== 1) {
+                                        Toast.makeText(this@AddPostActivity, "Failed, Nothing Happened", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                            override fun onFailure(call: Call<MyResponse>, t: Throwable) {
+                            }
+                        })
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
     }
 
     private fun pickImage() {

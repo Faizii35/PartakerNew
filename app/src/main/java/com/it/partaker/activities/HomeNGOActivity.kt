@@ -40,6 +40,7 @@ class HomeNGOActivity : AppCompatActivity() {
         ll_H_NGO_0.visibility = View.VISIBLE
         rvHDFDonor.visibility = View.GONE
         rvHRFReceiver.visibility = View.GONE
+        fa_btn_HDF_add_donation.visibility = View.GONE
 
         mainHomeNGOWork()
 
@@ -116,22 +117,6 @@ class HomeNGOActivity : AppCompatActivity() {
         //Drawer Related Code of Main Activity Lies Below
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-//                R.id.nav_home_donor -> {
-//                    toolbar.title = "Donor"
-//                    val intent = Intent(this,MainActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
-//                R.id.nav_home_receiver -> {
-//                    toolbar.title = "Receiver"
-//                    val intent = Intent(this@HomeNGOActivity,MainReceiverActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
                 R.id.nav_home_ngo -> {
                     toolbar.title = "Home"
                     closeDrawer()
@@ -153,30 +138,6 @@ class HomeNGOActivity : AppCompatActivity() {
                     closeDrawer()
                     true
                 }
-//                R.id.nav_myDonations -> {
-//                    toolbar.title = "My Donations"
-//                    val intent = Intent(this@HomeNGOActivity, MyDonationsFragment::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
-//                R.id.nav_myRequests -> {
-//                    toolbar.title = "My Requests"
-//                    val intent = Intent(this@HomeNGOActivity, MyRequestsFragment::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
-//                R.id.nav_profile -> {
-//                    toolbar.title = "Profile"
-//                    val intent = Intent(this@HomeNGOActivity, ProfileFragment::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                    startActivity(intent)
-//                    closeDrawer()
-//                    true
-//                }
                 R.id.nav_aboutApp -> {
                     toolbar.title = "About App"
                     val intent = Intent(this, AboutAppFragment::class.java)

@@ -13,31 +13,40 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            android:text="Register Yourself">
+
+        </TextView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilRegFullName"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="15dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="15"
-                android:maxLength="20"
-                android:textSize="14sp"
                 android:hint="@string/full_name"
                 android:inputType="textPersonName"
-                />
+                android:maxLength="20"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilRegPhoneNumber"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             android:layout_marginTop="5dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -57,7 +66,7 @@
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
             android:background="@drawable/til_style_corner"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_marginTop="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
@@ -75,7 +84,7 @@
             android:id="@+id/tilRegPassword"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             app:passwordToggleEnabled="true"
             android:layout_marginTop="5dp">
@@ -94,7 +103,7 @@
             android:id="@+id/tilRegConfirmPassword"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             app:passwordToggleEnabled="true"
             android:layout_marginTop="5dp">
@@ -113,7 +122,7 @@
             android:id="@+id/tilRegCity"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             android:layout_marginTop="5dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -143,7 +152,7 @@
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center_vertical"
                 android:text="@string/gender"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:id="@+id/rgGender"
@@ -175,7 +184,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -187,7 +196,7 @@
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center_vertical"
                 android:text="@string/register_as"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <RadioGroup
                 android:id="@+id/rgRegisterAs"
@@ -222,7 +231,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/button_style_corner"
         android:textColor="@color/colorAccent"

@@ -9,7 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
-
 <RelativeLayout
     android:layout_height="wrap_content"
     android:layout_width="275dp"
