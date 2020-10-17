@@ -20,6 +20,33 @@ class MyRequestsDetailFragment : AppCompatActivity() {
 
         val request = intent.getSerializableExtra("My Request") as Request
 
+        work()
+
+        btn_mrf_on_click_delete.setOnClickListener {
+
+            FirebaseDatabase.getInstance().reference.child("requests").child(request.getPostId()).removeValue()
+            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MyRequestsFragment::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+
+        btn_mrf_on_click_edit.setOnClickListener {
+            FragmentEditMyRequests(request).show(supportFragmentManager,"")
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        work()
+    }
+
+    fun work(){
+
+
+        val request = intent.getSerializableExtra("My Request") as Request
+
         tv_mrf_on_click_nameFB.text = request.getName()
         tv_mrf_on_click_descFB.text = request.getDesc()
         tv_mrf_on_click_descFB.movementMethod = ScrollingMovementMethod()
@@ -31,15 +58,6 @@ class MyRequestsDetailFragment : AppCompatActivity() {
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
             .into(iv_mrf_on_click_image)
-
-        btn_mrf_on_click_delete.setOnClickListener {
-
-            FirebaseDatabase.getInstance().reference.child("requests").child(request.getPostId()).removeValue()
-            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MyRequestsFragment::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-        }
 
     }
 

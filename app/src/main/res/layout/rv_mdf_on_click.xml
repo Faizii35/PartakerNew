@@ -164,7 +164,14 @@
             android:textColor="@color/colorAccent"
             android:background="@drawable/button_style_corner"
             android:text="@string/delete_donation" />
-
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/edit_don_host_frag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+    </FrameLayout>
 
 </RelativeLayout>

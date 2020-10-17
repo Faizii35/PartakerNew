@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.donor.FragmentEditMyDonation">
+
+    <RelativeLayout
+        android:background="@drawable/simple_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:padding="15dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/tvEditDonTitle"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="@string/donation_name" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEditDonTitle"
+            android:layout_below="@+id/tvEditDonTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/til_style_corner">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEditDonTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/donation_name">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvEditDonDescription"
+            android:layout_below="@+id/tilEditDonTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/donation_description" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEditDonDescription"
+            android:layout_below="@+id/tvEditDonDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/til_style_corner">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEditDonDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donation_description"
+                android:lines="4"
+                android:maxLines="4"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEditDonUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/textColorRV"
+            android:layout_below="@id/tilEditDonDescription"
+            android:background="@drawable/til_style_corner"
+            android:text="@string/update">
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </RelativeLayout>
+
+</RelativeLayout>

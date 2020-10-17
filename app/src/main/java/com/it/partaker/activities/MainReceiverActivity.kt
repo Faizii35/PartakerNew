@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.adapter.HomeReceiverAdapter
@@ -23,6 +24,7 @@ import com.it.partaker.fragments.ProfileFragment
 import com.it.partaker.fragments.receiver.HomeReceiverDetailFragment
 import com.it.partaker.fragments.receiver.MyRequestsFragment
 import com.it.partaker.models.Donation
+import com.it.partaker.notifications.Token
 import com.it.partaker.persistence.PartakerPrefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -53,8 +55,42 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
 
         navigationWork()
 
-        mainRequestWork()
+        updateToken(FirebaseInstanceId.getInstance().token)
 
+    }
+
+    private fun checkReports(){
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
+
+        userReference!!.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    if(p0.child("reports").value == "3"){
+                        AlertDialog.Builder(this@MainReceiverActivity).apply {
+                            setTitle("Your Account Has Been Disabled!")
+                            setPositiveButton("OK") { _, _ ->
+                                FirebaseAuth.getInstance().signOut()
+                                val intent = Intent(this@MainReceiverActivity, LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                startActivity(intent)
+                                finish()
+                            }
+                        }.create().show()
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun updateToken(token: String?) {
+        val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
+        val token1 = Token(token!!)
+        ref.child(firebaseUser!!.uid).setValue(token1)
     }
 
     private fun mainRequestWork() {
@@ -85,9 +121,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@MainReceiverActivity, "Error: $error", Toast.LENGTH_SHORT).show()
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
         fa_btn_HDF_add_donation.setOnClickListener {
@@ -164,9 +198,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@MainReceiverActivity, "Error: $error", Toast.LENGTH_SHORT).show()
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
 
@@ -276,6 +308,10 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
 
     override fun onResume() {
         super.onResume()
+
+        mainRequestWork()
+        checkReports()
+
         toolbar.title = "Receiver"
     }
 

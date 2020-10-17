@@ -14,6 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import com.it.partaker.R
 import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ngo.ApproveDonationFragment
@@ -21,6 +22,7 @@ import com.it.partaker.fragments.ngo.ApproveDonorRequestFragment
 import com.it.partaker.fragments.ngo.ApproveReceiverRequestFragment
 import com.it.partaker.fragments.ngo.ApproveRequestFragment
 import com.it.partaker.models.User
+import com.it.partaker.notifications.Token
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -50,8 +52,14 @@ class HomeNGOActivity : AppCompatActivity() {
 
         navigationWork()
 
-    }
+        updateToken(FirebaseInstanceId.getInstance().token)
 
+    }
+    private fun updateToken(token: String?) {
+        val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
+        val token1 = Token(token!!)
+        ref.child(firebaseUser!!.uid).setValue(token1)
+    }
     private fun mainHomeNGOWork() {
 
         btnApproveDonation.setOnClickListener {
@@ -109,9 +117,7 @@ class HomeNGOActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@HomeNGOActivity, "Error: $error", Toast.LENGTH_SHORT).show()
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
         //Drawer Related Code of Main Activity Lies Below

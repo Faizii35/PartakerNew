@@ -58,6 +58,7 @@ class RegisterActivity : AppCompatActivity() {
             val password: String  = etPassword.text.toString().trim()
             val confirmPassword = etConfirmPassword.text.toString().trim()
             val bloodGroup = "Not Known"
+            val reports = "0"
             val profilePic = "https://firebasestorage.googleapis.com/v0/b/partaker-1fa76.appspot.com/o/download.png?alt=media&token=f4982ae7-c87e-4c19-8cfd-8f2ad26ba8ff"
 
             when{
@@ -82,7 +83,7 @@ class RegisterActivity : AppCompatActivity() {
                                     val userID = mAuth.currentUser!!.uid
                                     refUsers = FirebaseDatabase.getInstance().reference.child("users").child(userID)
 
-                                    val user = User(userID,fullName,phoneNumber,city,email,password,gender,registerAs,bloodGroup,profilePic)
+                                    val user = User(userID,fullName,phoneNumber,city,email,password,gender,registerAs,bloodGroup,reports,profilePic)
                                     refUsers.setValue(user).addOnCompleteListener { it1 ->
                                         if (it1.isSuccessful) {
                                             //Progress Dialog Dismiss

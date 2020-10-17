@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.receiver.FragmentEditMyRequests">
+
+    <RelativeLayout
+        android:background="@drawable/simple_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:padding="15dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/tvEditReqTitle"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="@string/request_title" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEditReqTitle"
+            android:layout_below="@+id/tvEditReqTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/til_style_corner">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEditReqTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/request_name">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvEditReqDescription"
+            android:layout_below="@+id/tilEditReqTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/request_description" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEditReqDescription"
+            android:layout_below="@+id/tvEditReqDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/til_style_corner">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEditReqDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/request_description"
+                android:lines="4"
+                android:maxLines="4"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEditReqUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/textColorRV"
+            android:layout_below="@id/tilEditReqDescription"
+            android:background="@drawable/til_style_corner"
+            android:text="@string/update">
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </RelativeLayout>
+
+</RelativeLayout>

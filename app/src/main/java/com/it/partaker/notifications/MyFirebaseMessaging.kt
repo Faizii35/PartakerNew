@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.it.partaker.activities.AddPostActivity
 import com.it.partaker.activities.MainActivity
 
 class MyFirebaseMessaging : FirebaseMessagingService() {
@@ -43,7 +42,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
 
         val notification = mRemoteMessage.notification
         val j = user!!.replace("\\[D]".toRegex(), "").toInt()
-        val intent = Intent(this,AddPostActivity::class.java)
+        val intent = Intent(this,MainActivity::class.java)
         val bundle = Bundle()
         bundle.putString("userid",user)
         intent.putExtras(bundle)

@@ -67,6 +67,14 @@ class PartakerPrefs(context: Context) {
         return sharedPref.getString(SAVED_USER_GENDER, "")
     }
 
+    fun saveReportUser(userResult: String?) {
+        sharedPref.edit().putString(SAVED_USER_REPORT, userResult).apply()
+    }
+
+    fun getReportUser(): String? {
+        return sharedPref.getString(SAVED_USER_REPORT, "")
+    }
+
     fun saveRegisterAsUser(userResult: String?) {
         sharedPref.edit().putString(SAVED_USER_REGISTER_AS, userResult).apply()
     }
@@ -89,6 +97,7 @@ class PartakerPrefs(context: Context) {
         const val SAVED_USER_EMAIL = "saved_user_email"
         const val SAVED_USER_PROFILE = "saved_user_profile"
         const val SAVED_USER_BLOOD = "saved_user_blood"
+        const val SAVED_USER_REPORT = "saved_user_report"
         const val SAVED_USER_GENDER = "saved_user_gender"
         const val SAVED_USER_REGISTER_AS = "saved_user_register_as"
     }

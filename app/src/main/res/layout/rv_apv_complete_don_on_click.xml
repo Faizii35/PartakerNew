@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/defaultContentColor"
             android:scrollbars="vertical"
-            android:lines="8"
+            android:lines="7"
             android:text="Donation Description FB">
 
         </androidx.appcompat.widget.AppCompatTextView>
@@ -216,8 +216,8 @@
             android:layout_gravity="center"
             android:textColor="@color/colorAccent"
             android:background="@color/design_default_color_error"
-            android:text="Decline ">
-        </androidx.appcompat.widget.AppCompatButton>
+            android:text="Decline " />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_apv_complete_don_on_click_approve"
             android:layout_width="wrap_content"
@@ -227,9 +227,19 @@
             android:padding="5dp"
             android:layout_gravity="center"
             android:textColor="@color/colorAccent"
+            android:background="@color/green"
+            android:text="Approve" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_apv_complete_don_on_click_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textColor="@color/colorAccent"
             android:background="@color/colorPrimary"
-            android:text="Approve">
-        </androidx.appcompat.widget.AppCompatButton>
+            android:text="Report" />
 
     </LinearLayout>
 

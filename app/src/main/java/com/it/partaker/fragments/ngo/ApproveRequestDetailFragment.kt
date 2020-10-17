@@ -28,8 +28,11 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
+    private var title : String = "Post Approval"
     private val message: String = "Your Post Has Been Approved!"
     private var apiService : APIService? = null
+    private  var reports = "0"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
 
         val request = intent.getSerializableExtra("Approve Request") as Request
 
-        requestReference = FirebaseDatabase.getInstance().reference.child("requests")
+        requestReference = FirebaseDatabase.getInstance().reference.child("requests").child(request.getPostId())
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(request.getPublisherId())
         firebaseUser = FirebaseAuth.getInstance().currentUser
         apiService = Client.Client.getClient("https://fcm.googleapis.com/")!!.create(APIService::class.java)
@@ -47,8 +50,12 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val receiver = snapshot.getValue(User::class.java)
-                    tv_apv_req_on_click_receiver_nameFB.text = receiver!!.getFullName()
+
+                    receiver!!.setReport(snapshot.child("reports").value.toString())
+
+                    tv_apv_req_on_click_receiver_nameFB.text = receiver.getFullName()
                     tv_apv_req_on_click_receiver_contactFB.text = receiver.getPhoneNumber()
+                    reports = receiver.getReport()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -69,10 +76,10 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
             notify = true
             val reqApv = HashMap<String, Any>()
             reqApv["status"] = "Approved"
-            requestReference!!.child(request.getPostId()).updateChildren(reqApv)
+            requestReference!!.updateChildren(reqApv)
 
             if(notify){
-                sendNotification(receiverId, message)
+                sendNotification(receiverId, message,title)
             }
             notify = false
 
@@ -91,7 +98,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
 
                     val reqApv = HashMap<String, Any>()
                     reqApv["status"] = "Declined"
-                    requestReference!!.child(request.getPostId()).updateChildren(reqApv)
+                    requestReference!!.updateChildren(reqApv)
 
                     Toast.makeText(this@ApproveRequestDetailFragment, "Declined", Toast.LENGTH_SHORT).show()
 
@@ -109,6 +116,45 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
             }.create().show()
         }
 
+        btn_apv_req_on_click_report.setOnClickListener {
+
+            AlertDialog.Builder(this).apply {
+                setTitle("Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+
+                    notify = true
+
+                    if(notify && reports.toInt() == 3){
+                        sendNotification(receiverId, "Your Account Has Been Disabled Due To Several Reports","Account Reported")
+                    }
+                    notify = false
+
+                    val recReport = HashMap<String, Any>()
+                    recReport["reports"] = (reports.toInt()+1).toString()
+                    userReference!!.updateChildren(recReport)
+
+                    val reqApv = HashMap<String, Any>()
+                    reqApv["status"] = "Declined"
+                    requestReference!!.updateChildren(reqApv)
+
+                    Toast.makeText(this@ApproveRequestDetailFragment, "User Reported and Post Declined", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@ApproveRequestDetailFragment, ApproveRequestFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+
+                }
+                setNegativeButton("Cancel") { _, _ ->
+                    Toast.makeText(
+                        this@ApproveRequestDetailFragment,
+                        "Process Cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.create().show()
+        }
+
+
         updateToken(FirebaseInstanceId.getInstance().token)
 
     }
@@ -119,7 +165,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
         ref.child(firebaseUser!!.uid).setValue(token1)
     }
 
-    private fun sendNotification(receiverId: String, message: String) {
+    private fun sendNotification(receiverId: String, message: String,title:String) {
 
         val reference = FirebaseDatabase.getInstance().reference.child("Tokens")
         val query = reference.orderByKey().equalTo(receiverId)
@@ -131,7 +177,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
                         firebaseUser!!.uid,
                         R.mipmap.ic_launcher,
                         message,
-                        "Post Approval",
+                        title,
                         receiverId
                     )
 

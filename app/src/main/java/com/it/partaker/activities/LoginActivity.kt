@@ -6,6 +6,7 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -81,20 +82,22 @@ class LoginActivity : AppCompatActivity() {
                                         ValueEventListener {
                                         override fun onDataChange(p0: DataSnapshot) {
                                             if (p0.exists()) {
-                                                val user = p0.getValue<User>(User::class.java)
+                                                val user = p0.getValue(User::class.java)
 
+                                                user!!.setReport(p0.child("reports").value.toString())
                                                 sharedPrefs.clearUserPref()
-                                                sharedPrefs.saveNameUser(user!!.getFullName())
+                                                sharedPrefs.saveNameUser(user.getFullName())
                                                 sharedPrefs.savePhoneUser(user.getPhoneNumber())
                                                 sharedPrefs.saveCityUser(user.getCity())
                                                 sharedPrefs.saveEmailUser(user.getEmail())
                                                 sharedPrefs.saveProfileUser(user.getProfilePic())
                                                 sharedPrefs.saveGenderUser(user.getGender())
                                                 sharedPrefs.saveBloodUser(user.getBloodGroup())
+                                                sharedPrefs.saveReportUser(user.getReport())
                                                 sharedPrefs.saveRegisterAsUser(user.getRegisterAs())
 
 
-                                                if (user.getRegisterAs() == "Donor") {
+                                                if (user.getRegisterAs() == "Donor" && user.getReport().toInt() < 3) {
 
                                                     Toast.makeText(
                                                         this@LoginActivity,
@@ -110,8 +113,9 @@ class LoginActivity : AppCompatActivity() {
                                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                     startActivity(intent)
                                                     finish()
-                                                } else {
-
+                                                } else if (user.getRegisterAs() == "Receiver" && user.getReport()
+                                                        .toInt() < 3
+                                                ) {
                                                     Toast.makeText(
                                                         this@LoginActivity,
                                                         "Login Successful",
@@ -127,19 +131,19 @@ class LoginActivity : AppCompatActivity() {
                                                     startActivity(intent)
                                                     finish()
 
+                                                } else {
+
+                                                    progressDialog.dismiss()
+                                                    AlertDialog.Builder(this@LoginActivity).apply {
+                                                        setTitle("Your Account Has Been Disabled!")
+                                                        setPositiveButton("OK") { _, _ -> }
+                                                    }.create().show()
                                                 }
-
-
                                             }
                                         }
 
                                         override fun onCancelled(p0: DatabaseError) {
                                             progressDialog.dismiss()
-//                                            Toast.makeText(
-//                                                this@LoginActivity,
-//                                                "Value Event Listener Failed: ",
-//                                                Toast.LENGTH_SHORT
-//                                            ).show()
                                         }
                                     })
 

@@ -8,13 +8,13 @@
 
     <RelativeLayout
         android:background="@drawable/simple_background"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/ivEditProfilePic"
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+            android:layout_width="130dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:contentDescription="Edit Profile Image"
@@ -24,7 +24,7 @@
             android:id="@+id/tilEditProfileName"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             android:layout_above="@+id/tilEditProfilePhoneNum"
             android:layout_centerInParent="true"
@@ -46,7 +46,7 @@
             android:id="@+id/tilEditProfilePhoneNum"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
             android:layout_above="@+id/tilEditProfileCity"
             android:layout_centerHorizontal="true"
@@ -68,7 +68,7 @@
             android:id="@+id/tilEditProfileCity"
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/til_style_corner"
             android:layout_centerInParent="true"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/spnEditProfileBloodGroup"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/til_style_corner"
             android:text="Confirm"
             android:textColor="@color/textColorRV"
@@ -130,7 +130,7 @@
             android:layout_height="30dp"
             android:layout_below="@id/tvEditProfileBloodGroupFB"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:background="@color/colorAccent" />
 
     </RelativeLayout>

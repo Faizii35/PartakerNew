@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
         navigationWork()
 
-//        mainDonationWork()
-
     }
 
     private fun mainDonationWork() {
@@ -84,7 +82,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-//                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -131,9 +128,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@MainActivity, "Error: $error", Toast.LENGTH_SHORT).show()
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
         //Drawer Related Code of Main Activity Lies Below
@@ -277,8 +272,39 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
     override fun onResume() {
         super.onResume()
+
         mainDonationWork()
+        checkReports()
+
         toolbar.title = "Donor"
+    }
+
+    private fun checkReports(){
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
+
+        userReference!!.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    if(p0.child("reports").value == "3"){
+                        AlertDialog.Builder(this@MainActivity).apply {
+                            setTitle("Your Account Has Been Disabled!")
+                            setPositiveButton("OK") { _, _ ->
+                                FirebaseAuth.getInstance().signOut()
+                                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                startActivity(intent)
+                                finish()
+                            }
+                        }.create().show()
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
 }

@@ -61,4 +61,10 @@
     <string name="wish_list">Wish List</string>
     <string name="edit_donation">Edit Donation</string>
     <string name="delete_donation">Delete Donation</string>
+    <string name="donation_description">Donation Description</string>
+    <string name="update">Update</string>
+    <string name="request_title">Request Title</string>
+    <string name="request_name">Request Name</string>
+    <string name="request_description">Request Description</string>
+    <string name="edit_requests">Edit Request</string>
 </resources>

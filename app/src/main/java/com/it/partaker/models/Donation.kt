@@ -10,7 +10,7 @@ data class Donation(
     private var publisherId: String = "",
     private var status: String = "",
     private var assigned: String = "",
-    private var requester_id : String = ""
+    private var requesterId : String = ""
 ):Serializable {
 
     fun Donation(){}
@@ -25,7 +25,7 @@ data class Donation(
         this.publisherId = publisherId
         this.status = status
         this.assigned = assigned
-        this.requester_id = requesterId
+        this.requesterId = requesterId
     }
 
     fun setPostId(po_id: String){
@@ -39,6 +39,6 @@ data class Donation(
     fun getPublisherId(): String {return publisherId}
     fun getStatus(): String{ return status}
     fun getAssigned() : String{ return assigned }
-    fun getRequesterId() : String{return requester_id }
+    fun getRequesterId() : String{return requesterId }
 
 }

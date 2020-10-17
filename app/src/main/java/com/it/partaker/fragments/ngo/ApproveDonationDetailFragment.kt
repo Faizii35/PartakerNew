@@ -29,8 +29,10 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
+    private var title : String = "Post Approval"
     private val message: String = "Your Post Has Been Approved!"
     private var apiService : APIService? = null
+    private var reports : String= "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
 
         val donation = intent.getSerializableExtra("Approve Donation") as Donation
 
-        donationReference = FirebaseDatabase.getInstance().reference.child("donations")
+        donationReference = FirebaseDatabase.getInstance().reference.child("donations").child(donation.getPostId())
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(donation.getPublisherId())
         firebaseUser = FirebaseAuth.getInstance().currentUser
         apiService = Client.Client.getClient("https://fcm.googleapis.com/")!!.create(APIService::class.java)
@@ -49,12 +51,22 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val donor = snapshot.getValue(User::class.java)
-                    tv_apv_don_on_click_donor_nameFB.text = donor!!.getFullName()
+
+                    donor!!.setReport(snapshot.child("reports").value.toString())
+
+                    tv_apv_don_on_click_donor_nameFB.text = donor.getFullName()
                     tv_apv_don_on_click_donor_contactFB.text = donor.getPhoneNumber()
+                    reports = donor.getReport()
+                    Toast.makeText(this@ApproveDonationDetailFragment, reports, Toast.LENGTH_SHORT).show()
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveDonationDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ApproveDonationDetailFragment,
+                    "Error: $error",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -72,11 +84,10 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
             notify = true
             val donApv = HashMap<String, Any>()
             donApv["status"] = "Approved"
-            val donationId = donation.getPostId()
-            donationReference!!.child(donationId).updateChildren(donApv)
+            donationReference!!.updateChildren(donApv)
 
             if(notify){
-                sendNotification(receiverId, message)
+                sendNotification(receiverId, message, title)
             }
             notify = false
 
@@ -89,15 +100,13 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
 
         btn_apv_don_on_click_decline.setOnClickListener {
 
-
-
             AlertDialog.Builder(this).apply {
                 setTitle("Are you sure?")
                 setPositiveButton("Yes") { _, _ ->
 
                     val donApv = HashMap<String, Any>()
                     donApv["status"] = "Declined"
-                    donationReference!!.child(donation.getPostId()).updateChildren(donApv)
+                    donationReference!!.updateChildren(donApv)
 
                     Toast.makeText(this@ApproveDonationDetailFragment, "Declined", Toast.LENGTH_SHORT).show()
 
@@ -115,6 +124,48 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
             }.create().show()
 
         }
+
+        btn_apv_don_on_click_report.setOnClickListener {
+
+            AlertDialog.Builder(this).apply {
+                setTitle("Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+
+                    notify = true
+
+                    if(notify && reports.toInt() == 3){
+                        sendNotification(receiverId, "Your Account Has Been Disabled Due To Several Reports","Account Reported")
+                    }
+                    notify = false
+
+                    val reportTest = (reports.toInt())+1
+
+                    val donReport = HashMap<String, Any>()
+                    donReport["reports"] = reportTest.toString()
+                    userReference!!.updateChildren(donReport)
+
+                    val donApv = HashMap<String, Any>()
+                    donApv["status"] = "Declined"
+                    donationReference!!.updateChildren(donApv)
+
+                    Toast.makeText(this@ApproveDonationDetailFragment, "User Reported And Post Declined", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@ApproveDonationDetailFragment, ApproveDonationFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+
+                }
+                setNegativeButton("Cancel") { _, _ ->
+                    Toast.makeText(
+                        this@ApproveDonationDetailFragment,
+                        "Process Cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.create().show()
+
+        }
+
         updateToken(FirebaseInstanceId.getInstance().token)
     }
 
@@ -124,7 +175,7 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
         ref.child(firebaseUser!!.uid).setValue(token1)
     }
 
-    private fun sendNotification(receiverId: String, message: String) {
+    private fun sendNotification(receiverId: String, message: String,title:String) {
 
         val reference = FirebaseDatabase.getInstance().reference.child("Tokens")
         val query = reference.orderByKey().equalTo(receiverId)
@@ -136,7 +187,7 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
                         firebaseUser!!.uid,
                         R.mipmap.ic_launcher,
                         message,
-                        "Post Approval",
+                        title,
                         receiverId
                     )
 

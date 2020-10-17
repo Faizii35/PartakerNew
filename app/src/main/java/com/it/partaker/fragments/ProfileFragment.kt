@@ -60,6 +60,7 @@ class ProfileFragment : AppCompatActivity() {
                             if (it.isSuccessful){
                                 user.delete().addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
+                                        FirebaseAuth.getInstance().currentUser!!.delete()
                                         Toast.makeText(baseContext, "Account Deleted", Toast.LENGTH_LONG).show()
                                         val intent = Intent(baseContext, LoginActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

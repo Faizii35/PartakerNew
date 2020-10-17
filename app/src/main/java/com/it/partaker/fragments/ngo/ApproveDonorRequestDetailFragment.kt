@@ -30,8 +30,11 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
+    private var title : String = "Request Approval"
     private val message: String = "Your Request Has Been Approved!"
     private var apiService : APIService? = null
+    private  var reports = "0"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
 
         val request = intent.getSerializableExtra("Approve Donor Request") as Request
 
-        requestReference = FirebaseDatabase.getInstance().reference.child("requests")
+        requestReference = FirebaseDatabase.getInstance().reference.child("requests").child(request.getPostId())
         reqReference = FirebaseDatabase.getInstance().reference.child("users").child(request.getPublisherId())
         donReference = FirebaseDatabase.getInstance().reference.child("users").child(request.getRequesterId())
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -53,8 +56,10 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val requester = snapshot.getValue(User::class.java)
+
                     tv_apv_complete_req_on_click_receiver_nameFB.text = requester!!.getFullName()
                     tv_apv_complete_req_on_click_receiver_contactFB.text = requester.getPhoneNumber()
+
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -65,7 +70,11 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val donor = snapshot.getValue(User::class.java)
-                    tv_apv_complete_req_on_click_donor_nameFB.text = donor!!.getFullName()
+
+                    donor!!.setReport(snapshot.child("reports").value.toString())
+                    reports = donor.getReport()
+
+                    tv_apv_complete_req_on_click_donor_nameFB.text = donor.getFullName()
                     tv_apv_complete_req_on_click_donor_contactFB.text = donor.getPhoneNumber()
                 }
             }
@@ -88,11 +97,10 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
             val donApv = HashMap<String, Any>()
             donApv["assigned"] = "Assigned"
 
-            val requestId = request.getPostId()
-            requestReference!!.child(requestId).updateChildren(donApv)
+            requestReference!!.updateChildren(donApv)
 
             if(notify){
-                sendNotification(receiverId, message)
+                sendNotification(receiverId, message,title)
             }
             notify = false
 
@@ -111,13 +119,51 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
 
                     val reqApv = HashMap<String, Any>()
                     reqApv["assigned"] = "Pending"
-                    val requestId = request.getPostId()
-                    requestReference!!.child(requestId).updateChildren(reqApv)
+                    requestReference!!.updateChildren(reqApv)
+
                     Toast.makeText(this@ApproveDonorRequestDetailFragment, "Declined", Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(this@ApproveDonorRequestDetailFragment, ApproveRequestFragment::class.java)
+                    val intent = Intent(this@ApproveDonorRequestDetailFragment, ApproveDonorRequestFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
+                }
+                setNegativeButton("Cancel") { _, _ ->
+                    Toast.makeText(
+                        this@ApproveDonorRequestDetailFragment,
+                        "Process Cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.create().show()
+        }
+
+        btn_apv_complete_req_on_click_report.setOnClickListener {
+
+            AlertDialog.Builder(this).apply {
+                setTitle("Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+
+                    notify = true
+
+                    if(notify && reports.toInt() == 3){
+                        sendNotification(receiverId, "Your Account Has Been Disabled Due To Several Reports","Account Reported")
+                    }
+                    notify = false
+
+                    val donReport = HashMap<String, Any>()
+                    donReport["reports"] = (reports.toInt()+1).toString()
+                    donReference!!.updateChildren(donReport)
+
+                    val reqApv = HashMap<String, Any>()
+                    reqApv["assigned"] = "Pending"
+                    requestReference!!.updateChildren(reqApv)
+
+                    Toast.makeText(this@ApproveDonorRequestDetailFragment, "User Reported and Request Declined", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@ApproveDonorRequestDetailFragment, ApproveDonorRequestFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+
                 }
                 setNegativeButton("Cancel") { _, _ ->
                     Toast.makeText(
@@ -139,7 +185,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
         ref.child(firebaseUser!!.uid).setValue(token1)
     }
 
-    private fun sendNotification(receiverId: String, message: String) {
+    private fun sendNotification(receiverId: String, message: String,title:String) {
 
         val reference = FirebaseDatabase.getInstance().reference.child("Tokens")
         val query = reference.orderByKey().equalTo(receiverId)
@@ -151,7 +197,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
                         firebaseUser!!.uid,
                         R.mipmap.ic_launcher,
                         message,
-                        "Request Approval",
+                        title,
                         receiverId
                     )
 

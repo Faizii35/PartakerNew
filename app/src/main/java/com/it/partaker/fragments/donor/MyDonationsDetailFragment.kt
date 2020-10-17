@@ -19,6 +19,29 @@ class MyDonationsDetailFragment : AppCompatActivity() {
 
         val donation = intent.getSerializableExtra("My Donations") as Donation
 
+        work()
+
+        btn_mdf_on_click_delete.setOnClickListener {
+
+            FirebaseDatabase.getInstance().reference.child("donations").child(donation.getPostId()).removeValue()
+            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MyDonationsFragment::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+        btn_mdf_on_click_edit.setOnClickListener {
+            FragmentEditMyDonation(donation).show(supportFragmentManager,"")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        work()
+    }
+
+    private fun work() {
+        val donation = intent.getSerializableExtra("My Donations") as Donation
+
         tv_mdf_on_click_nameFB.text = donation.getName()
         tv_mdf_on_click_descFB.text = donation.getDesc()
         tv_mdf_on_click_descFB.movementMethod = ScrollingMovementMethod()
@@ -31,15 +54,6 @@ class MyDonationsDetailFragment : AppCompatActivity() {
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
             .into(iv_mdf_on_click_image)
-
-        btn_mdf_on_click_delete.setOnClickListener {
-
-            FirebaseDatabase.getInstance().reference.child("donations").child(donation.getPostId()).removeValue()
-            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MyDonationsFragment::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-        }
     }
 
 }
