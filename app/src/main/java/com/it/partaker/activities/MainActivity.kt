@@ -135,12 +135,10 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home_donor -> {
-                    toolbar.title = "Donor"
                     closeDrawer()
                     true
                 }
                 R.id.nav_myDonations -> {
-                    toolbar.title = "My Donations"
                     val intent = Intent(this@MainActivity,MyDonationsFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -148,7 +146,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     true
                 }
                 R.id.nav_profile -> {
-                    toolbar.title = "Profile"
                     val intent = Intent(this@MainActivity,ProfileFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -156,7 +153,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     true
                 }
                 R.id.nav_don_wishList -> {
-                    toolbar.title = "Wish List"
                     val intent = Intent(this@MainActivity,DonorWishActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -164,7 +160,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     true
                 }
                 R.id.nav_aboutApp -> {
-                    toolbar.title = "About App"
                     val intent = Intent(this, AboutAppFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -258,6 +253,8 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         nav_view.menu.findItem(R.id.nav_home_ngo).isVisible = false
         nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false
         nav_view.menu.findItem(R.id.nav_ngo_all_req).isVisible = false
+        nav_view.menu.findItem(R.id.nav_banned_user).isVisible = false
+
 
         nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
         nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
@@ -276,7 +273,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         mainDonationWork()
         checkReports()
 
-        toolbar.title = "Donor"
     }
 
     private fun checkReports(){

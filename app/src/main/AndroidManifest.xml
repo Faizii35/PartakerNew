@@ -13,13 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.BannedUsersActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activities.DonorWishActivity" />
         <activity android:name=".activities.AllDonationsDetail" />
-        <activity android:name=".activities.AllRequestsNGO" />
+        <activity android:name=".activities.AllRequestsNGO"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activities.AllRequestsDetail" />
-        <activity android:name=".activities.AllDonationsNGO" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.AllDonationsNGO"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".activities.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,21 +34,28 @@
         </activity>
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".fragments.ProfileFragment" />
-        <activity android:name=".fragments.ForgotPasswordFragment" />
-        <activity android:name=".fragments.AboutAppFragment" />
-        <activity android:name=".activities.AddPostActivity" />
+        <activity android:name=".fragments.ForgotPasswordFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".fragments.AboutAppFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".activities.AddPostActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
         <activity android:name=".activities.ChangePasswordActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".fragments.donor.MyDonationsFragment" />
+        <activity android:name=".fragments.donor.MyDonationsFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".fragments.donor.MyDonationsDetailFragment" />
         <activity android:name=".fragments.donor.HomeDonorDetailFragment" />
+
         <activity
             android:name=".activities.MainReceiverActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".fragments.receiver.HomeReceiverDetailFragment" />
-        <activity android:name=".fragments.receiver.MyRequestsFragment" />
+        <activity android:name=".fragments.receiver.MyRequestsFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".fragments.receiver.MyRequestsDetailFragment" />
         <activity
             android:name=".activities.HomeNGOActivity"
@@ -58,19 +71,18 @@
 
         <service
             android:name=".notifications.MyFirebaseMessaging"
-            android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".notifications.MyFirebaseInstanceId"
-            android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 

@@ -67,4 +67,5 @@
     <string name="request_name">Request Name</string>
     <string name="request_description">Request Description</string>
     <string name="edit_requests">Edit Request</string>
+    <string name="banned_users">Banned Users</string>
 </resources>

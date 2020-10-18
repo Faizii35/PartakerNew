@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/simple_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.AddPostActivity">
+    tools:context=".activities.AddPostActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutAddPost"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarAddPost"
+            app:title="Add Post"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        android:layout_below="@+id/appBarLayoutAddPost"
         android:id="@+id/tvAddPostDonationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:layout_centerHorizontal="true"
         android:text="Post Title:"
         android:layout_marginTop="30dp"
@@ -19,6 +40,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilAddPostDonationName"
+        android:background="@drawable/til_style_corner"
         style="@style/Theme.MaterialComponents.Light.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +57,7 @@
 
     <TextView
         android:id="@+id/tvAddPostDonationDesc"
+        android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilAddPostDonationName"
@@ -47,6 +70,7 @@
         android:id="@+id/tilAddPostDonationDesc"
         style="@style/Theme.MaterialComponents.Light.DarkActionBar"
         android:layout_width="match_parent"
+        android:background="@drawable/til_style_corner"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvAddPostDonationDesc"
         android:layout_centerHorizontal="true"
@@ -68,6 +92,7 @@
         android:id="@+id/tvAddPostDonationImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:layout_below="@+id/tilAddPostDonationDesc"
         android:layout_centerHorizontal="true"
         android:text="Add Image: (*Optional)"
@@ -86,8 +111,8 @@
         android:id="@+id/btnAddPostPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
+        android:background="@drawable/til_style_corner"
+        android:textColor="@color/textColorRV"
         android:layout_below="@+id/ivAddPostImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"

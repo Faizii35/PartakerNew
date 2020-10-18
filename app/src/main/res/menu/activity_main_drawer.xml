@@ -31,6 +31,10 @@
             android:title="@string/profile" />
 
         <item
+            android:id="@+id/nav_banned_user"
+            android:title="@string/banned_users" />
+
+        <item
             android:id="@+id/nav_myRequests"
             android:title="@string/my_requests" />
 

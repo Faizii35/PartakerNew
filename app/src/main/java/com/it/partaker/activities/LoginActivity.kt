@@ -26,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
         val sharedPrefs = PartakerPrefs(this)
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 

@@ -13,13 +13,17 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+
         <TextView
+            android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
             android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Registration"
             android:textColor="@color/colorAccent"
-            android:text="Register Yourself">
+            android:textSize="30sp">
 
         </TextView>
 
@@ -240,7 +244,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

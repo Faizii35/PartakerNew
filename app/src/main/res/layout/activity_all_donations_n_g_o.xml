@@ -6,8 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".activities.AllDonationsNGO">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutAllDonations"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarAllDonations"
+            app:title="All Donations"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAllDonNGO"
+        android:layout_below="@id/appBarLayoutAllDonations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/rv_mdf_donor_item"/>

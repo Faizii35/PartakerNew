@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.NoActionBar"
-    android:background="@color/colorAccent"
-    tools:context=".fragments.receiver.MyRequestsFragment">
-
+    tools:context=".activities.BannedUsersActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutMyRequests"
+        android:id="@+id/appBarLayoutBannedUsers"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="50dp"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         xmlns:app="http://schemas.android.com/apk/res-auto">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarMyRequests"
-            app:title="My Requests"
+            android:id="@+id/toolbarBannedUsers"
+            app:title="Banned Users"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -26,10 +24,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMRFReceiver"
-        android:layout_below="@+id/appBarLayoutMyRequests"
+        android:id="@+id/rvBannedUser"
+        android:layout_below="@+id/appBarLayoutBannedUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/rv_mrf_receiver_item"/>
+        tools:listitem="@layout/rv_banned_users_item"/>
 
 </RelativeLayout>

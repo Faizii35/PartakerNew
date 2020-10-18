@@ -38,6 +38,7 @@ class ProfileFragment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_profile)
+
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userReference = FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser?.uid.toString())
         storageRef = FirebaseStorage.getInstance().reference.child("User Images")

@@ -144,6 +144,14 @@ class HomeNGOActivity : AppCompatActivity() {
                     closeDrawer()
                     true
                 }
+                R.id.nav_banned_user -> {
+                    toolbar.title = "Banned Users"
+                    val intent = Intent(this@HomeNGOActivity, BannedUsersActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    closeDrawer()
+                    true
+                }
                 R.id.nav_aboutApp -> {
                     toolbar.title = "About App"
                     val intent = Intent(this, AboutAppFragment::class.java)

@@ -5,8 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".fragments.donor.MyDonationsFragment">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutMyDonations"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMyDonations"
+            app:title="My Donations"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMDFDonor"
+            android:layout_below="@+id/appBarLayoutMyDonations"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorAccent"
