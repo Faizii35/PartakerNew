@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="#EEEEEE"
+        app:cardBackgroundColor="@color/white"
         card_view:cardCornerRadius="8dp"
         android:layout_margin="5dp"
         android:animateLayoutChanges="true"
@@ -18,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
             android:weightSum="1.0">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -63,8 +63,8 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:visibility="visible"
-                    android:id="@+id/ivHDFReq"
+                    android:visibility="gone"
+                    android:id="@+id/ivHRFReq"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

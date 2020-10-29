@@ -7,13 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.models.Donation
 import kotlinx.android.synthetic.main.rv_hrf_receiver_item.view.*
 
+private var firebaseUser : FirebaseUser? =null
+
 class HomeReceiverAdapter(val context: Context, private val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<HomeReceiverAdapter.HomeReceiverViewHolder>()
 {
+
     class HomeReceiverViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     private var donorList = mutableListOf<Donation>()
@@ -30,6 +35,7 @@ class HomeReceiverAdapter(val context: Context, private val donationItemClickLis
 
     override fun onBindViewHolder(holder: HomeReceiverViewHolder, position: Int) {
         val donations = donorList[position]
+        firebaseUser = FirebaseAuth.getInstance().currentUser
 
         val textView = holder.itemView.tvRVHRFReceiverName
         textView.text = donations.getName()
@@ -42,6 +48,13 @@ class HomeReceiverAdapter(val context: Context, private val donationItemClickLis
                 .transform(CircleCrop())
                 .placeholder(R.drawable.default_profile_pic)
                 .into(holder.itemView.ivRVHRFReceiverItem)
+
+        if(donations.getRequesterId() == firebaseUser!!.uid){
+            holder.itemView.ivHRFReq.visibility = View.VISIBLE
+        }
+        else{
+            holder.itemView.ivHRFReq.visibility = View.GONE
+        }
 
         holder.itemView.setOnClickListener {
             donationItemClickListener.OnMyDonationsItemClickListener(it, donations)

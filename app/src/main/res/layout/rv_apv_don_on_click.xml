@@ -2,27 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/white"
     android:elevation="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_apv_don_on_click_image"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/default_profile_pic"
-        android:layout_centerHorizontal="true">
-
-    </androidx.appcompat.widget.AppCompatImageView>
-
-    <LinearLayout
-        android:id="@+id/ll_apv_don_on_click_1"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/iv_apv_don_on_click_image"
-        android:layout_height="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutApproveDonationDetail"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="@dimen/appBarHeight"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarApproveDonationDetail"
+            app:title="Donation Detail"
+            app:titleTextColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/appBarLayoutApproveDonationDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_apv_don_on_click_image"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/default_profile_pic"
+            android:layout_centerHorizontal="true">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <LinearLayout
+            android:id="@+id/ll_apv_don_on_click_1"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/iv_apv_don_on_click_image"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_don_on_click_name"
@@ -45,141 +67,145 @@
 
             </androidx.appcompat.widget.AppCompatTextView>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_apv_don_on_click_2"
-        android:layout_below="@+id/ll_apv_don_on_click_1"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_desc"
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_apv_don_on_click_2"
+            android:layout_below="@+id/ll_apv_don_on_click_1"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/defaultContentColor"
-            android:text="Donation Description: ">
-
-        </androidx.appcompat.widget.AppCompatTextView>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_descFB"
-            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_desc"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/defaultContentColor"
+                android:text="Donation Description: ">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_descFB"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultContentColor"
+                android:scrollbars="vertical"
+                android:lines="8"
+                android:text="Donation Description FB">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_apv_don_on_click_3"
+            android:layout_below="@+id/ll_apv_don_on_click_2"
             android:layout_height="wrap_content"
-            android:textColor="@color/defaultContentColor"
-            android:scrollbars="vertical"
-            android:lines="8"
-            android:text="Donation Description FB">
-
-        </androidx.appcompat.widget.AppCompatTextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_apv_don_on_click_3"
-        android:layout_below="@+id/ll_apv_don_on_click_2"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_donor_name"
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/defaultContentColor"
-            android:textStyle="bold"
-            android:text="Donor Name: ">
-
-        </androidx.appcompat.widget.AppCompatTextView>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_donor_nameFB"
-            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_donor_name"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultContentColor"
+                android:textStyle="bold"
+                android:text="Donor Name: ">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_donor_nameFB"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultContentColor"
+                android:text="Donor Name FB">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_apv_don_on_click_4"
+            android:layout_below="@+id/ll_apv_don_on_click_3"
             android:layout_height="wrap_content"
-            android:textColor="@color/defaultContentColor"
-            android:text="Donor Name FB">
-
-        </androidx.appcompat.widget.AppCompatTextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_apv_don_on_click_4"
-        android:layout_below="@+id/ll_apv_don_on_click_3"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_donor_contact"
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/defaultContentColor"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Donor Contact: ">
-
-        </androidx.appcompat.widget.AppCompatTextView>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_apv_don_on_click_donor_contactFB"
-            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_donor_contact"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/defaultContentColor"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Donor Contact: ">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apv_don_on_click_donor_contactFB"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultContentColor"
+                android:text="Donor Contact FB">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_apv_don_on_click_5"
+            android:layout_below="@+id/ll_apv_don_on_click_4"
             android:layout_height="wrap_content"
-            android:textColor="@color/defaultContentColor"
-            android:text="Donor Contact FB">
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        </androidx.appcompat.widget.AppCompatTextView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_apv_don_on_click_decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/colorAccent"
+                android:background="@color/design_default_color_error"
+                android:text="Decline " />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_apv_don_on_click_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/colorAccent"
+                android:background="@color/green"
+                android:text="Approve" />
 
-    <LinearLayout
-        android:id="@+id/ll_apv_don_on_click_5"
-        android:layout_below="@+id/ll_apv_don_on_click_4"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_apv_don_on_click_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimary"
+                android:padding="5dp"
+                android:text="Report"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_apv_don_on_click_decline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:layout_gravity="center"
-            android:textColor="@color/colorAccent"
-            android:background="@color/design_default_color_error"
-            android:text="Decline " />
+        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_apv_don_on_click_approve"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:layout_gravity="center"
-            android:textColor="@color/colorAccent"
-            android:background="@color/green"
-            android:text="Approve" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_apv_don_on_click_report"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:padding="5dp"
-            android:text="Report"
-            android:textColor="@color/colorAccent"
-            android:textSize="12sp" />
+    </RelativeLayout>
 
-    </LinearLayout>
 
 </RelativeLayout>

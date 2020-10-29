@@ -3,7 +3,6 @@ package com.it.partaker.fragments.ngo
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -52,7 +51,7 @@ class ApproveReceiverRequestFragment : AppCompatActivity(), MyDonationsClickList
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveReceiverRequestFragment, error.toString(), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveReceiverRequestFragment, error.toString(), Toast.LENGTH_SHORT).show()
             }
         })
 

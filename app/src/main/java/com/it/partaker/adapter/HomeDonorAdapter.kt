@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -58,6 +57,15 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
             .placeholder(R.drawable.default_profile_pic)
             .into(holder.itemView.ivRVHDFDonorItem)
 
+        if(requests.getRequesterId() == firebaseUser!!.uid){
+            holder.itemView.ivHDFWish.visibility = View.VISIBLE
+            holder.itemView.ivHDFReq.visibility = View.VISIBLE
+        }
+        else{
+            holder.itemView.ivHDFWish.visibility = View.VISIBLE
+            holder.itemView.ivHDFReq.visibility = View.GONE
+        }
+
         holder.itemView.ivHDFWish.setOnClickListener {
 
             if(liked)
@@ -101,7 +109,7 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
             }
 
         })

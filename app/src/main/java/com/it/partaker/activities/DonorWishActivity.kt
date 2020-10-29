@@ -52,7 +52,7 @@ import kotlinx.android.synthetic.main.activity_donor_wish.*
              }
 
              override fun onCancelled(error: DatabaseError) {
-                 Toast.makeText(this@DonorWishActivity, error.toString(), Toast.LENGTH_SHORT).show()
+//                 Toast.makeText(this@DonorWishActivity, error.toString(), Toast.LENGTH_SHORT).show()
              }
          })
 

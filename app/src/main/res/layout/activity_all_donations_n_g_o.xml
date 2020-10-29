@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.AllDonationsNGO">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutAllDonations"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -18,7 +19,7 @@
             app:title="All Donations"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>

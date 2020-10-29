@@ -3,7 +3,6 @@ package com.it.partaker.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -50,7 +49,7 @@ class AllRequestsNGO : AppCompatActivity(), MyRequestsClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@AllRequestsNGO, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@AllRequestsNGO, "Error: $error", Toast.LENGTH_SHORT).show()
             }
 
         }) // End Value Event Listener

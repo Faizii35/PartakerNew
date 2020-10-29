@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="2dp"
-    android:background="@color/cardview_light_background"
+    android:background="@color/white"
     tools:context=".fragments.ngo.ApproveRequestFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutApproveRequest"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appBarHeight"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarApproveRequest"
+            app:title="Request's Approval"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_Apv_Req_NGO"
+        android:layout_below="@id/appBarLayoutApproveRequest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/rv_hrf_receiver_item"/>

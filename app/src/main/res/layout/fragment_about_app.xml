@@ -4,34 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorAccent"
+    android:background="@color/white"
     tools:context=".fragments.AboutAppFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutProfile"
+        android:id="@+id/appBarLayoutAboutApp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarProfile"
+            android:id="@+id/toolbarAboutApp"
             app:title="About App"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_about_app_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="26sp"
-        android:textColor="@color/textColorRV"
-        android:layout_margin="5dp"
-        android:textStyle="bold"
-        android:text="@string/about_app_fragment" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayoutAboutApp"
+        android:layout_marginTop="-1dp">
+
+        <TextView
+            android:id="@+id/tv_about_app_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:text="@string/about_app_fragment"
+            android:textColor="@color/textColorRV"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -42,7 +42,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.title = "Receiver"
+//        toolbar.title = "Receiver"
 
         rvHRFReceiver.visibility = View.VISIBLE
         rvHDFDonor.visibility = View.GONE
@@ -110,7 +110,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
 
                     for (data in snapshot.children) {
                         val donation = data.getValue(Donation::class.java)
-                        if (donation!!.getStatus() == "Approved" && donation.getAssigned() == "Pending") {
+                        if ((donation!!.getStatus() == "Approved" && donation.getAssigned() == "Pending") || (donation.getStatus() == "Approved" && donation.getAssigned() == "Requested" && donation.getRequesterId() == firebaseUser!!.uid)) {
                             donation.let {
                                 donationList.add(it)
                             }

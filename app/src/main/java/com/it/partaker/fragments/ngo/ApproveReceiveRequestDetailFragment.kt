@@ -58,7 +58,7 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveReceiveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveReceiveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
         reqReference!!.addValueEventListener(object : ValueEventListener {
@@ -75,7 +75,7 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveReceiveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveReceiveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 

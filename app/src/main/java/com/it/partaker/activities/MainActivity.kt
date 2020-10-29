@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.title = "Donor"
+//        toolbar.title = "Donor"
 
         rvHDFDonor.visibility = View.VISIBLE
         ll_H_NGO_0.visibility = View.GONE
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
                     for (data in snapshot.children) {
                         val request = data.getValue(Request::class.java)
-                        if (request!!.getStatus() == "Approved" && request.getAssigned() == "Pending") {
+                        if ((request!!.getStatus() == "Approved" && request.getAssigned() == "Pending") || (request.getStatus() == "Approved" && request.getAssigned() == "Requested" && request.getRequesterId() == firebaseUser!!.uid)) {
                             request.let {
                                 requestList.add(it)
                             }

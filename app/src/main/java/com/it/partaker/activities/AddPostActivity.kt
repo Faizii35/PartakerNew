@@ -141,7 +141,7 @@ class AddPostActivity : AppCompatActivity() {
                             } // End If Within Data Change
                         } // End On Data Change
                         override fun onCancelled(p0: DatabaseError) {
-                            Toast.makeText(this@AddPostActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(this@AddPostActivity,"Value Event Listener Failed: ", Toast.LENGTH_LONG).show()
                         }
                     }) // End Value Event Listener
 

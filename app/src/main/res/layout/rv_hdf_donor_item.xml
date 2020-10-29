@@ -74,12 +74,12 @@
                     android:src="@drawable/ic_baseline_favorite_border_24"/>
 
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/ivHDFReq"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
                     android:src="@drawable/ic_icons8_sand_timer_50"/>
 
             </LinearLayout>

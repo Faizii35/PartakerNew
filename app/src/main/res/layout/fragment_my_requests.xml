@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.NoActionBar"
-    android:background="@color/colorAccent"
+    android:background="@color/white"
     tools:context=".fragments.receiver.MyRequestsFragment">
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutMyRequests"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -20,7 +19,7 @@
             app:title="My Requests"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>

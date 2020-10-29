@@ -10,19 +10,19 @@
     android:weightSum="3"
     android:orientation="vertical">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutProfile"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarProfile"
             app:title="Profile"
+            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>

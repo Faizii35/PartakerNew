@@ -51,7 +51,7 @@ class MyDonationsFragment : AppCompatActivity() , MyDonationsClickListener{
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(baseContext, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(baseContext, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
     }

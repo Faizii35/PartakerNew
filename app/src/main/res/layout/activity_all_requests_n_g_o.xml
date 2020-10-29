@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.AllRequestsNGO">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutAllRequests"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         xmlns:app="http://schemas.android.com/apk/res-auto">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAllRequests"
-            app:title="My Donations"
+            app:title="All Requests"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>

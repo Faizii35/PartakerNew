@@ -63,7 +63,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveDonorRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveDonorRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
         donReference!!.addValueEventListener(object : ValueEventListener {
@@ -79,7 +79,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveDonorRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveDonorRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -8,12 +8,21 @@
     android:background="@drawable/simple_background"
     tools:context=".activities.RegisterActivity">
 
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRegister"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/add_user_male" />
+
     <LinearLayout
+        android:layout_below="@+id/ivRegister"
+        android:id="@+id/ll_register"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
 
         <TextView
             android:id="@+id/tvRegister"
@@ -24,7 +33,6 @@
             android:text="Registration"
             android:textColor="@color/colorAccent"
             android:textSize="30sp">
-
         </TextView>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -244,7 +252,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -261,13 +269,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="@string/sign_in"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             />
     </LinearLayout>
-
-
-
 
     </LinearLayout>
 </RelativeLayout>

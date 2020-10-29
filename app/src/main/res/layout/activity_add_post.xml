@@ -9,18 +9,20 @@
     tools:context=".activities.AddPostActivity"
     android:theme="@style/AppTheme.NoActionBar">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutAddPost"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/appBarHeight"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAddPost"
             app:title="Add Post"
+            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
     </com.google.android.material.appbar.AppBarLayout>

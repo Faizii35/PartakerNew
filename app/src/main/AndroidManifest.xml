@@ -13,78 +13,97 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.BannedUsersActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".activities.DonorWishActivity" />
-        <activity android:name=".activities.AllDonationsDetail" />
-        <activity android:name=".activities.AllRequestsNGO"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".activities.AllRequestsDetail" />
-        <activity android:name=".activities.AllDonationsNGO"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+
         <activity android:name=".activities.RegisterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.EditProfileActivity" />
-        <activity android:name=".fragments.ProfileFragment" />
-        <activity android:name=".fragments.ForgotPasswordFragment"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".fragments.AboutAppFragment"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".activities.AddPostActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
-        <activity android:name=".activities.ChangePasswordActivity" />
-        <activity
-            android:name=".activities.MainActivity"
+        <activity android:name=".activities.EditProfileActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ProfileFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ForgotPasswordFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.AboutAppFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.AddPostActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.ChangePasswordActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
         <activity android:name=".fragments.donor.MyDonationsFragment"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".fragments.donor.MyDonationsDetailFragment" />
-        <activity android:name=".fragments.donor.HomeDonorDetailFragment" />
-
-        <activity
-            android:name=".activities.MainReceiverActivity"
+        <activity android:name=".fragments.donor.MyDonationsDetailFragment"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".fragments.receiver.HomeReceiverDetailFragment" />
+        <activity android:name=".fragments.donor.HomeDonorDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.DonorWishActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
+        <activity android:name=".activities.MainReceiverActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.receiver.HomeReceiverDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".fragments.receiver.MyRequestsFragment"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".fragments.receiver.MyRequestsDetailFragment" />
-        <activity
-            android:name=".activities.HomeNGOActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".fragments.ngo.ApproveDonationFragment" />
-        <activity android:name=".fragments.ngo.ApproveDonationDetailFragment" />
-        <activity android:name=".fragments.ngo.ApproveRequestFragment" />
-        <activity android:name=".fragments.ngo.ApproveRequestDetailFragment" />
-        <activity android:name=".fragments.ngo.ApproveDonorRequestFragment" />
-        <activity android:name=".fragments.ngo.ApproveDonorRequestDetailFragment" />
-        <activity android:name=".fragments.ngo.ApproveReceiverRequestFragment" />
-        <activity android:name=".fragments.ngo.ApproveReceiveRequestDetailFragment" />
+        <activity android:name=".fragments.receiver.MyRequestsDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
-        <service
-            android:name=".notifications.MyFirebaseMessaging"
+
+        <activity android:name=".activities.HomeNGOActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveDonationFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveDonationDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveRequestFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveRequestDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveDonorRequestFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveDonorRequestDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveReceiverRequestFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.ngo.ApproveReceiveRequestDetailFragment"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.BannedUsersActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.AllDonationsDetail"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.AllRequestsNGO"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.AllRequestsDetail"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.AllDonationsNGO"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
+
+        <service android:name=".notifications.MyFirebaseMessaging"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
+            <intent-filter> <action android:name="com.google.firebase.MESSAGING_EVENT" /> </intent-filter>
         </service>
-        <service
-            android:name=".notifications.MyFirebaseInstanceId"
+
+
+        <service android:name=".notifications.MyFirebaseInstanceId"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
+            <intent-filter> <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> </intent-filter>
         </service>
+
 
     </application>
 

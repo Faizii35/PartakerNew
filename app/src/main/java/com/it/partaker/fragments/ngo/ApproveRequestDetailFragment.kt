@@ -59,7 +59,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ApproveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ApproveRequestDetailFragment, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
 
