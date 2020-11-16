@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:elevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutFulfillRequestDetail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appBarHeight"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarFulfillRequestDetail"
+            app:title="Request Detail"
+            app:titleTextColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/appBarLayoutFulfillRequestDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_frd_on_click_image"
+            android:layout_width="120dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/default_profile_pic"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:id="@+id/ll_frd_on_click_1"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/iv_frd_on_click_image"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_frd_on_click_name"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/defaultContentColor"
+                android:text="Request Title: " />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_frd_on_click_nameFB"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:textColor="@color/defaultContentColor"
+                android:text="Request Title FB" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_frd_on_click_2"
+            android:layout_below="@+id/ll_frd_on_click_1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_frd_on_click_desc"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/defaultContentColor"
+                android:text="Request Description: " />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_frd_on_click_descFB"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:lines="8"
+                android:textColor="@color/defaultContentColor"
+                android:text="Request Description FB" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

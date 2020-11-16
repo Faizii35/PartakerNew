@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayoutFulfilledRequest"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/appBarHeight"
+            android:elevation="4dp"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarFulfilledRequest"
+                    app:title="Fulfilled Requests"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFRDDonor"
+            android:layout_below="@id/appBarLayoutFulfilledRequest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_frd_donor_item"/>
+
+</RelativeLayout>

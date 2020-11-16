@@ -57,12 +57,11 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
             .placeholder(R.drawable.default_profile_pic)
             .into(holder.itemView.ivRVHDFDonorItem)
 
-        if(requests.getRequesterId() == firebaseUser!!.uid){
-            holder.itemView.ivHDFWish.visibility = View.VISIBLE
+        var test = requests.getRequesterId()
+        if(requests.getAssigned() == "Requested"){
             holder.itemView.ivHDFReq.visibility = View.VISIBLE
         }
         else{
-            holder.itemView.ivHDFWish.visibility = View.VISIBLE
             holder.itemView.ivHDFReq.visibility = View.GONE
         }
 

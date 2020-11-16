@@ -8,7 +8,6 @@
     android:background="@drawable/simple_background"
     tools:context=".activities.RegisterActivity">
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivRegister"
         android:layout_width="115dp"
@@ -48,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="15"
+                android:textColor="@color/cardview_dark_background"
                 android:hint="@string/full_name"
                 android:inputType="textPersonName"
                 android:maxLength="20"
@@ -68,6 +68,7 @@
                 android:ems="20"
                 android:maxLength="11"
                 android:textSize="14sp"
+                android:textColor="@color/cardview_dark_background"
                 android:hint="@string/phone_number"
                 android:inputType="phone"
                 />
@@ -87,6 +88,7 @@
                 android:ems="20"
                 android:maxLength="25"
                 android:textSize="14sp"
+                android:textColor="@color/cardview_dark_background"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 />
@@ -97,6 +99,7 @@
             style="@style/Theme.MaterialComponents.Light.DarkActionBar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            app:passwordToggleTint="@color/cardview_dark_background"
             android:background="@drawable/til_style_corner"
             app:passwordToggleEnabled="true"
             android:layout_marginTop="5dp">
@@ -108,7 +111,9 @@
                 android:ems="20"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/cardview_dark_background"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -117,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/til_style_corner"
+            app:passwordToggleTint="@color/cardview_dark_background"
             app:passwordToggleEnabled="true"
             android:layout_marginTop="5dp">
 
@@ -127,7 +133,9 @@
                 android:ems="20"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/cardview_dark_background"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -145,6 +153,7 @@
                 android:maxLength="20"
                 android:textSize="14sp"
                 android:hint="@string/city"
+                android:textColor="@color/cardview_dark_background"
                 android:inputType="textPersonName"
                 />
         </com.google.android.material.textfield.TextInputLayout>

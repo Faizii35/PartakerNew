@@ -14,13 +14,12 @@ import com.it.partaker.R
 import com.it.partaker.models.Donation
 import kotlinx.android.synthetic.main.rv_hrf_receiver_item.view.*
 
-private var firebaseUser : FirebaseUser? =null
-
 class HomeReceiverAdapter(val context: Context, private val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<HomeReceiverAdapter.HomeReceiverViewHolder>()
 {
 
     class HomeReceiverViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-
+    
+    private var firebaseUser : FirebaseUser? = null
     private var donorList = mutableListOf<Donation>()
 
     fun setDonations(donation: List<Donation>){

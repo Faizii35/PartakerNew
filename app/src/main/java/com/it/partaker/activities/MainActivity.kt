@@ -20,6 +20,7 @@ import com.it.partaker.R
 import com.it.partaker.adapter.HomeDonorAdapter
 import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ProfileFragment
+import com.it.partaker.fragments.donor.FulfilledRequestActivity
 import com.it.partaker.fragments.donor.HomeDonorDetailFragment
 import com.it.partaker.fragments.donor.MyDonationsFragment
 import com.it.partaker.models.Request
@@ -38,8 +39,6 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        toolbar.title = "Donor"
 
         rvHDFDonor.visibility = View.VISIBLE
         ll_H_NGO_0.visibility = View.GONE
@@ -159,6 +158,13 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
                     closeDrawer()
                     true
                 }
+                R.id.nav_fulfilled_request -> {
+                    val intent = Intent(this@MainActivity,FulfilledRequestActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    closeDrawer()
+                    true
+                }
                 R.id.nav_aboutApp -> {
                     val intent = Intent(this, AboutAppFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -258,6 +264,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
         nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
         nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
+        nav_view.menu.findItem(R.id.nav_fulfilled_request).isVisible = false
 
         nav_view.menu.findItem(R.id.nav_home_donor).isVisible = true
         nav_view.menu.findItem(R.id.nav_myDonations).isVisible = true

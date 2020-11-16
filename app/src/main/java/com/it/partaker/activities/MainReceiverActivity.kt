@@ -23,6 +23,7 @@ import com.it.partaker.fragments.AboutAppFragment
 import com.it.partaker.fragments.ProfileFragment
 import com.it.partaker.fragments.receiver.HomeReceiverDetailFragment
 import com.it.partaker.fragments.receiver.MyRequestsFragment
+import com.it.partaker.fragments.receiver.ReceivedDonationActivity
 import com.it.partaker.models.Donation
 import com.it.partaker.notifications.Token
 import com.it.partaker.persistence.PartakerPrefs
@@ -164,6 +165,8 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
         nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
         nav_view.menu.findItem(R.id.nav_don_wishList).isVisible = false
         nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
+        nav_view.menu.findItem(R.id.nav_fulfilled_donation).isVisible = false
+
 
         nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false
         nav_view.menu.findItem(R.id.nav_ngo_all_req).isVisible = false
@@ -208,7 +211,6 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
             when (it.itemId) {
 
                 R.id.nav_home_receiver -> {
-                    toolbar.title = "Receiver"
                     val intent = Intent(this@MainReceiverActivity,MainReceiverActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -216,7 +218,6 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                     true
                 }
                 R.id.nav_myRequests -> {
-                    toolbar.title = "My Requests"
                     val intent = Intent(this@MainReceiverActivity,MyRequestsFragment::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
@@ -224,8 +225,14 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
                     true
                 }
                 R.id.nav_profile -> {
-                    toolbar.title = "Profile"
                     val intent = Intent(this@MainReceiverActivity,ProfileFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    closeDrawer()
+                    true
+                }
+                R.id.nav_fulfilled_donation -> {
+                    val intent = Intent(this, ReceivedDonationActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     closeDrawer()
