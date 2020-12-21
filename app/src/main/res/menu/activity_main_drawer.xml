@@ -32,11 +32,11 @@
 
         <item
             android:id="@+id/nav_fulfilled_request"
-            android:title="@string/profile" />
+            android:title="Fulfilled Requests" />
 
         <item
             android:id="@+id/nav_fulfilled_donation"
-            android:title="@string/profile" />
+            android:title="Received Donations" />
 
         <item
             android:id="@+id/nav_banned_user"

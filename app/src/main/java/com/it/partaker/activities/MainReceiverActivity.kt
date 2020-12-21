@@ -165,7 +165,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
         nav_view.menu.findItem(R.id.nav_home_donor).isVisible = false
         nav_view.menu.findItem(R.id.nav_don_wishList).isVisible = false
         nav_view.menu.findItem(R.id.nav_myDonations).isVisible = false
-        nav_view.menu.findItem(R.id.nav_fulfilled_donation).isVisible = false
+        nav_view.menu.findItem(R.id.nav_fulfilled_request).isVisible = false
 
 
         nav_view.menu.findItem(R.id.nav_ngo_all_don).isVisible = false

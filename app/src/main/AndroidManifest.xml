@@ -49,6 +49,14 @@
         <activity android:name=".activities.DonorWishActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
+        <activity android:name=".fragments.donor.FulfilledRequestActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.receiver.ReceivedDonationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.donor.FulfillRequestDetail"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".fragments.receiver.ReceivedDonationDetail"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity android:name=".activities.MainReceiverActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

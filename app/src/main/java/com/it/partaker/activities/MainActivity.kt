@@ -264,7 +264,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
 
         nav_view.menu.findItem(R.id.nav_home_receiver).isVisible = false
         nav_view.menu.findItem(R.id.nav_myRequests).isVisible = false
-        nav_view.menu.findItem(R.id.nav_fulfilled_request).isVisible = false
+        nav_view.menu.findItem(R.id.nav_fulfilled_donation).isVisible = false
 
         nav_view.menu.findItem(R.id.nav_home_donor).isVisible = true
         nav_view.menu.findItem(R.id.nav_myDonations).isVisible = true
