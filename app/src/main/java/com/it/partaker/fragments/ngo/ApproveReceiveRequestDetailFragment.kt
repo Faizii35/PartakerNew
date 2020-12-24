@@ -30,8 +30,8 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
-    private var title: String = "Request Approval"
-    private val message: String = "Your Request Has Been Approved!"
+    private var title : String = "Request Approval"
+    private val message: String = "Your Requested Donation Has Been Approved!"
     private var apiService : APIService? = null
     private  var reports = "0"
 

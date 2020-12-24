@@ -69,4 +69,8 @@
     <string name="edit_requests">Edit Request</string>
     <string name="banned_users">Banned Users</string>
     <string name="partaker">Partaker</string>
+    <string name="post_title">Post Title:</string>
+    <string name="add_image_optional">Add Image: (*Optional)</string>
+    <string name="post">Post</string>
+    <string name="post_description">Post Description:</string>
 </resources>

@@ -9,7 +9,6 @@
     tools:context=".activities.AddPostActivity"
     android:theme="@style/AppTheme.NoActionBar">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutAddPost"
         android:layout_width="match_parent"
@@ -34,10 +33,9 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
         android:layout_centerHorizontal="true"
-        android:text="Post Title:"
+        android:text="@string/post_title"
         android:layout_marginTop="30dp"
         android:textSize="18sp">
-
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,6 +52,7 @@
             android:id="@+id/etAddPostDonationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilAddPostDonationName"
         android:layout_centerHorizontal="true"
-        android:text="Post Description:"
+        android:text="@string/post_description"
         android:textSize="18sp">
     </TextView>
 
@@ -84,6 +83,7 @@
             android:layout_height="wrap_content"
             android:gravity="top|left"
             android:inputType="textMultiLine"
+            android:textColor="@color/cardview_dark_background"
             android:lines="8"
             android:maxLines="12"
             android:scrollHorizontally="false"
@@ -97,9 +97,10 @@
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/tilAddPostDonationDesc"
         android:layout_centerHorizontal="true"
-        android:text="Add Image: (*Optional)"
+        android:text="@string/add_image_optional"
         android:layout_margin="5dp"
         android:textSize="18sp"/>
+
     <ImageView
         android:id="@+id/ivAddPostImage"
         android:layout_width="110dp"
@@ -118,9 +119,8 @@
         android:layout_below="@+id/ivAddPostImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Post"
+        android:text="@string/post"
         android:textAllCaps="true"
         android:padding="5dp" />
-
 
 </RelativeLayout>

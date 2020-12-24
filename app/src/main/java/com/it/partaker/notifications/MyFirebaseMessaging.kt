@@ -12,7 +12,9 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.it.partaker.activities.HomeNGOActivity
 import com.it.partaker.activities.MainActivity
+import com.it.partaker.activities.MainReceiverActivity
 
 class MyFirebaseMessaging : FirebaseMessagingService() {
     override fun onMessageReceived(mRemoteMessage: RemoteMessage) {
@@ -42,7 +44,26 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
 
         val notification = mRemoteMessage.notification
         val j = user!!.replace("\\[D]".toRegex(), "").toInt()
-        val intent = Intent(this,MainActivity::class.java)
+
+        val intent = when (title) {
+            "Post (Donation) Approval" -> {
+                Intent(this,MainActivity::class.java)
+            }
+            "Donation Approval" -> {
+                Intent(this,MainActivity::class.java)
+            }
+
+            "Post (Request) Approval" -> {
+                Intent(this,MainReceiverActivity::class.java)
+            }
+            "Request Approval" -> {
+                Intent(this,MainReceiverActivity::class.java)
+            }
+            else -> {
+                Intent(this,HomeNGOActivity::class.java)
+            }
+        }
+
         val bundle = Bundle()
         bundle.putString("userid",user)
         intent.putExtras(bundle)

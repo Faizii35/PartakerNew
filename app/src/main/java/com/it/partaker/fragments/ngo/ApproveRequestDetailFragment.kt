@@ -28,8 +28,8 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
-    private var title : String = "Post Approval"
-    private val message: String = "Your Post Has Been Approved!"
+    private var title : String = "Post (Request) Approval"
+    private val message: String = "Your Request Post Has Been Approved!"
     private var apiService : APIService? = null
     private  var reports = "0"
 

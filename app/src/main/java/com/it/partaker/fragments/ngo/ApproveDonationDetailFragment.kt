@@ -21,7 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class ApproveDonationDetailFragment : AppCompatActivity() {
 
     private var donationReference : DatabaseReference? = null
@@ -29,8 +28,8 @@ class ApproveDonationDetailFragment : AppCompatActivity() {
     private var firebaseUser : FirebaseUser? = null
     private var notify = false
     private var receiverId : String = ""
-    private var title : String = "Post Approval"
-    private val message: String = "Your Post Has Been Approved!"
+    private var title : String = "Post (Donation) Approval"
+    private val message: String = "Your Donation Post Has Been Approved!"
     private var apiService : APIService? = null
     private var reports : String= "0"
 
