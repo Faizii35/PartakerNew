@@ -153,13 +153,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_apv_don_on_click_donor_contactFB"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="297dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="0.7"
-                    android:textColor="@color/defaultContentColor"
-                    android:text="Donor Contact FB">
-                </androidx.appcompat.widget.AppCompatTextView>
+                    android:text="Donor Contact FB"
+                    android:textColor="@color/defaultContentColor"></androidx.appcompat.widget.AppCompatTextView>
 
                 <ImageView
                     android:layout_width="wrap_content"

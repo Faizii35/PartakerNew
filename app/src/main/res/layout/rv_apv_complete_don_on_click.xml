@@ -25,47 +25,48 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:layout_below="@id/appBarLayoutApproveReceiverRequestDetail"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="681dp"
+        android:layout_below="@id/appBarLayoutApproveReceiverRequestDetail">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_apv_complete_don_on_click_image"
             android:layout_width="100dp"
             android:layout_height="110dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@color/white"
-            app:srcCompat="@drawable/default_profile_pic"
-            android:layout_centerHorizontal="true">
+            app:srcCompat="@drawable/default_profile_pic">
 
         </androidx.appcompat.widget.AppCompatImageView>
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_1"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/iv_apv_complete_don_on_click_image"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_apv_complete_don_on_click_image"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_name"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="Donation Name: "
                 android:textColor="@color/defaultContentColor"
-                android:text="Donation Name: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_nameFB"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:lines="2"
-                android:textColor="@color/defaultContentColor"
-                android:text="Donation Name FB">
+                android:text="Donation Name FB"
+                android:textColor="@color/defaultContentColor">
 
             </androidx.appcompat.widget.AppCompatTextView>
 
@@ -73,30 +74,31 @@
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_2"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_1"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_1"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_desc"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="Donation Description: "
                 android:textColor="@color/defaultContentColor"
-                android:text="Donation Description: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_descFB"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultContentColor"
-                android:scrollbars="vertical"
+                android:layout_marginStart="10dp"
                 android:lines="7"
-                android:text="Donation Description FB">
+                android:scrollbars="vertical"
+                android:text="Donation Description FB"
+                android:textColor="@color/defaultContentColor">
 
             </androidx.appcompat.widget.AppCompatTextView>
 
@@ -104,28 +106,29 @@
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_3"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_2"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_2"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_donor_name"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Donor Name: "
                 android:textColor="@color/defaultContentColor"
-                android:textStyle="bold"
-                android:text="Donor Name: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_donor_nameFB"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultContentColor"
-                android:text="Donor Name FB">
+                android:layout_marginStart="10dp"
+                android:text="Donor Name FB"
+                android:textColor="@color/defaultContentColor">
 
             </androidx.appcompat.widget.AppCompatTextView>
 
@@ -133,28 +136,29 @@
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_4"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_3"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_3"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_donor_contact"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Donor Contact: "
                 android:textColor="@color/defaultContentColor"
-                android:textStyle="bold"
-                android:text="Donor Contact: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_donor_contactFB"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultContentColor"
-                android:text="Donor Contact FB">
+                android:layout_marginStart="10dp"
+                android:text="Donor Contact FB"
+                android:textColor="@color/defaultContentColor">
 
             </androidx.appcompat.widget.AppCompatTextView>
 
@@ -162,28 +166,29 @@
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_5"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_4"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_4"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_receiver_name"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="Requester Name: "
                 android:textColor="@color/defaultContentColor"
-                android:text="Requester Name: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_receiver_nameFB"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultContentColor"
-                android:text="Requester Name FB">
+                android:layout_marginStart="10dp"
+                android:text="Requester Name FB"
+                android:textColor="@color/defaultContentColor">
 
             </androidx.appcompat.widget.AppCompatTextView>
 
@@ -191,50 +196,50 @@
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_6"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_5"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_5"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_apv_complete_don_on_click_receiver_contact"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="Requester Contact: "
                 android:textColor="@color/defaultContentColor"
-                android:text="Requester Contact: ">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatTextView>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
 
-               <androidx.appcompat.widget.AppCompatTextView
-                   android:id="@+id/tv_apv_complete_don_on_click_receiver_contactFB"
-                   android:layout_marginStart="10dp"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="0.7"
-                   android:textColor="@color/defaultContentColor"
-                   android:text="Requester Contact FB">
-               </androidx.appcompat.widget.AppCompatTextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-               <ImageView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="0.3"
-                   android:src="@drawable/ic_baseline_call_24" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_apv_complete_don_on_click_receiver_contactFB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.7"
+                    android:text="Requester Contact FB"
+                    android:textColor="@color/defaultContentColor"></androidx.appcompat.widget.AppCompatTextView>
 
-           </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/ic_baseline_call_24" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_apv_complete_don_on_click_7"
-            android:layout_below="@+id/ll_apv_complete_don_on_click_6"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_apv_complete_don_on_click_6"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -243,36 +248,36 @@
                 android:id="@+id/btn_apv_complete_don_on_click_decline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:padding="5dp"
-                android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:textColor="@color/colorAccent"
+                android:layout_margin="5dp"
                 android:background="@color/design_default_color_error"
-                android:text="Decline " />
+                android:padding="5dp"
+                android:text="Decline "
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_apv_complete_don_on_click_approve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_margin="5dp"
-                android:padding="5dp"
                 android:layout_gravity="center"
-                android:textColor="@color/colorAccent"
+                android:layout_margin="5dp"
                 android:background="@color/green"
-                android:text="Approve" />
+                android:padding="5dp"
+                android:text="Approve"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_apv_complete_don_on_click_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:layout_margin="5dp"
-                android:padding="5dp"
-                android:textColor="@color/colorAccent"
                 android:background="@color/colorPrimary"
-                android:text="Report" />
+                android:padding="5dp"
+                android:text="Report"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

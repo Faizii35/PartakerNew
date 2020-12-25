@@ -145,15 +145,28 @@
                 android:text="Requester Contact: ">
 
             </androidx.appcompat.widget.AppCompatTextView>
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_apv_req_on_click_receiver_contactFB"
-                android:layout_marginStart="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/defaultContentColor"
-                android:text="Requester Contact FB">
 
-            </androidx.appcompat.widget.AppCompatTextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_apv_req_on_click_receiver_contactFB"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:textColor="@color/defaultContentColor"
+                    android:text="Requester Contact FB" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/ic_baseline_call_24" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
