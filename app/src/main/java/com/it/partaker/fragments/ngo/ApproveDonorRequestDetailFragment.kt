@@ -1,6 +1,7 @@
 package com.it.partaker.fragments.ngo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
@@ -17,6 +18,7 @@ import com.it.partaker.models.Request
 import com.it.partaker.models.User
 import com.it.partaker.notifications.*
 import kotlinx.android.synthetic.main.rv_apv_complete_req_on_click.*
+import kotlinx.android.synthetic.main.rv_apv_don_on_click.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +36,7 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
     private val message: String = "Your Request To Donate Has Been Approved!"
     private var apiService : APIService? = null
     private  var reports = "0"
+    private var number = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +78,8 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
                     reports = donor.getReport()
 
                     tv_apv_complete_req_on_click_donor_nameFB.text = donor.getFullName()
-                    tv_apv_complete_req_on_click_donor_contactFB.text = donor.getPhoneNumber()
+                    number = donor.getPhoneNumber()
+                    tv_apv_complete_req_on_click_donor_contactFB.text = number
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -91,6 +95,10 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
             .into(iv_apv_complete_req_on_click_image)
+
+        iv_apv_complete_req_on_click_donor_contactFB.setOnClickListener {
+            callIntent(number)
+        }
 
         btn_apv_complete_req_on_click_approve.setOnClickListener {
             notify = true
@@ -225,4 +233,9 @@ class ApproveDonorRequestDetailFragment : AppCompatActivity() {
 
     }
 
+    private fun callIntent(number: String){
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:$number")
+        startActivity(dialIntent)
+    }
 }

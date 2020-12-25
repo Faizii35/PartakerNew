@@ -1,6 +1,7 @@
 package com.it.partaker.fragments.ngo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
@@ -34,7 +35,7 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
     private val message: String = "Your Requested Donation Has Been Approved!"
     private var apiService : APIService? = null
     private  var reports = "0"
-
+    private var number = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,8 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
                 if (snapshot.exists()) {
                     val donor = snapshot.getValue(User::class.java)
                     tv_apv_complete_don_on_click_donor_nameFB.text = donor!!.getFullName()
-                    tv_apv_complete_don_on_click_donor_contactFB.text = donor.getPhoneNumber()
+                    number = donor.getPhoneNumber()
+                    tv_apv_complete_don_on_click_donor_contactFB.text = number
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -70,7 +72,8 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
                     reports = requester.getReport()
 
                     tv_apv_complete_don_on_click_receiver_nameFB.text = requester.getFullName()
-                    tv_apv_complete_don_on_click_receiver_contactFB.text = requester.getPhoneNumber()
+                    number = requester.getPhoneNumber()
+                    tv_apv_complete_don_on_click_receiver_contactFB.text = number
 
                 }
             }
@@ -87,6 +90,10 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
             .into(iv_apv_complete_don_on_click_image)
+
+            iv_apv_complete_don_on_click_receiver_contactFB.setOnClickListener {
+                callIntent(number)
+            }
 
         btn_apv_complete_don_on_click_approve.setOnClickListener {
             notify = true
@@ -223,4 +230,9 @@ class ApproveReceiveRequestDetailFragment : AppCompatActivity() {
 
     }
 
+    private fun callIntent(number: String){
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:$number")
+        startActivity(dialIntent)
+    }
 }

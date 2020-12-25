@@ -1,6 +1,7 @@
 package com.it.partaker.fragments.ngo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
@@ -32,6 +33,7 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
     private val message: String = "Your Request Post Has Been Approved!"
     private var apiService : APIService? = null
     private  var reports = "0"
+    private var number = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +73,10 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
             .circleCrop()
             .placeholder(R.drawable.default_profile_pic)
             .into(iv_apv_req_on_click_image)
+
+        iv_apv_req_on_click_receiver_contactFB.setOnClickListener {
+            callIntent(number)
+        }
 
         btn_apv_req_on_click_approve.setOnClickListener {
             notify = true
@@ -154,7 +160,6 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
             }.create().show()
         }
 
-
         updateToken(FirebaseInstanceId.getInstance().token)
 
     }
@@ -205,4 +210,9 @@ class ApproveRequestDetailFragment : AppCompatActivity() {
 
     }
 
+    private fun callIntent(number: String){
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:$number")
+        startActivity(dialIntent)
+    }
 }
