@@ -223,9 +223,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="0.7"
                     android:text="Requester Contact FB"
-                    android:textColor="@color/defaultContentColor"></androidx.appcompat.widget.AppCompatTextView>
-
+                    android:textColor="@color/defaultContentColor" />
                 <ImageView
+                    android:id="@+id/iv_apv_complete_don_on_click_receiver_contactFB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"

@@ -161,6 +161,7 @@
                     android:text="Requester Contact FB" />
 
                 <ImageView
+                    android:id="@+id/iv_apv_req_on_click_receiver_contactFB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"

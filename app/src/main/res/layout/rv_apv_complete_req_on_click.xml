@@ -223,6 +223,7 @@
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <ImageView
+                    android:id="@+id/iv_apv_complete_req_on_click_donor_contactFB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
