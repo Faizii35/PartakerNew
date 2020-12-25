@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/textColorRV"
     tools:context=".fragments.AboutAppFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,23 +23,22 @@
             />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appBarLayoutAboutApp"
         android:layout_marginTop="-1dp">
 
-        <TextView
+        <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/tv_about_app_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:text="@string/about_app_fragment"
-            android:textColor="@color/textColorRV"
-            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

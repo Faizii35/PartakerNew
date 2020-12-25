@@ -31,7 +31,14 @@
     <string name="navigation_drawer_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="about_app_fragment">This Application is Developed By Group# 16. :P\nIf You Have Anything To Say You Can Contact Us Through \n faizii.3406@gmail.com </string>
+    <string name="ic_happy_font">&amp;#xe902</string>
+
+
+
+    <string name="about_app_fragment">"        The major purpose to develop this app is to make the process of charity and donation as easy as possible. People can use this platform to donate and request donation.
+        \n\n\n        This allows donors to post a donation of anything that they do not use anymore. Like that, people can also request for things that they are in need of. Major features of this app include post donations and post request to donations by the donors. Moreover, Receivers can posts requests and requests for donation things that they need.
+        \n\n\n        NGO is the main stakeholder in this platform as all of the donation transactions ae handled by the NGO. NGO can approve all the requests of the users, either donor or receiver. NGO has the authority to ban any user that misuse the application by posting fake donations and requests.
+        \n\n\n        This Application is Developed By Group# 16. If You Have Anything To Say You Can Contact Us Through faizii.3406@gmail.com or zainkhalidrj86@gmail.com or hashamnabeel@gmail.com </string>
     <string name="new_password">New Password</string>
     <string name="confirm">Confirm</string>
     <string name="current_password">Current Password</string>

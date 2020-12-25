@@ -76,6 +76,7 @@ dependencies {
 
     //CountryCode Library
     implementation 'com.hbb20:ccp:2.3.8'
+    compile 'me.biubiubiu.justifytext:library:1.1'
 
 
 }
