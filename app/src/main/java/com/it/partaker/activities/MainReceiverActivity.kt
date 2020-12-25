@@ -45,6 +45,7 @@ class MainReceiverActivity : AppCompatActivity(), MyDonationsClickListener {
 
 //        toolbar.title = "Receiver"
 
+        tv_Main_Activity_NoPost.visibility = View.GONE
         rvHRFReceiver.visibility = View.VISIBLE
         rvHDFDonor.visibility = View.GONE
         ll_H_NGO_0.visibility = View.GONE

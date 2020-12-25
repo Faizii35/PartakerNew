@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment
 import com.google.firebase.database.FirebaseDatabase
 import com.it.partaker.R
 import com.it.partaker.models.Request
-import kotlinx.android.synthetic.main.fragment_edit_my_donation.view.*
 import kotlinx.android.synthetic.main.fragment_edit_my_requests.*
 import kotlinx.android.synthetic.main.fragment_edit_my_requests.view.*
 
@@ -29,7 +28,7 @@ class FragmentEditMyRequests(val request : Request) : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.etEditDonDescription.movementMethod = ScrollingMovementMethod()
+        view.etEditReqDescription.movementMethod = ScrollingMovementMethod()
 
         val title = request.getName()
         val desc = request.getDesc()

@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), MyRequestsClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tv_Main_Activity_NoPost.visibility = View.GONE
         rvHDFDonor.visibility = View.VISIBLE
         ll_H_NGO_0.visibility = View.GONE
         rvHRFReceiver.visibility = View.GONE

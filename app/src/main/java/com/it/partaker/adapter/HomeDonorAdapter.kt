@@ -13,6 +13,7 @@ import com.google.firebase.database.*
 import com.it.partaker.ItemClickListener.MyRequestsClickListener
 import com.it.partaker.R
 import com.it.partaker.models.Request
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.rv_hdf_donor_item.view.*
 
 private var firebaseUser : FirebaseUser? = null
@@ -39,6 +40,11 @@ class HomeDonorAdapter(val context: Context, private val HomeDonorItemClickListe
     {
         val requests = receiverList[position]
         holder.itemView.ivHDFWish.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+
+        if(itemCount<1)
+            holder.itemView.tv_Main_Activity_NoPost.visibility = View.VISIBLE
+        else
+            holder.itemView.tv_Main_Activity_NoPost.visibility = View.GONE
 
         wishReference = FirebaseDatabase.getInstance().reference.child("wishList")
         firebaseUser = FirebaseAuth.getInstance().currentUser

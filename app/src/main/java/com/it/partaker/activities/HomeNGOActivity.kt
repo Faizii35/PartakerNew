@@ -43,6 +43,7 @@ class HomeNGOActivity : AppCompatActivity() {
         rvHDFDonor.visibility = View.GONE
         rvHRFReceiver.visibility = View.GONE
         fa_btn_HDF_add_donation.visibility = View.GONE
+        tv_Main_Activity_NoPost.visibility = View.GONE
 
         mainHomeNGOWork()
 

@@ -30,4 +30,16 @@
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer" />
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <TextView
+        android:id="@+id/tv_Main_Activity_NoPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:textColor="@color/cardview_dark_background"
+        android:text="No Post Available Yet">
+
+    </TextView>
 </RelativeLayout>

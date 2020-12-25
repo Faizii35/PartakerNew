@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.it.partaker.ItemClickListener.MyDonationsClickListener
 import com.it.partaker.R
 import com.it.partaker.models.Donation
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.rv_hrf_receiver_item.view.*
 
 class HomeReceiverAdapter(val context: Context, private val donationItemClickListener: MyDonationsClickListener):RecyclerView.Adapter<HomeReceiverAdapter.HomeReceiverViewHolder>()
@@ -35,6 +36,11 @@ class HomeReceiverAdapter(val context: Context, private val donationItemClickLis
     override fun onBindViewHolder(holder: HomeReceiverViewHolder, position: Int) {
         val donations = donorList[position]
         firebaseUser = FirebaseAuth.getInstance().currentUser
+
+        if(itemCount<1)
+            holder.itemView.tv_Main_Activity_NoPost.visibility = View.VISIBLE
+        else
+            holder.itemView.tv_Main_Activity_NoPost.visibility = View.GONE
 
         val textView = holder.itemView.tvRVHRFReceiverName
         textView.text = donations.getName()
